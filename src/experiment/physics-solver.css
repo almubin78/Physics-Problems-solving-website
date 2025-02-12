@@ -1,0 +1,70 @@
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    background-color: #ddd;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .btn.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+  }
+  
+  input {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  
+  .calculate-btn {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    /* border: none; */
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .result-section {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .result {
+    font-weight: bold;
+  }
+  

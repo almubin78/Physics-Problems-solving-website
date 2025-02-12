@@ -1,6 +1,6 @@
-import { useState } from 'react';
+
 import './App.css';
-import PhysicsCalculator from './Motion/PhysicsCalculator';
+import PhysicsCalculator from './chapterBased/Motion/PhysicsCalculator';
 
 
 function App() {
