@@ -150,25 +150,30 @@ const PhysicsCalculator = () => {
     const values = inputs.map((input) => inputValues[input]);
 
     // Check if all required inputs are provided
+    // if (values.includes(undefined)) {
+    //   // If 'a' is missing but 'u', 'v', and 't' are provided, calculate 'a'
+    //   if (
+    //     inputs.includes("a") &&
+    //     !inputValues.a &&
+    //     inputValues.u !== undefined &&
+    //     inputValues.v !== undefined &&
+    //     inputValues.t !== undefined
+    //   ) {
+    //     inputValues.a = (inputValues.v - inputValues.u) / inputValues.t;
+    //   } else {
+    //     setResult("Please fill all required fields");
+    //     return;
+    //   }
+    // }
+    // Check if all required inputs are provided
     if (values.includes(undefined)) {
-      // If 'a' is missing but 'u', 'v', and 't' are provided, calculate 'a'
-      if (
-        inputs.includes("a") &&
-        !inputValues.a &&
-        inputValues.u !== undefined &&
-        inputValues.v !== undefined &&
-        inputValues.t !== undefined
-      ) {
-        inputValues.a = (inputValues.v - inputValues.u) / inputValues.t;
-      } else {
-        setResult("Please fill all required fields");
-        return;
-      }
+      setResult("Please fill all required fields");
+      return;
     }
 
     let calculatedResult;
     switch (formula) {
-      // Existing cases for 's'
+      //  cases for 's'
       case "s = ut + 0.5 * a * t^2":
         calculatedResult =
           inputValues.u * inputValues.t +
@@ -189,7 +194,7 @@ const PhysicsCalculator = () => {
         calculatedResult = inputValues.v * inputValues.t;
         break;
 
-      // Existing cases for 'v'
+      //  cases for 'v'
       case "v = u + at":
         calculatedResult = (
           inputValues.u +
@@ -200,7 +205,7 @@ const PhysicsCalculator = () => {
         calculatedResult = (inputValues.s / inputValues.t).toFixed(2);
         break;
 
-      // Existing cases for 'a'
+      //  cases for 'a'
       case "a = (v - u) / t":
         calculatedResult = (
           (inputValues.v - inputValues.u) /
@@ -214,7 +219,7 @@ const PhysicsCalculator = () => {
         ).toFixed(2);
         break;
 
-      // New cases for 't'
+      //  cases for 't'
       case "t = (v - u) / a":
         calculatedResult = (
           (inputValues.v - inputValues.u) /
@@ -230,7 +235,7 @@ const PhysicsCalculator = () => {
         ).toFixed(2);
         break;
 
-      // New cases for 'u'
+      //  cases for 'u'
       case "u = v - at":
         calculatedResult = (
           inputValues.v -
