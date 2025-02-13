@@ -8,7 +8,7 @@ const ForceCalculator = () => {
   const [result, setResult] = useState(null); // Calculated result
 
   // Available variables and their corresponding laws
-  const variables = ['F', 'm', 'v-u', 'a', 's', 'Ek', 'Ep', 'P', 'W', 't', 'n', 'v', 'u'];
+  const variables = ['F', 'm', 'v-u', 'a', 's'];
   const laws = {
     F: [
       {
@@ -54,6 +54,7 @@ const ForceCalculator = () => {
       [inputName]: parseFloat(value),
     });
   };
+  console.log(inputValues,'inputValues');
 
   // Generate placeholder text for input fields
   const getPlaceholder = (inputName) => {
@@ -203,12 +204,12 @@ const ForceCalculator = () => {
       {result !== null && (
         <div className="mt-4">
           <h2 className="text-xl font-semibold">Result:</h2>
-          <p className="text-lg">
+          <p className="text-lg text-pink-300">
             {
               laws[variableToSolve].find((law) => law.formula === selectedLaw)
                 .resultInfo
             }{' '}
-            <span className="font-bold">{result}</span>{' '}
+            <span className="font-extrabold text-green-600">{result}</span>{' '}
             {
               laws[variableToSolve].find((law) => law.formula === selectedLaw)
                 .unit
