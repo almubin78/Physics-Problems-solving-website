@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const PhysicsCalculator = () => {
+const MotionCalculator = () => {
   // State variables
   const [variableToSolve, setVariableToSolve] = useState(""); // Variable to solve (e.g., 's')
   const [selectedLaw, setSelectedLaw] = useState(""); // Selected law (e.g., 's = ut + 0.5 * a * t^2')
@@ -248,7 +248,7 @@ const PhysicsCalculator = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Physics Problem Solver</h1>
+      <h1 className="text-2xl font-bold mb-4">গতি অধ্যায়ের গাণিতিক সমস্যার সমাধান</h1>
 
       {/* Step 1: Select variable to solve */}
       <div className="mb-4">
@@ -260,8 +260,8 @@ const PhysicsCalculator = () => {
               onClick={() => handleVariableSelection(variable)}
               className={`px-4 py-2 rounded ${
                 variableToSolve === variable
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200"
+                  ? "bg-blue-500 text-white text-xl font-extrabold"
+                  : "bg-green-200 text-red-600 text-xl font-extrabold"
               }`}
             >
               {variable}
@@ -345,4 +345,4 @@ const PhysicsCalculator = () => {
   );
 };
 
-export default PhysicsCalculator;
+export default MotionCalculator;
