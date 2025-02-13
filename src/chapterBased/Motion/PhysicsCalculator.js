@@ -149,22 +149,7 @@ const PhysicsCalculator = () => {
     const { formula, inputs } = selectedLawData;
     const values = inputs.map((input) => inputValues[input]);
 
-    // Check if all required inputs are provided
-    // if (values.includes(undefined)) {
-    //   // If 'a' is missing but 'u', 'v', and 't' are provided, calculate 'a'
-    //   if (
-    //     inputs.includes("a") &&
-    //     !inputValues.a &&
-    //     inputValues.u !== undefined &&
-    //     inputValues.v !== undefined &&
-    //     inputValues.t !== undefined
-    //   ) {
-    //     inputValues.a = (inputValues.v - inputValues.u) / inputValues.t;
-    //   } else {
-    //     setResult("Please fill all required fields");
-    //     return;
-    //   }
-    // }
+    
     // Check if all required inputs are provided
     if (values.includes(undefined)) {
       setResult("Please fill all required fields");
