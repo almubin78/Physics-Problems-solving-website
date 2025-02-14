@@ -194,7 +194,7 @@ const ForceCalculator = () => {
           <h2 className="text-xl font-semibold">Result:</h2>
           <p className="text-lg text-pink-300">
             {
-              laws[variableToSolve].find((law) => law.formula === selectedLaw)
+              laws[variableToSolve]?.find((law) => law.formula === selectedLaw)
                 .resultInfo
             }{' '}
             <span className="font-extrabold text-green-600">{result}</span>{' '}
