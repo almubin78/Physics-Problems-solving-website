@@ -8,7 +8,7 @@ const ForceCalculator = () => {
   const [result, setResult] = useState(null); // Calculated result
 
   // Available variables and their corresponding laws
-  const variables = ['F', 'm', 'v-u', 'a', 's'];
+  const variables = ['F', 'm', 'a', 's'];
   const laws = {
     F: [
       {
@@ -22,13 +22,7 @@ const ForceCalculator = () => {
         inputs: ['m', 'v', 'u', 't'],
         resultInfo: 'Final Result for F is:',
         unit: 'N',
-      },
-      {
-        formula: 'F = m(v-u)/t (বেগের পরিবর্তনের v-u উল্লেখ থাকে।)',
-        inputs: ['m', 'v-u', 't'],
-        resultInfo: 'Final Result for F is:',
-        unit: 'N',
-      },
+      }
     ],
   };
 
@@ -69,8 +63,6 @@ const ForceCalculator = () => {
         return 'আদিবেগের মান (m/s)';
       case 't':
         return ' সময়ের মান (s)';
-      case 'v-u':
-        return 'বেগের পরিবর্তন (v-u) (m/s)';
       default:
         return `Enter ${inputName}`;
     }
@@ -88,7 +80,7 @@ const ForceCalculator = () => {
     }
 
     const { formula, inputs } = selectedLawData;
-    const values = inputs.map((input) => inputValues[input]);
+    const values = inputs?.map((input) => inputValues[input]);
 
     // Check if all required inputs are provided
     if (values.includes(undefined)) {
@@ -108,12 +100,7 @@ const ForceCalculator = () => {
           inputValues.t
         ).toFixed(2);
         break;
-      case 'F = m(v-u)/t (বেগের পরিবর্তনের v-u উল্লেখ থাকে।)':
-        calculatedResult = (
-          (inputValues.m * inputValues['v-u']) /
-          inputValues.t
-        ).toFixed(2);
-        break;
+      
       default:
         calculatedResult = 'Invalid formula';
     }
@@ -121,6 +108,7 @@ const ForceCalculator = () => {
     setResult(calculatedResult);
   };
 
+ 
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4 border-green-500">বল অধ্যায়ের গাণিতিক সমস্যার সমাধানঃ </h1>

@@ -1,75 +1,63 @@
 import React, { useState } from "react";
-import { set } from "react-hook-form";
 
 const WorkPowerEnergy = () => {
-    const [variableToSolve, setVariableToSolve] = useState('');
-    const [selectedLaw, setSelectedLaw] = useState('');
-    const variables = ['কাজ', 'শক্তি', 'সময়', 'শক্তির পরিমাণ', 'কাজের পরিমাণ'];
-    const laws = {
-        কাজ: [
-            {
-                formula: 'কাজ = শক্তি x সময়',
-                inputs: ['শক্তি', 'সময়'],
-                resultInfo: 'কাজের পরিমাণ:',
-                unit: 'জুল',
-            },
-            {
-                formula: 'কাজ = শক্তির পরিমাণ x সময়',
-                inputs: ['শক্তির পরিমাণ', 'সময়'],
-                resultInfo: 'কাজের পরিমাণ:',
-                unit: 'জুল',
-            },
-        ],
-        শক্তি: [
-            {
-                formula: 'শক্তি = কাজ / সময়',
-                inputs: ['কাজ', 'সময়'],
-                resultInfo: 'শক্তির পরিমাণ:',
-                unit: 'জুল/সেকেন্ড',
-            },
-            {
-                formula: 'শক্তি = কাজ / সময়',
-                inputs: ['কাজ', 'সময়'],
-                resultInfo: 'শক্তির পরিমাণ:',
-                unit: 'জুল/সেকেন্ড',
-            },
-        ],
-        সময়: [
-            {
-                formula: 'সময় = কাজ / শক্তি',
-                inputs: ['কাজ', 'শক্তি'],
-                resultInfo: 'সময়:',
-                unit: 'সেকেন্ড',
-            },
-            {
-                formula: 'সময় = কাজ / শক্তির পরিমাণ',
-                inputs: ['কাজ', 'শক্তির পরিমাণ'],    
-                resultInfo: 'সময়:',     
-                unit: 'সেকেন্ড',
-            },
-        ],
-    }
-    const handleVariableSelection = (variable) => {
-        setVariableToSolve(variable);
-        console.log('inside handleVariableSelection',variableToSolve);
-    }
-    console.log('outside handleVariableSelection',variableToSolve);
+  const [variableToSolve, setVariableToSolve] = useState("");
+  const [selectedLaw, setSelectedLaw] = useState("");
+  const [inputValues, setInputValues] = useState({});
 
-    const handleLawSelection = (law) => {
-        setSelectedLaw(law);
-        // console.log('inside handleLawSelection',law);
-    }
-    console.log('outside handleLawSelection',selectedLaw);  
+  const variables = ["কাজ", "বিভবশক্তি", "গতিশক্তি"];
+  const laws = {
+    কাজ: [
+      {
+        formula: "কাজ = F x s",
+        inputs: ["F", "s"],
+        resultInfo: "কাজের পরিমাণ:",
+        unit: "জুল",
+      },
+    ],
+    বিভবশক্তি: [
+      {
+        formula: "বিভবশক্তি = m x g x h",
+        inputs: ["m", "h"],
+        resultInfo: "বিভবশক্তি:",
+        unit: "জুল",
+      },
+    ],
+    গতিশক্তি: [
+      {
+        formula: "গতিশক্তি = 1/2 x m x v^2",
+        inputs: ["m", "v"],
+        resultInfo: "গতিশক্তি:",
+        unit: "জুল",
+      },
+    ],
+  };
+  const handleVariableSelection = (variable) => {
+    setVariableToSolve(variable);
+    console.log("inside handleVariableSelection", variableToSolve);
+  };
+  console.log("outside handleVariableSelection", variableToSolve);
 
+  const handleLawSelection = (law) => {
+    setSelectedLaw(law);
+    // console.log('inside handleLawSelection',law);
+  };
 
+  const handleInputChange = (inputName,value)=>{
+    setInputValues((preInputs)=>{
+      return{
+        ...preInputs,[inputName]:value
+      }
+    })
+  }
+    console.log("outside handleInputChange", inputValues);
 
-
-
-    // রেন্ডার
+  // রেন্ডার
   return (
     <div>
       <h1 className="text-xl font-bold mb-4 border-green-500">
-       <span className="text-2xl text-purple-500"> কাজ, ক্ষমতা , শক্তি </span> অধ্যায়ের গাণিতিক সমস্যার সমাধানঃ{" "}
+        <span className="text-2xl text-purple-500"> কাজ, ক্ষমতা , শক্তি </span>{" "}
+        অধ্যায়ের গাণিতিক সমস্যার সমাধানঃ{" "}
       </h1>
 
       {/* Step 1: Select variable to solve */}
@@ -79,40 +67,70 @@ const WorkPowerEnergy = () => {
         </h2>
         <div className="flex flex-wrap gap-2 mt-2">
           {variables?.map((variable) => (
-            <button
-              key={variable}
-              onClick={() => handleVariableSelection(variable)}
-              className={`px-4 py-2 rounded ${
-                variableToSolve === variable
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200"
-              }`}
-            >
-              {variable}
-            </button>
+            <>
+              <button
+                key={variable}
+                onClick={() => handleVariableSelection(variable)}
+                className={`px-3 py-2 rounded ${
+                  variableToSolve === variable
+                    ? "bg-green-300 text-white  "
+                    : " bg-white text-black"
+                }`}
+              >
+                {variable}
+              </button>
+            </>
           ))}
         </div>
       </div>
 
-
       {/* Step 2: Display laws for the selected variable */}
       {variableToSolve && (
         <div className="mb-4">
-          <h2 className="text-md font-semibold text-green-700">তোমার প্রশ্নে যে তথ্য গুলো দেয়া আছে সেটি বিবেচনা করে সূত্র সিলেক্ট করঃ </h2>
+          <h2 className="text-md font-semibold text-green-700">
+            তোমার প্রশ্নে যে তথ্য গুলো দেয়া আছে সেটি বিবেচনা করে সূত্র সিলেক্ট
+            করঃ{" "}
+          </h2>
           <div className="flex flex-wrap gap-2 mt-2">
             {laws[variableToSolve]?.map((law) => (
-              <button
-                key={law.formula}
-                onClick={() => handleLawSelection(law.formula)}
-                className={`px-4 py-2 rounded ${
-                  selectedLaw === law.formula
-                    ? 'bg-green-500 text-white'
-                    : 'bg-gray-200'
-                }`}
-              >
-                {law.formula}
-              </button>
+              <>
+                <button
+                  key={law.formula}
+                  onClick={() => {
+                    handleLawSelection(law.formula);
+                  }}
+                  className={`px-4 py-3 ${
+                    selectedLaw === law.formula
+                      ? "bg-green-300 text-white"
+                      : "bg-white text-black"
+                  }`}
+                >
+                  {law.formula}
+                </button>
+              </>
             ))}
+          </div>
+        </div>
+      )}
+      {/* Step 3: Display input fields for the selected law */}
+      {selectedLaw && (
+        <div>
+          <h2 className="text-xl font-semibold">Enter Values:</h2>
+          <div className="mt-2">
+            {laws[variableToSolve].find(law=>law.formula === selectedLaw)?.inputs?.map((input)=><div key={input} className="flex flex-wrap gap-2 mt-2">
+                <label
+                  htmlFor={input}
+                  className="text-md font-semibold text-green-700"
+                >
+                  {input}:
+                </label>
+                <input
+                  type="number"
+                  id={input}
+                  className="px-3 py-2 border border-green-500 rounded"
+                  onChange={(e)=>{handleInputChange(input,e.target.value)}}
+                />
+              </div>)}
           </div>
         </div>
       )}
