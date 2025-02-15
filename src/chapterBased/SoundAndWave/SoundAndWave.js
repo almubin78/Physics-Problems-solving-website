@@ -52,6 +52,23 @@ const SoundAndWave = () => {
   const handleInputOnChange = (inputKey, inputValue) => {
     setInputValues({ ...inputValues, [inputKey]: parseFloat(inputValue) });
   };
+  const handleCalculate = ()=>{
+    const targetedLawCheck = lawsDetails[targetVar].find((findingLaw)=>findingLaw.law === targetLaw);
+    if(!targetedLawCheck){
+      setResult('সূত্র পাওয়া যায়নি। ')
+      return;
+    }
+    const {law,inputsNeed} = targetedLawCheck;
+    let calculateResult;
+    switch (law) {
+      case 'বেগ':
+          calculateResult = (inputsNeed.f * inputsNeed.n).toFloat(2)
+        break;
+    
+      default:
+        calculateResult = 'no result found';
+    }
+  }
 
   return (
     <div className=" mx-0">
