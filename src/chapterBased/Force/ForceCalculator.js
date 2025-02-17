@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
 const ForceCalculator = () => {
-  // State variables
-  const [variableToSolve, setVariableToSolve] = useState(''); // Variable to solve (e.g., 'F')
-  const [selectedLaw, setSelectedLaw] = useState(''); // Selected law (e.g., 'F = ma')
-  const [inputValues, setInputValues] = useState({}); // Input values for the selected law
-  const [result, setResult] = useState(null); // Calculated result
+  const [variableToSolve, setVariableToSolve] = useState('');
+  const [selectedLaw, setSelectedLaw] = useState('');
+  const [inputValues, setInputValues] = useState({});
+  const [result, setResult] = useState(null);
 
-  // Available variables and their corresponding laws
   const variables = ['F', 'm', 'a', 's'];
   const laws = {
     F: [
@@ -26,106 +24,75 @@ const ForceCalculator = () => {
     ],
   };
 
-  // Handle variable selection
   const handleVariableSelection = (variable) => {
     setVariableToSolve(variable);
-    setSelectedLaw(''); // Reset selected law when variable changes
-    setInputValues({}); // Reset input values
-    setResult(null); // Reset result
+    setSelectedLaw('');
+    setInputValues({});
+    setResult(null);
   };
 
-  // Handle law selection
   const handleLawSelection = (law) => {
     setSelectedLaw(law);
-    setInputValues({}); // Reset input values when law changes
-    setResult(null); // Reset result
+    setInputValues({});
+    setResult(null);
   };
 
-  // Handle input changes
   const handleInputChange = (inputName, value) => {
     setInputValues({
       ...inputValues,
       [inputName]: parseFloat(value),
     });
   };
-  console.log(inputValues,'inputValues');
 
-  // Generate placeholder text for input fields
   const getPlaceholder = (inputName) => {
     switch (inputName) {
-      case 'm':
-        return 'ভরের মান (kg)';
-      case 'a':
-        return ' ত্বরণের মান (m/s²)';
-      case 'v':
-        return 'শেষবেগের মান (m/s)';
-      case 'u':
-        return 'আদিবেগের মান (m/s)';
-      case 't':
-        return ' সময়ের মান (s)';
-      default:
-        return `Enter ${inputName}`;
+      case 'm': return 'ভরের মান (kg)';
+      case 'a': return 'ত্বরণের মান (m/s²)';
+      case 'v': return 'শেষবেগের মান (m/s)';
+      case 'u': return 'আদিবেগের মান (m/s)';
+      case 't': return 'সময়ের মান (s)';
+      default: return `Enter ${inputName}`;
     }
   };
 
-  // Calculate the result based on the selected law
   const calculateResult = () => {
-    const selectedLawData = laws[variableToSolve].find(
-      (law) => law.formula === selectedLaw
-    );
-
+    const selectedLawData = laws[variableToSolve].find((law) => law.formula === selectedLaw);
     if (!selectedLawData) {
       setResult('Invalid law selection');
       return;
     }
-
     const { formula, inputs } = selectedLawData;
     const values = inputs?.map((input) => inputValues[input]);
-
-    // Check if all required inputs are provided
     if (values.includes(undefined)) {
       setResult('Please fill all required fields');
       return;
     }
-
     let calculatedResult;
     switch (formula) {
-      // Cases for 'F'
       case 'F = ma':
         calculatedResult = (inputValues.m * inputValues.a).toFixed(2);
         break;
       case 'F = m(v-u)/t':
-        calculatedResult = (
-          (inputValues.m * (inputValues.v - inputValues.u)) /
-          inputValues.t
-        ).toFixed(2);
+        calculatedResult = ((inputValues.m * (inputValues.v - inputValues.u)) / inputValues.t).toFixed(2);
         break;
-      
       default:
         calculatedResult = 'Invalid formula';
     }
-
     setResult(calculatedResult);
   };
 
- 
   return (
-    <div className="p-4  min-h-screen">
-      <h1 className="text-2xl font-bold mb-4 border-green-500">বল অধ্যায়ের গাণিতিক সমস্যার সমাধানঃ </h1>
+    <div className="p-6 min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">বল অধ্যায়ের গাণিতিক সমস্যার সমাধান</h1>
 
-      {/* Step 1: Select variable to solve */}
-      <div className="mb-4">
-        <h2 className="text-xl font-semibold">তুমি কিসের মান নির্নয় করতে চাও? :</h2>
-        <div className="flex flex-wrap gap-2 mt-2">
+      <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+        <h2 className="text-xl font-semibold mb-4">তুমি কিসের মান নির্নয় করতে চাও?</h2>
+        <div className="flex flex-wrap gap-3">
           {variables?.map((variable) => (
             <button
               key={variable}
               onClick={() => handleVariableSelection(variable)}
-              className={`px-4 py-2 rounded ${
-                variableToSolve === variable
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg transition duration-200 ${variableToSolve === variable ? 'bg-blue-500 text-white' : 'bg-gray-300 dark:bg-gray-700'}`}
             >
               {variable}
             </button>
@@ -133,20 +100,15 @@ const ForceCalculator = () => {
         </div>
       </div>
 
-      {/* Step 2: Display laws for the selected variable */}
       {variableToSolve && (
-        <div className="mb-4">
-          <h2 className="text-md font-semibold text-green-700">তোমার প্রশ্নে যে তথ্য গুলো দেয়া আছে সেটি বিবেচনা করে সূত্র সিলেক্ট করঃ </h2>
-          <div className="flex flex-wrap gap-2 mt-2">
+        <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+          <h2 className="text-md font-semibold text-green-700 dark:text-green-300">সূত্র সিলেক্ট করঃ</h2>
+          <div className="flex flex-wrap gap-3 mt-3">
             {laws[variableToSolve]?.map((law) => (
               <button
                 key={law.formula}
                 onClick={() => handleLawSelection(law.formula)}
-                className={`px-4 py-2 rounded ${
-                  selectedLaw === law.formula
-                    ? 'bg-green-500 text-white'
-                    : 'bg-gray-200'
-                }`}
+                className={`px-4 py-2 rounded-lg transition duration-200 ${selectedLaw === law.formula ? 'bg-green-500 text-white' : 'bg-gray-300 dark:bg-gray-700'}`}
               >
                 {law.formula}
               </button>
@@ -155,34 +117,28 @@ const ForceCalculator = () => {
         </div>
       )}
 
-      {/* Step 3: Display input fields for the selected law */}
       {selectedLaw && (
-        <div className="mb-4">
+        <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-xl font-semibold">Enter Values:</h2>
-          <div className="mt-2">
-            {laws[variableToSolve]
-              .find((law) => law.formula === selectedLaw)
-              .inputs?.map((input) => (
-                <div key={input} className="mb-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    {input}:
-                  </label>
-                  <input
-                    type="number"
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder={getPlaceholder(input)} // Add placeholder
-                    onChange={(e) => handleInputChange(input, e.target.value)}
-                  />
-                </div>
-              ))}
+          <div className="mt-4">
+            {laws[variableToSolve].find((law) => law.formula === selectedLaw).inputs?.map((input) => (
+              <div key={input} className="mb-3">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">{input}:</label>
+                <input
+                  type="number"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+                  placeholder={getPlaceholder(input)}
+                  onChange={(e) => handleInputChange(input, e.target.value)}
+                />
+              </div>
+            ))}
           </div>
         </div>
       )}
 
-      {/* Step 4: Calculate and display result */}
       {selectedLaw && (
         <button
-          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 w-full"
           onClick={calculateResult}
         >
           Calculate
@@ -190,18 +146,12 @@ const ForceCalculator = () => {
       )}
 
       {result !== null && (
-        <div className="mt-4">
+        <div className="mt-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-xl font-semibold">Result:</h2>
-          <p className="text-lg text-pink-300">
-            {
-              laws[variableToSolve]?.find((law) => law.formula === selectedLaw)
-                .resultInfo
-            }{' '}
-            <span className="font-extrabold text-green-600">{result}</span>{' '}
-            {
-              laws[variableToSolve].find((law) => law.formula === selectedLaw)
-                .unit
-            }
+          <p className="text-lg text-pink-500">
+            {laws[variableToSolve]?.find((law) => law.formula === selectedLaw)?.resultInfo} 
+            <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span> 
+            {laws[variableToSolve].find((law) => law.formula === selectedLaw)?.unit}
           </p>
         </div>
       )}

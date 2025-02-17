@@ -12,6 +12,8 @@ const FormulaFinderForMotion = () => {
       { formula: 's = ut + 0.5 * a * t^2', required: ['u', 't', 'a'], compute: (vals) => vals.u * vals.t + 0.5 * vals.a * vals.t ** 2 },
       { formula: 'v^2 = u^2 + 2as', required: ['u', 'a', 's'], compute: (vals) => Math.sqrt(vals.u ** 2 + 2 * vals.a * vals.s) },
       { formula: 's = ((u + v) / 2) * t', required: ['u', 'v', 't'], compute: (vals) => ((vals.u + vals.v) / 2) * vals.t },
+      { formula: 's = ((v^2 - u^2) / 2a)', required: ['u', 'v', 'a'], compute: (vals) => ((vals.v * vals.v - vals.u *vals.u ) / (2 * vals.a) )},
+      { formula: 'a = ((v^2 - u^2) / 2s)', required: ['u', 'v', 's'], compute: (vals) => ((vals.v * vals.v - vals.u *vals.u ) / (2 * vals.s) )},
     ];
   
     const handleInputChange = (variable, value) => {
