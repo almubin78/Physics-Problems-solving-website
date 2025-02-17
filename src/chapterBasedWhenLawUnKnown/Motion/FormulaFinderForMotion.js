@@ -8,6 +8,7 @@ const FormulaFinderForMotion = () => {
   
     const formulas = [
       { formula: 'a = (v - u) / t', required: ['u', 'v', 't'], compute: (vals) => (vals.v - vals.u) / vals.t },
+      { formula: 's = (ut + 0.5*a * t^2) এখানে a = (v-u)/t', required: ['u', 'v', 't'], compute: (vals) => (vals.u * vals.t + 0.5 * vals.t * vals.t *((vals.v - vals.u) / vals.t))  },
       { formula: 's = ut + 0.5 * a * t^2', required: ['u', 't', 'a'], compute: (vals) => vals.u * vals.t + 0.5 * vals.a * vals.t ** 2 },
       { formula: 'v^2 = u^2 + 2as', required: ['u', 'a', 's'], compute: (vals) => Math.sqrt(vals.u ** 2 + 2 * vals.a * vals.s) },
       { formula: 's = ((u + v) / 2) * t', required: ['u', 'v', 't'], compute: (vals) => ((vals.u + vals.v) / 2) * vals.t },
@@ -32,7 +33,7 @@ const FormulaFinderForMotion = () => {
     };
   
     return (
-      <div className="p-4">
+      <div className="p-4 min-h-screen">
         <h1 className="text-2xl font-bold mb-4">গতি সূত্র নির্ণয় করুন</h1>
         <div>
           {['u', 'v', 't', 'a', 's'].map((variable) => (

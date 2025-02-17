@@ -54,14 +54,14 @@ const WorkPowerEnergy = () => {
 
   // রেন্ডার
   return (
-    <div>
+    <div className=" min-h-screen">
       <h1 className="text-xl font-bold mb-4 border-green-500">
         <span className="text-2xl text-purple-500"> কাজ, ক্ষমতা , শক্তি </span>{" "}
         অধ্যায়ের গাণিতিক সমস্যার সমাধানঃ{" "}
       </h1>
 
       {/* Step 1: Select variable to solve */}
-      <div className="mb-4">
+      <div className="mb-4 ">
         <h2 className="text-xl font-semibold">
           তুমি কিসের মান নির্নয় করতে চাও? :
         </h2>

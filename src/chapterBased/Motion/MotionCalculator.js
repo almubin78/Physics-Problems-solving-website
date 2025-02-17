@@ -129,6 +129,7 @@ const MotionCalculator = () => {
 
   // Handle input changes
   const handleInputChange = (inputName, value) => {
+    // setInputValues({});
     setInputValues({
       ...inputValues,
       [inputName]: parseFloat(value),
@@ -247,7 +248,7 @@ const MotionCalculator = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4  min-h-screen">
       <h1 className="text-2xl font-bold mb-4">গতি অধ্যায়ের গাণিতিক সমস্যার সমাধান</h1>
 
       {/* Step 1: Select variable to solve */}

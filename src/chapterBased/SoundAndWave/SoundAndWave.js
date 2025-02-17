@@ -87,7 +87,8 @@ const SoundAndWave = () => {
   console.log(inputValues,'==inputValues');
   console.log(result,'==result');
   return (
-    <div className=" mx-0">
+    <div className=" mx-0 min-h-screen">
+      <h1 className="text-2xl font-bold mb-4 border-green-500">শব্দ ও তরঙ্গ অধ্যায়ের গাণিতিক সমস্যার সমাধানঃ</h1>
       {/* step-1 select problem*/}
       <div className="flex flex-wrap gap-5">
         {targetFromMany.map((selectProblem) => (
