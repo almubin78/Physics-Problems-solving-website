@@ -82,7 +82,7 @@ const ForceCalculator = () => {
   };
 
   return (
-    <div className="p-6 min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <div className="p-6 min-h-fit bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
       <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">বল অধ্যায়ের গাণিতিক সমস্যার সমাধান</h1>
 
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">

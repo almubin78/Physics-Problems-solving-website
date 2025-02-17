@@ -4,6 +4,7 @@ const WorkPowerEnergy = () => {
   const [variableToSolve, setVariableToSolve] = useState("");
   const [selectedLaw, setSelectedLaw] = useState("");
   const [inputValues, setInputValues] = useState({});
+  const [result, setResult] = useState(null);
 
   const variables = ["কাজ", "বিভবশক্তি", "গতিশক্তি"];
   const laws = {
@@ -32,106 +33,128 @@ const WorkPowerEnergy = () => {
       },
     ],
   };
+
   const handleVariableSelection = (variable) => {
     setVariableToSolve(variable);
-    console.log("inside handleVariableSelection", variableToSolve);
+    setSelectedLaw("");
+    setInputValues({});
+    setResult(null);
   };
-  console.log("outside handleVariableSelection", variableToSolve);
 
   const handleLawSelection = (law) => {
     setSelectedLaw(law);
-    // console.log('inside handleLawSelection',law);
+    setInputValues({});
+    setResult(null);
   };
 
-  const handleInputChange = (inputName,value)=>{
-    setInputValues((preInputs)=>{
-      return{
-        ...preInputs,[inputName]:value
-      }
-    })
-  }
-    console.log("outside handleInputChange", inputValues);
+  const handleInputChange = (inputName, value) => {
+    setInputValues({
+      ...inputValues,
+      [inputName]: parseFloat(value),
+    });
+  };
 
-  // রেন্ডার
+  const calculateResult = () => {
+    const selectedLawData = laws[variableToSolve].find((law) => law.formula === selectedLaw);
+    if (!selectedLawData) {
+      setResult("Invalid law selection");
+      return;
+    }
+    const { formula, inputs } = selectedLawData;
+    const values = inputs?.map((input) => inputValues[input]);
+    if (values.includes(undefined)) {
+      setResult("Please fill all required fields");
+      return;
+    }
+    let calculatedResult;
+    switch (formula) {
+      case "কাজ = F x s":
+        calculatedResult = (inputValues.F * inputValues.s).toFixed(2);
+        break;
+      case "বিভবশক্তি = m x g x h":
+        calculatedResult = (inputValues.m * 9.8 * inputValues.h).toFixed(2);
+        break;
+      case "গতিশক্তি = 1/2 x m x v^2":
+        calculatedResult = (0.5 * inputValues.m * inputValues.v ** 2).toFixed(2);
+        break;
+      default:
+        calculatedResult = "Invalid formula";
+    }
+    setResult(calculatedResult);
+  };
+
   return (
-    <div className=" min-h-screen">
-      <h1 className="text-xl font-bold mb-4 border-green-500">
-        <span className="text-2xl text-purple-500"> কাজ, ক্ষমতা , শক্তি </span>{" "}
-        অধ্যায়ের গাণিতিক সমস্যার সমাধানঃ{" "}
-      </h1>
+    <div className="p-6 min-h-fit bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">কাজ, ক্ষমতা , শক্তি অধ্যায়ের গাণিতিক সমস্যার সমাধান</h1>
 
-      {/* Step 1: Select variable to solve */}
-      <div className="mb-4 ">
-        <h2 className="text-xl font-semibold">
-          তুমি কিসের মান নির্নয় করতে চাও? :
-        </h2>
-        <div className="flex flex-wrap gap-2 mt-2">
+      <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+        <h2 className="text-xl font-semibold mb-4">তুমি কিসের মান নির্নয় করতে চাও?</h2>
+        <div className="flex flex-wrap gap-3">
           {variables?.map((variable) => (
-            <>
-              <button
-                key={variable}
-                onClick={() => handleVariableSelection(variable)}
-                className={`px-3 py-2 rounded ${
-                  variableToSolve === variable
-                    ? "bg-green-300 text-white  "
-                    : " bg-white text-black"
-                }`}
-              >
-                {variable}
-              </button>
-            </>
+            <button
+              key={variable}
+              onClick={() => handleVariableSelection(variable)}
+              className={`px-4 py-2 rounded-lg transition duration-200 ${variableToSolve === variable ? 'bg-blue-500 text-white' : 'bg-gray-300 dark:bg-gray-700'}`}
+            >
+              {variable}
+            </button>
           ))}
         </div>
       </div>
 
-      {/* Step 2: Display laws for the selected variable */}
       {variableToSolve && (
-        <div className="mb-4">
-          <h2 className="text-md font-semibold text-green-700">
-            তোমার প্রশ্নে যে তথ্য গুলো দেয়া আছে সেটি বিবেচনা করে সূত্র সিলেক্ট
-            করঃ{" "}
-          </h2>
-          <div className="flex flex-wrap gap-2 mt-2">
+        <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+          <h2 className="text-md font-semibold text-green-700 dark:text-green-300">সূত্র সিলেক্ট করঃ</h2>
+          <div className="flex flex-wrap gap-3 mt-3">
             {laws[variableToSolve]?.map((law) => (
-              <>
-                <button
-                  key={law.formula}
-                  onClick={() => {
-                    handleLawSelection(law.formula);
-                  }}
-                  className={`px-4 py-3 ${
-                    selectedLaw === law.formula
-                      ? "bg-green-300 text-white"
-                      : "bg-white text-black"
-                  }`}
-                >
-                  {law.formula}
-                </button>
-              </>
+              <button
+                key={law.formula}
+                onClick={() => handleLawSelection(law.formula)}
+                className={`px-4 py-2 rounded-lg transition duration-200 ${selectedLaw === law.formula ? 'bg-green-500 text-white' : 'bg-gray-300 dark:bg-gray-700'}`}
+              >
+                {law.formula}
+              </button>
             ))}
           </div>
         </div>
       )}
-      {/* Step 3: Display input fields for the selected law */}
+
       {selectedLaw && (
-        <div>
+        <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-xl font-semibold">Enter Values:</h2>
-          <div className="mt-2">
-            {laws[variableToSolve].find(law=>law.formula === selectedLaw)?.inputs?.map((input)=><div key={input} className="flex flex-wrap gap-2 mt-2">
-                <label
-                  htmlFor={input}
-                  className="text-md font-semibold text-green-700"
-                >
-                  {input}:
-                </label>
+          <div className="mt-4">
+            {laws[variableToSolve].find((law) => law.formula === selectedLaw).inputs?.map((input) => (
+              <div key={input} className="mb-3">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">{input}:</label>
                 <input
                   type="number"
-                  id={input}
-                  className="px-3 py-2 border border-green-500 rounded"
-                  onChange={(e)=>{handleInputChange(input,e.target.value)}}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+                  placeholder={`Enter ${input}`}
+                  onChange={(e) => handleInputChange(input, e.target.value)}
                 />
-              </div>)}
+              </div>
+            ))}
           </div>
+        </div>
+      )}
+
+      {selectedLaw && (
+        <button
+          className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 w-full"
+          onClick={calculateResult}
+        >
+          Calculate
+        </button>
+      )}
+
+      {result !== null && (
+        <div className="mt-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
+          <h2 className="text-xl font-semibold">Result:</h2>
+          <p className="text-lg text-pink-500">
+            {laws[variableToSolve]?.find((law) => law.formula === selectedLaw)?.resultInfo} 
+            <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span> 
+            {laws[variableToSolve].find((law) => law.formula === selectedLaw)?.unit}
+          </p>
         </div>
       )}
     </div>

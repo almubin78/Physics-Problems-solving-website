@@ -263,7 +263,7 @@ const getPlaceholder = (inputName) => {
 
       {/* Step 1: Select variable to solve */}
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">Select Variable to Solve:</h2>
+        <h2 className="text-xl font-semibold mb-4">তুমি কিসের মান নির্ণয় করতে চাও , সেটির সূত্র সিলেক্ট কর:</h2>
         <div className="flex flex-wrap gap-3">
           {variables?.map((variable) => (
             <button
