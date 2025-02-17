@@ -44,7 +44,7 @@ const SoundAndWave = () => {
     setResult(null);
   };
   const handleSetLaw = (law) => {
-    console.log(law, "law");
+    console.log(law, "====law from handleSelectLaw");
     setTargetLaw(law);
     setInputValues({});
     setResult(null);
@@ -52,6 +52,7 @@ const SoundAndWave = () => {
   const handleInputOnChange = (inputKey, inputValue) => {
     setInputValues({ ...inputValues, [inputKey]: parseFloat(inputValue) });
   };
+  // calculating result
   const handleCalculate = ()=>{
     const targetedLawCheck = lawsDetails[targetVar].find((findingLaw)=>findingLaw.law === targetLaw);
     if(!targetedLawCheck){
@@ -59,17 +60,32 @@ const SoundAndWave = () => {
       return;
     }
     const {law,inputsNeed} = targetedLawCheck;
+    console.log(law,inputsNeed,'=law  and inputNeed ==after checking');
+    const values = inputsNeed?.map((singleInput)=>inputValues[singleInput]);
+    console.log(values,'=valules');
+     // Check if all required inputs are provided
+     if (values.includes(undefined)) {
+      setResult('Please fill all required fields');
+      return;
+    }
     let calculateResult;
+    console.log(inputValues);
     switch (law) {
-      case 'বেগ':
-          calculateResult = (inputsNeed.f * inputsNeed.n).toFloat(2)
+      case 'v=fn':
+          calculateResult = (inputValues.f * inputValues.n).toFixed(2)
+        break;
+      case 'f=v/n':
+          calculateResult = (inputValues.v / inputValues.n).toFixed(2)
         break;
     
       default:
         calculateResult = 'no result found';
     }
+    setResult(calculateResult)
+    console.log('calculateResult===',calculateResult);
   }
-
+  console.log(inputValues,'==inputValues');
+  console.log(result,'==result');
   return (
     <div className=" mx-0">
       {/* step-1 select problem*/}
@@ -85,22 +101,7 @@ const SoundAndWave = () => {
           </button>
         ))}
       </div>
-      {/* step-1 select law */}
-      <div className="flex flex-wrap gap-5">
-        {lawsDetails[targetVar]?.map((singleLawDetails) => (
-          <button
-            key={singleLawDetails.targetVar}
-            className={`px-3 py-2 border rounded ${
-              targetVar === singleLawDetails.targetVar
-                ? "btn-green"
-                : "bg-green-400"
-            }`}
-            onClick={() => handleSetLaw(singleLawDetails.law)}
-          >
-            {singleLawDetails.law}
-          </button>
-        ))}
-      </div>
+      
       {/* step-3 get inputs */}
       {targetVar && (
         <div className="flex flex-wrap gap-5">
@@ -126,8 +127,12 @@ const SoundAndWave = () => {
             .find((lawDetail) => lawDetail.law === targetLaw)
             .inputsNeed?.map((inputVar) => (
               <div key={inputVar}>
+                <label>
+                  {inputVar}
+                </label>
                 <input
                   type="number"
+                  className="border"
                   onChange={(e) =>
                     handleInputOnChange(inputVar, e.target.value)
                   }
@@ -136,6 +141,16 @@ const SoundAndWave = () => {
             ))}
         </>
       )}
+      {
+        targetLaw && (
+          <button 
+            className="border bg-white"
+            onClick={handleCalculate}
+          >
+            Calculate
+          </button>
+        )
+      }
     </div>
   );
 };
