@@ -4,6 +4,7 @@ import ForceCalculator from './chapterBased/Force/ForceCalculator';
 import MotionCalculator from './chapterBased/Motion/MotionCalculator';
 import SoundAndWave from './chapterBased/SoundAndWave/SoundAndWave';
 import WorkPowerEnergy from './chapterBased/WorkPowerEnergy/WorkPowerEnergy';
+import FormulaFinderForMotion from './chapterBasedWhenLawUnKnown/Motion/FormulaFinderForMotion';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <ForceCalculator/>
       <WorkPowerEnergy/> */}
       <SoundAndWave/>
+      <FormulaFinderForMotion/>
     </div>
   );
 }

@@ -151,6 +151,15 @@ const SoundAndWave = () => {
           </button>
         )
       }
+      { 
+      result !== null && (
+        <>
+          <div>result</div>
+          {result}
+        </>
+      )
+
+      }
     </div>
   );
 };
