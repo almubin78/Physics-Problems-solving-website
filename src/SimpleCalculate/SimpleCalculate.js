@@ -63,8 +63,16 @@ const SimpleCalculate = () => {
     return (value * energyUnits[from]) / energyUnits[to];
   };
 
-  const handleConversion = (converterFunction, setConvertedValue, value, from, to) => {
-    setConvertedValue(converterFunction(parseFloat(value), from, to).toFixed(2));
+  const handleConversion = (
+    converterFunction,
+    setConvertedValue,
+    value,
+    from,
+    to
+  ) => {
+    setConvertedValue(
+      converterFunction(parseFloat(value), from, to).toFixed(2)
+    );
   };
 
   const timeUnits = ["hour", "minute", "second"];
@@ -151,226 +159,133 @@ const SimpleCalculate = () => {
       )}
 
       {/* Unit Converters */}
-      <div className="p-4 ">
-        <div className="mt-10">
-          <h2 className="text-2xl font-bold text-center mb-4">
-            Unit Converters
-          </h2>
+      {/* Unit Converters */}
+      <div className="w-full max-w-3xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-white">
+          Unit Converters
+        </h2>
 
-          {/* Time Converter */}
-          <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded shadow">
-            <h3 className="text-lg font-semibold">Time Converter</h3>
+        {[
+          {
+            title: "Time Converter",
+            value: timeValue,
+            setValue: setTimeValue,
+            fromUnit: timeFromUnit,
+            setFromUnit: setTimeFromUnit,
+            toUnit: timeToUnit,
+            setToUnit: setTimeToUnit,
+            units: timeUnits,
+            convertedValue: timeConvertedValue,
+            converter: convertTime,
+            setConvertedValue: setTimeConvertedValue,
+          },
+          {
+            title: "Distance Converter",
+            value: distanceValue,
+            setValue: setDistanceValue,
+            fromUnit: distanceFromUnit,
+            setFromUnit: setDistanceFromUnit,
+            toUnit: distanceToUnit,
+            setToUnit: setDistanceToUnit,
+            units: distanceUnits,
+            convertedValue: distanceConvertedValue,
+            converter: convertDistance,
+            setConvertedValue: setDistanceConvertedValue,
+          },
+          {
+            title: "Velocity Converter",
+            value: velocityValue,
+            setValue: setVelocityValue,
+            fromUnit: velocityFromUnit,
+            setFromUnit: setVelocityFromUnit,
+            toUnit: velocityToUnit,
+            setToUnit: setVelocityToUnit,
+            units: velocityUnits,
+            convertedValue: velocityConvertedValue,
+            converter: convertVelocity,
+            setConvertedValue: setVelocityConvertedValue,
+          },
+          {
+            title: "Energy Converter",
+            value: energyValue,
+            setValue: setEnergyValue,
+            fromUnit: energyFromUnit,
+            setFromUnit: setEnergyFromUnit,
+            toUnit: energyToUnit,
+            setToUnit: setEnergyToUnit,
+            units: energyUnits,
+            convertedValue: energyConvertedValue,
+            converter: convertEnergy,
+            setConvertedValue: setEnergyConvertedValue,
+          },
+        ].map((converter, index) => (
+          <div
+            key={index}
+            className="mb-8 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md"
+          >
+            <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+              {converter.title}
+            </h3>
+
             <input
               type="number"
-              className="mt-2 p-2 border rounded w-full dark:bg-gray-700 dark:text-white"
+              className="w-full p-3 border rounded-md text-lg dark:bg-gray-700 dark:text-white"
               placeholder="Enter value"
-              onChange={(e) => setTimeValue(e.target.value)}
+              value={converter.value}
+              onChange={(e) => converter.setValue(e.target.value)}
             />
-            <div className="flex justify-between mt-2">
+
+            <div className="flex justify-between items-center mt-4">
               <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setTimeFromUnit(e.target.value)}
+                className="w-1/3 p-3 border rounded-md dark:bg-gray-700 dark:text-white text-lg"
+                value={converter.fromUnit}
+                onChange={(e) => converter.setFromUnit(e.target.value)}
               >
-                {timeUnits.map((unit) => (
+                {converter.units.map((unit) => (
                   <option key={unit} value={unit}>
                     {unit}
                   </option>
                 ))}
               </select>
-              <span className="px-2">to</span>
+
+              <span className="text-lg font-bold">→</span>
+
               <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setTimeToUnit(e.target.value)}
+                className="w-1/3 p-3 border rounded-md dark:bg-gray-700 dark:text-white text-lg"
+                value={converter.toUnit}
+                onChange={(e) => converter.setToUnit(e.target.value)}
               >
-                {timeUnits.map((unit) => (
+                {converter.units.map((unit) => (
                   <option key={unit} value={unit}>
                     {unit}
                   </option>
                 ))}
               </select>
             </div>
-            <button
-              className="mt-2 p-2 bg-blue-500 text-white rounded w-full"
-              onClick={() =>
-                handleConversion(
-                  convertTime,
-                  setTimeConvertedValue,
-                  timeValue,
-                  timeFromUnit,
-                  timeToUnit
-                )
-              }
-            >
-              Convert
-            </button>
-            {timeConvertedValue && (
-              <p className="mt-2 text-center font-bold">
-                Converted: {timeConvertedValue}
-              </p>
-            )}
-          </div>
 
-          {/* Distance Converter */}
-          <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded shadow">
-            <h3 className="text-lg font-semibold">Distance Converter</h3>
-            <input
-              type="number"
-              className="mt-2 p-2 border rounded w-full dark:bg-gray-700 dark:text-white"
-              placeholder="Enter value"
-              onChange={(e) => setDistanceValue(e.target.value)}
-            />
-            <div className="flex justify-between mt-2">
-              <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setDistanceFromUnit(e.target.value)}
-              >
-                {distanceUnits.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-              <span className="px-2">to</span>
-              <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setDistanceToUnit(e.target.value)}
-              >
-                {distanceUnits.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-            </div>
             <button
-              className="mt-2 p-2 bg-blue-500 text-white rounded w-full"
+              className="mt-4 w-full p-3 bg-blue-600 text-white rounded-lg font-semibold text-lg hover:bg-blue-700 transition"
               onClick={() =>
                 handleConversion(
-                  convertDistance,
-                  setDistanceConvertedValue,
-                  distanceValue,
-                  distanceFromUnit,
-                  distanceToUnit
+                  converter.converter,
+                  converter.setConvertedValue,
+                  converter.value,
+                  converter.fromUnit,
+                  converter.toUnit
                 )
               }
             >
               Convert
             </button>
-            {distanceConvertedValue && (
-              <p className="mt-2 text-center font-bold">
-                Converted: {distanceConvertedValue}
-              </p>
-            )}
-          </div>
 
-          {/* Velocity Converter */}
-          <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded shadow">
-            <h3 className="text-lg font-semibold">Velocity Converter</h3>
-            <input
-              type="number"
-              className="mt-2 p-2 border rounded w-full dark:bg-gray-700 dark:text-white"
-              placeholder="Enter value"
-              onChange={(e) => setVelocityValue(e.target.value)}
-            />
-            <div className="flex justify-between mt-2">
-              <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setVelocityFromUnit(e.target.value)}
-              >
-                {velocityUnits.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-              <span className="px-2">to</span>
-              <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setVelocityToUnit(e.target.value)}
-              >
-                {velocityUnits.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button
-              className="mt-2 p-2 bg-blue-500 text-white rounded w-full"
-              onClick={() =>
-                handleConversion(
-                  convertVelocity,
-                  setVelocityConvertedValue,
-                  velocityValue,
-                  velocityFromUnit,
-                  velocityToUnit
-                )
-              }
-            >
-              Convert
-            </button>
-            {velocityConvertedValue && (
-              <p className="mt-2 text-center font-bold">
-                Converted: {velocityConvertedValue}
+            {converter.convertedValue && (
+              <p className="mt-4 text-center text-lg font-bold text-gray-900 dark:text-white">
+                Converted: {converter.convertedValue}
               </p>
             )}
           </div>
-
-          {/* Energy Converter */}
-          <div className="mb-6 p-4 bg-gray-100 dark:bg-gray-800 rounded shadow">
-            <h3 className="text-lg font-semibold">Energy Converter</h3>
-            <input
-              type="number"
-              className="mt-2 p-2 border rounded w-full dark:bg-gray-700 dark:text-white"
-              placeholder="Enter value"
-              onChange={(e) => setEnergyValue(e.target.value)}
-            />
-            <div className="flex justify-between mt-2">
-              <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setEnergyFromUnit(e.target.value)}
-              >
-                {energyUnits.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-              <span className="px-2">to</span>
-              <select
-                className="p-2 border rounded dark:bg-gray-700 dark:text-white"
-                onChange={(e) => setEnergyToUnit(e.target.value)}
-              >
-                {energyUnits.map((unit) => (
-                  <option key={unit} value={unit}>
-                    {unit}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <button
-              className="mt-2 p-2 bg-blue-500 text-white rounded w-full"
-              onClick={() =>
-                handleConversion(
-                  convertEnergy,
-                  setEnergyConvertedValue,
-                  energyValue,
-                  energyFromUnit,
-                  energyToUnit
-                )
-              }
-            >
-              Convert
-            </button>
-            {energyConvertedValue && (
-              <p className="mt-2 text-center font-bold">
-                Converted: {energyConvertedValue}
-              </p>
-            )}
-          </div>
-        </div>
+        ))}
       </div>
-
     </div>
   );
 };
