@@ -370,6 +370,7 @@ const SimpleCalculate = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
