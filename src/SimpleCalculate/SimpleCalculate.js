@@ -35,14 +35,38 @@ const SimpleCalculate = () => {
     setInput("");
     setResult("");
   };
-
+//eval and calculateResult()
+//1.
+  // const calculateResult = () => {
+  //   try {
+  //     setResult(eval(input).toString());
+  //   } catch {
+  //     setResult("Error");
+  //   }
+  // };
+  //2.
   const calculateResult = () => {
     try {
-      setResult(eval(input).toString());
+      setResult(new Function(`return ${input}`)().toString());
     } catch {
       setResult("Error");
     }
   };
+  //3.
+//   const isValidExpression = (expression) => /^[0-9+\-*/().\s]+$/.test(expression);
+
+// const calculateResult = () => {
+//   if (!isValidExpression(input)) {
+//     setResult("Invalid Input");
+//     return;
+//   }
+//   try {
+//     setResult(eval(input).toString());
+//   } catch {
+//     setResult("Error");
+//   }
+// };
+
 
   const convertTime = (value, from, to) => {
     const timeUnits = { hour: 3600, minute: 60, second: 1 };
@@ -84,7 +108,7 @@ const SimpleCalculate = () => {
     <div className="p-4 min-h-screen flex flex-col items-center">
       {/* Calculator Section */}
       <motion.button
-        className="fixed bottom-6 right-6 p-3 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600"
+        className="fixed bottom-6 right-6 p-3 bg-yellow-500 text-white rounded-full shadow-lg hover:bg-blue-600"
         onClick={() => setIsOpen(!isOpen)}
         whileTap={{ scale: 0.9 }}
       >
@@ -167,7 +191,8 @@ const SimpleCalculate = () => {
 
         {[
           {
-            title: "Time Converter",
+            title: "সময় Converter",
+            extraInfo:' ঘন্টা, মিনিট, সেকেন্ড',
             value: timeValue,
             setValue: setTimeValue,
             fromUnit: timeFromUnit,
@@ -180,7 +205,8 @@ const SimpleCalculate = () => {
             setConvertedValue: setTimeConvertedValue,
           },
           {
-            title: "Distance Converter",
+            title: "দূরত্ব Converter",
+            extraInfo:' মিটার,কিলোমিটার,সেন্টিমিটার,মিলিমিটার',
             value: distanceValue,
             setValue: setDistanceValue,
             fromUnit: distanceFromUnit,
@@ -193,7 +219,8 @@ const SimpleCalculate = () => {
             setConvertedValue: setDistanceConvertedValue,
           },
           {
-            title: "Velocity Converter",
+            title: " বেগ Converter",
+            extraInfo:' মিটার/সেকেন্ড, কিলোমিটার/ঘন্টা',
             value: velocityValue,
             setValue: setVelocityValue,
             fromUnit: velocityFromUnit,
@@ -206,7 +233,8 @@ const SimpleCalculate = () => {
             setConvertedValue: setVelocityConvertedValue,
           },
           {
-            title: "Energy Converter",
+            title: "শক্তি Converter",
+            extraInfo:' জুল, কিলোওয়াট-ঘন্টা, ক্যালরি। ',
             value: energyValue,
             setValue: setEnergyValue,
             fromUnit: energyFromUnit,
@@ -226,6 +254,7 @@ const SimpleCalculate = () => {
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
               {converter.title}
             </h3>
+            <p><span className="text-sm text-bold text-yellow-200">পারস্পরিক রুপান্তরঃ </span>{converter.extraInfo}</p>
 
             <input
               type="number"
