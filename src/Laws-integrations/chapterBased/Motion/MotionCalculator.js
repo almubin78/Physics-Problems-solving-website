@@ -135,17 +135,25 @@ const MotionCalculator = () => {
       [inputName]: parseFloat(value),
     });
   };
-//get placeholder
-const getPlaceholder = (inputName) => {
-  switch (inputName) {
-    case 'm': return 'ভরের মান (kg)';
-    case 'a': return 'ত্বরণের মান (m/s²)';
-    case 'v': return 'শেষবেগের মান (m/s)';
-    case 'u': return 'আদিবেগের মান (m/s)';
-    case 't': return 'সময়ের মান (s)';
-    default: return `Enter ${inputName}`;
-  }
-}
+ 
+  //get placeholder
+  const getPlaceholder = (inputName) => {
+    switch (inputName) {
+      case "m":
+        return "ভরের মান (kg)";
+      case "a":
+        return "ত্বরণের মান (m/s²)";
+      case "v":
+        return "শেষবেগের মান (m/s)";
+      case "u":
+        return "আদিবেগের মান (m/s)";
+      case "t":
+        return "সময়ের মান (s)";
+      default:
+        return `Enter ${inputName}`;
+    }
+  };
+
   // Calculate the result based on the selected law
   const calculateResult = () => {
     const selectedLawData = laws[variableToSolve].find(
@@ -160,7 +168,6 @@ const getPlaceholder = (inputName) => {
     const { formula, inputs } = selectedLawData;
     const values = inputs.map((input) => inputValues[input]);
 
-    
     // Check if all required inputs are provided
     if (values.includes(undefined)) {
       setResult("Please fill all required fields");
@@ -259,17 +266,25 @@ const getPlaceholder = (inputName) => {
 
   return (
     <div className="p-6 min-h-fit bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">গতি অধ্যায়ের গাণিতিক সমস্যার সমাধান</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">
+        গতি অধ্যায়ের গাণিতিক সমস্যার সমাধান
+      </h1>
 
       {/* Step 1: Select variable to solve */}
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">তুমি কিসের মান নির্ণয় করতে চাও , সেটির সূত্র সিলেক্ট কর:</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          তুমি কিসের মান নির্ণয় করতে চাও , সেটির সূত্র সিলেক্ট কর:
+        </h2>
         <div className="flex flex-wrap gap-3">
           {variables?.map((variable) => (
             <button
               key={variable}
               onClick={() => handleVariableSelection(variable)}
-              className={`px-4 py-2 rounded-lg transition duration-200 ${variableToSolve === variable ? 'bg-blue-500 text-white' : 'bg-gray-300 dark:bg-gray-700'}`}
+              className={`px-4 py-2 rounded-lg transition duration-200 ${
+                variableToSolve === variable
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-300 dark:bg-gray-700"
+              }`}
             >
               {variable}
             </button>
@@ -280,13 +295,19 @@ const getPlaceholder = (inputName) => {
       {/* Step 2: Display laws for the selected variable */}
       {variableToSolve && (
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-          <h2 className="text-md font-semibold text-green-700 dark:text-green-300">Select Law:</h2>
+          <h2 className="text-md font-semibold text-green-700 dark:text-green-300">
+            Select Law:
+          </h2>
           <div className="flex flex-wrap gap-3 mt-3">
             {laws[variableToSolve]?.map((law) => (
               <button
                 key={law.formula}
                 onClick={() => handleLawSelection(law.formula)}
-                className={`px-4 py-2 rounded-lg transition duration-200 ${selectedLaw === law.formula ? 'bg-green-500 text-white' : 'bg-gray-300 dark:bg-gray-700'}`}
+                className={`px-4 py-2 rounded-lg transition duration-200 ${
+                  selectedLaw === law.formula
+                    ? "bg-green-500 text-white"
+                    : "bg-gray-300 dark:bg-gray-700"
+                }`}
               >
                 {law.formula}
               </button>
@@ -337,7 +358,9 @@ const getPlaceholder = (inputName) => {
               laws[variableToSolve].find((law) => law.formula === selectedLaw)
                 .resultInfo
             }{" "}
-            <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span>{" "}
+            <span className="font-extrabold text-green-600 dark:text-green-400">
+              {result}
+            </span>{" "}
             {
               laws[variableToSolve].find((law) => law.formula === selectedLaw)
                 .unit
