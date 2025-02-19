@@ -9,12 +9,17 @@ import WorkPowerEnergy from "../Laws-integrations/chapterBased/WorkPowerEnergy/W
 import SoundAndWave from "../Laws-integrations/chapterBased/SoundAndWave/SoundAndWave";
 import FormulaFinderForMotion from "../Laws-integrations/chapterBasedWhenLawUnKnown/Motion/FormulaFinderForMotion";
 import LawSelectionHomePage from "../Laws-integrations/LawSelectionHomePage";
+import HomePageInfo from "../CommonPages/HomePageInfo";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
     children: [
+      {
+        path: "/",
+        element: <HomePageInfo/>
+      },
       {
         path: "/simple-calculate",
         element: <SimpleCalculate />,
