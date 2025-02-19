@@ -28,7 +28,7 @@ const WorkPowerEnergy = () => {
       {
         formula: "গতিশক্তি = 1/2 x m x v^2",
         inputs: ["m", "v"],
-        resultInfo: "গতিশক্তি:",
+        resultInfo: "গতিশক্তি: ",
         unit: "জুল",
       },
     ],
@@ -152,7 +152,7 @@ const WorkPowerEnergy = () => {
           <h2 className="text-xl font-semibold">Result:</h2>
           <p className="text-lg text-pink-500">
             {laws[variableToSolve]?.find((law) => law.formula === selectedLaw)?.resultInfo} 
-            <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span> 
+            <span className="font-extrabold text-green-600 dark:text-green-400"> {result} </span> 
             {laws[variableToSolve].find((law) => law.formula === selectedLaw)?.unit}
           </p>
         </div>

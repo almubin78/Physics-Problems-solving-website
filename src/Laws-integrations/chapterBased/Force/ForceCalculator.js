@@ -29,18 +29,18 @@ const ForceCalculator = () => {
     ],
     বন্দুকের_পশ্চাৎবেগ: [
       {
-        formula: "V = - mv/M",
-        inputs: ["m", "v", "M"],
+        formula: "v2 = -( m1 * v1 )/m2",
+        inputs: ["m1", "v1", "m2"],
         resultInfo: "বন্দুকের পশ্চাৎবেগ: ",
         unit: "m/s",
-        resultFn: (v) => (-v.m * v.v) / v.M,
+        resultFn: (v) => (-v.m1 * v.v1) / v.m2,
       },
     ],
     মিলিত_বস্তুর_বেগ: [
       {
-        formula: "v = (MU - mu)/(m+M)",
-        inputs: ["m", "M", "u", "U"],
-        resultInfo: "u কে ঋণাত্মক ধরে,  মিলিত বস্তুদ্বয়ের বেগ: ",
+        formula: "v = (m1 * u1 - m2 * u2)/(m1+m2)",
+        inputs: ["m1", "m2", "u1", "u2"],
+        resultInfo: "u1 কে ঋণাত্মক ধরে,  মিলিত বস্তুদ্বয়ের বেগ: ",
         unit: "m/s",
       },
     ],
@@ -49,7 +49,7 @@ const ForceCalculator = () => {
         formula: "F = (GMm)/r^2",
         inputs: ["M", "m", "r"],
         resultInfo: "বস্তু দ্বয়ের মধ্যে ক্রিয়াশীল মহাকর্ষ বলঃ  ",
-        unit: "m/s",
+        unit: "N",
       },
     ],
   };
@@ -78,18 +78,24 @@ const ForceCalculator = () => {
     switch (inputName) {
       case "m":
         return "ভরের মান (kg)";
-      case "M":
+      case "m1":
         return "১ম বস্তুর ভরের মান (kg)";
+      case "m2":
+        return "২য় বস্তুর ভরের মান (kg)";
       case "a":
         return "ত্বরণের মান (m/s²)";
-      case "v":
-        return "শেষবেগের মান (m/s)";
-      case "V":
+      case "v1":
         return "১ম বস্তুর শেষবেগের মান (m/s)";
-      case "U":
-        return "১ম বস্তুর আদিবেগের মান (m/s)";
+      case "v2":
+        return "২য় বস্তুরশেষবেগের মান (m/s)";
+      case "v":
+        return " শেষবেগের মান (m/s)";
       case "u":
-        return "আদিবেগের মান (m/s)";
+        return " আদিবেগের মান (m/s)";
+      case "u1":
+        return "১ম বস্তুর আদিবেগের মান (m/s)";
+      case "u2":
+        return "২য় বস্তুর আদিবেগের মান (m/s)";
       case "t":
         return "সময়ের মান (s)";
       default:
@@ -97,54 +103,65 @@ const ForceCalculator = () => {
     }
   };
 
+  const formatNumber = (num) => {
+    if (Math.abs(num) >= 1e6 || (Math.abs(num) <= 1e-3 && num !== 0)) {
+      return num.toExponential(2); // বৈজ্ঞানিক নোটেশন
+    } else if (Number.isInteger(num)) {
+      return num; // পূর্ণসংখ্যা থাকলে 그대로 রাখবে
+    } else {
+      return num.toFixed(3); // দশমিক সংখ্যা থাকলে দুই দশমিক পর্যন্ত রাখবে
+    }
+  };
+
   const calculateResult = () => {
     const selectedLawData = laws[variableToSolve].find(
       (law) => law.formula === selectedLaw
     );
+
     if (!selectedLawData) {
       setResult("Invalid law selection");
       return;
     }
+
     const { formula, inputs } = selectedLawData;
     const values = inputs?.map((input) => inputValues[input]);
+
     if (values.includes(undefined)) {
       setResult("Please fill all required fields");
       return;
     }
+
     let calculatedResult;
+
     switch (formula) {
       case "F = ma":
-        calculatedResult = (inputValues.m * inputValues.a).toFixed(2);
+        calculatedResult = inputValues.m * inputValues.a;
         break;
       case "F = m(v-u)/t":
-        calculatedResult = (
-          (inputValues.m * (inputValues.v - inputValues.u)) /
-          inputValues.t
-        ).toFixed(2);
+        calculatedResult =
+          (inputValues.m * (inputValues.v - inputValues.u)) / inputValues.t;
         break;
-      case "V = - mv/M":
-        calculatedResult = (
-          -(inputValues.m * inputValues.v) / inputValues.M
-        ).toFixed(2);
+      case "v2 = -( m1 * v1 )/m2":
+        calculatedResult = -(inputValues.m1 * inputValues.v1) / inputValues.m2;
         break;
-      case "v = (MU - mu)/(m+M)":
-        calculatedResult = (
-          (inputValues.M * inputValues.U - inputValues.m * inputValues.u) /
-          (inputValues.M + inputValues.M)
-        ).toFixed(2);
+      case "v = (m1 * u1 - m2 * u2)/(m1+m2)":
+        calculatedResult =
+          (inputValues.m2 * inputValues.u2 - inputValues.m1 * inputValues.u1) /
+          (inputValues.m2 + inputValues.m1);
         break;
       case "F = (GMm)/r^2":
-        calculatedResult = (
+        calculatedResult =
           (6.673e-11 * inputValues.M * inputValues.m) /
-          (inputValues.r * inputValues.r)
-        ).toExponential(2);
+          (inputValues.r * inputValues.r);
         break;
-
-      //6.673e-11
-      //.000000000006673
       default:
         calculatedResult = "Invalid formula";
     }
+
+    if (typeof calculatedResult === "number") {
+      calculatedResult = formatNumber(calculatedResult);
+    }
+
     setResult(calculatedResult);
   };
 
@@ -178,7 +195,7 @@ const ForceCalculator = () => {
       {variableToSolve && (
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-md font-semibold text-green-700 dark:text-green-300">
-            সূত্র সিলেক্ট করঃ
+            নির্ধারিত সূত্রে ক্লিক করঃ
           </h2>
           <div className="flex flex-wrap gap-3 mt-3">
             {laws[variableToSolve]?.map((law) => (

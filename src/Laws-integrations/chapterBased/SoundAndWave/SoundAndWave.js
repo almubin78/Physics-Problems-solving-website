@@ -6,16 +6,44 @@ const SoundAndWave = () => {
   const [inputValues, setInputValues] = useState({});
   const [result, setResult] = useState(null);
 
-  const variables = ['v', 'f', 'λ'];
+  const variables = ['তরঙ্গের_বেগ', 'কম্পাংক', 'তরংগদৈর্ঘ্য'];
   const laws = {
-    v: [
+    তরঙ্গের_বেগ: [
       {
         formula: 'v = fλ',
         inputs: ['f', 'λ'],
-        resultInfo: 'Final Result for v (velocity) is:',
+        resultInfo: 'তরংগের বেগ হবে:',
         unit: 'm/s',
-      }
+      },
+      {
+        formula: 'v = λ/T',
+        inputs: ['T', 'λ'],
+        resultInfo: 'তরংগের বেগ হবে:',
+        unit: 'm/s',
+      },
     ],
+    কম্পাংক:[
+      {
+        formula: 'f = v/λ',
+        inputs: ['v', 'λ'],
+        resultInfo: 'কম্পাংকের মান:',
+        unit: 'Hz বা 1/s',
+      },
+      {
+        formula: 'f = 1/T',
+        inputs: [ 'T'],
+        resultInfo: 'কম্পাংকের মান:',
+        unit: 'Hz বা 1/s',
+      },
+    ],
+    তরংগদৈর্ঘ্য:[
+      {
+        formula: 'λ = v/f',
+        inputs: ['v', 'f'],
+        resultInfo: 'তরংগদৈর্ঘ্য হবে:',
+        unit: 'মিটার (m)',
+      },
+    ]
   };
 
   const handleVariableSelection = (variable) => {
@@ -61,13 +89,30 @@ const SoundAndWave = () => {
     let calculatedResult;
     switch (formula) {
       case 'v = fλ':
-        calculatedResult = (inputValues.f * inputValues.λ).toFixed(2);
+        calculatedResult = inputValues.f * inputValues.λ;
+        break;
+      case 'v = λ/T':
+        calculatedResult = inputValues.λ * inputValues.T;
+        break;
+      case 'f = v/λ':
+        calculatedResult = inputValues.v / inputValues.λ;
+        break;
+      case 'f = 1/T':
+        calculatedResult = 1 / inputValues.T;
+        break;
+      case 'λ = v/f':
+        calculatedResult = inputValues.v / inputValues.f;
         break;
       default:
         calculatedResult = 'Invalid formula';
     }
+    
+    // যদি দশমিক থাকে তাহলে toFixed(2) প্রয়োগ করব, অন্যথায় পূর্ণসংখ্যা রাখব
+    calculatedResult = Number.isInteger(calculatedResult) ? calculatedResult : calculatedResult.toFixed(2);
+    
     setResult(calculatedResult);
   };
+  
 
   return (
     <div className="p-6 min-h-fit bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
@@ -138,7 +183,7 @@ const SoundAndWave = () => {
           <h2 className="text-xl font-semibold">Result:</h2>
           <p className="text-lg text-pink-500">
             {laws[variableToSolve]?.find((law) => law.formula === selectedLaw)?.resultInfo} 
-            <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span> 
+            <span className="font-extrabold text-green-600 dark:text-green-400"> {result} </span> 
             {laws[variableToSolve].find((law) => law.formula === selectedLaw)?.unit}
           </p>
         </div>
