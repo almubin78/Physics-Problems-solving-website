@@ -78,7 +78,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className={` font-serif font-bold ${
+          className={`md:hidden font-serif font-bold ${
             menuOpen
               ? "text-pink-800 border"
               : "text-red-600 border px-1 rounded"

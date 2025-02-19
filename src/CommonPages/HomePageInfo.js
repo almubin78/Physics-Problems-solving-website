@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomePageInfo = () => {
   return (
@@ -52,24 +53,24 @@ const HomePageInfo = () => {
         {/* যোগাযোগ বিভাগ */}
         <div className="bg-white p-8 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Need Help? যোগাযোগ কর!
+            টার্গেটঃ শূন্য থেকে অ্যাডভান্স ? 
           </h2>
           <p className="text-gray-600 mb-6">
-            যদি তোমার সাহায্যের প্রয়োজন হয়, তাহলে নির্দ্বিধায় যোগাযোগ কর। 
+            সুত্রগুলো এলোমেলো লাগে?  
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <a
-              href="mailto:your-email@example.com"
+            <Link
+              
               className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors duration-300"
             >
-              📧 ইমেইল করুন
-            </a>
-            <a
-              href="tel:+8801701906543"
+              ভর্তি হও 
+            </Link>
+            <Link
+              
               className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors duration-300"
             >
-              📞 কল করুন
-            </a>
+              বিস্তারিত
+            </Link>
           </div>
         </div>
       </div>
