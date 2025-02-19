@@ -4,7 +4,7 @@ const HomePageInfo = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
-        {/* শিরোনাম */}
+        {/* শিরোনাম 01JMC1CYDQHHZ0N9EEK3MNRFPA*/}
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
           Phy&Tech-এ স্বাগতম
         </h1>

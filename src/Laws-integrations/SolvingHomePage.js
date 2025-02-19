@@ -1,17 +1,7 @@
-import { NavLink, Outlet, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { NavLink, Outlet, } from "react-router-dom";
 
 const SolvingHomePage = () => {
-  //   const [defaultPath, setDefaultPath] = useState(null);
-
-  //   useEffect(() => {
-  //     // Set default path when the component mounts
-  //     setDefaultPath("/laws-integrations/motion");
-  //   }, []);
-
-  //   if (defaultPath) {
-  //     return <Navigate to={defaultPath} replace />;
-  //   }
+  
 
   return (
     <div className="min-h-screen flex flex-col items-center p-6 bg-gray-100">

@@ -46,7 +46,9 @@ const Navbar = () => {
             <NavLink
               to="/simple-calculate"
               className={({ isActive }) =>
-                isActive ? "text-blue-600 font-semibold border-b-2" : "text-gray-700"
+                isActive
+                  ? "text-blue-600 font-semibold border-b-2"
+                  : "text-gray-700"
               }
             >
               এককের রূপান্তর
@@ -75,28 +77,35 @@ const Navbar = () => {
         </ul>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-white font-serif font-bold" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? 'Hide'  : 'Menu' }
+        <button
+          className={` font-serif font-bold ${
+            menuOpen
+              ? "text-pink-800 border"
+              : "text-red-600 border px-1 rounded"
+          }`}
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? "Hide" : "Menu"}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-lg absolute top-0 left-0 w-full py-4">
+        <div className="md:hidden bg-yellow-100 shadow-lg absolute top-0 left-0 w-full py-4">
           <ul className="flex flex-col items-center space-y-4">
             <li>
               <NavLink
                 to="/"
-                className="text-gray-700 text-lg"
+                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
                 onClick={() => setMenuOpen(false)}
               >
-                Home
+                প্রধান পেজ
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/simple-calculate"
-                className="text-gray-700 text-lg"
+                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
                 onClick={() => setMenuOpen(false)}
               >
                 এককের রূপান্তর
@@ -105,23 +114,33 @@ const Navbar = () => {
             <li>
               <NavLink
                 to="/laws-integrations"
-                className="text-gray-700 text-lg"
+                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
                 onClick={() => setMenuOpen(false)}
               >
                 পদার্থ ক্যালকুলেটর
               </NavLink>
             </li>
             <li>
-            <NavLink
-              to="/laws-selection"
-              className={({ isActive }) =>
-                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
-              }
-            >
-              সূত্র নির্ধারন
-            </NavLink>
-          </li>
+              <NavLink
+                to="/laws-selection"
+                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
+                onClick={() => setMenuOpen(false)}
+              >
+                সূত্র নির্ধারন
+              </NavLink>
+            </li>
           </ul>
+
+          <button
+            className={` mt-2 font-serif font-bold ${
+              menuOpen
+                ? "text-pink-800 border bg-slate-300 px-2 py-1 rounded"
+                : "text-red-600 border px-2 py-1 rounded"
+            }`}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            close
+          </button>
         </div>
       )}
     </nav>
