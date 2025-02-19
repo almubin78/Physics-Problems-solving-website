@@ -1,37 +1,27 @@
-import { NavLink, Outlet, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
-const SolvingHomePage = () => {
-  //   const [defaultPath, setDefaultPath] = useState(null);
-
-  //   useEffect(() => {
-  //     // Set default path when the component mounts
-  //     setDefaultPath("/laws-integrations/motion");
-  //   }, []);
-
-  //   if (defaultPath) {
-  //     return <Navigate to={defaultPath} replace />;
-  //   }
-
+const LawSelectionHomePage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center p-6 bg-gray-100">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Laws & Integrations
+        সূত্র নির্ধারন 
       </h1>
       <p className="text-xl font-bold text-gray-800 mb-6">
-        তুমি যদি সূত্র গুলো বুঝে থাক তবে এই সেকশন তোমার জন্য ।
+        তুমি যদি সূত্র গুলো না বুঝ তবে অধ্যায় সিলেক্ট কর এবং প্রশ্নে উল্লেখিত মান বসাও। 
+        তাহলেই সম্ভাব্য সূত্র পেয়ে যাবে। 
       </p>
 
       {/* Navigation Tabs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
-          { path: "/laws-integrations/motion", label: "Motion" },
-          { path: "/laws-integrations/force", label: "Force" },
+          { path: "/laws-selection/motion", label: "Motion" },
+          { path: "/laws-selection/force", label: "Force" },
           {
-            path: "/laws-integrations/work-power-energy",
+            path: "/laws-selection/work-power-energy",
             label: "Work & Energy",
           },
-          { path: "/laws-integrations/sound-and-wave", label: "Sound & Wave" },
+          { path: "/laws-selection/sound-and-wave", label: "Sound & Wave" },
         ].map((item) => (
           <NavLink
             key={item.path}
@@ -53,10 +43,8 @@ const SolvingHomePage = () => {
       <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
         <Outlet />
       </div>
-
-
     </div>
   );
 };
 
-export default SolvingHomePage;
+export default LawSelectionHomePage;

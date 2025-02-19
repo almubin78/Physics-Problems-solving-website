@@ -46,10 +46,10 @@ const Navbar = () => {
             <NavLink
               to="/simple-calculate"
               className={({ isActive }) =>
-                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
+                isActive ? "text-blue-600 font-semibold border-b-2" : "text-gray-700"
               }
             >
-              Simple Calculate
+              এককের রূপান্তর
             </NavLink>
           </li>
           <li>
@@ -59,7 +59,17 @@ const Navbar = () => {
                 isActive ? "text-blue-600 font-semibold" : "text-gray-700"
               }
             >
-              Laws & Integrations
+              পদার্থ ক্যালকুলেটর
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/laws-selection"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
+              }
+            >
+              সূত্র নির্ধারন
             </NavLink>
           </li>
         </ul>
@@ -89,7 +99,7 @@ const Navbar = () => {
                 className="text-gray-700 text-lg"
                 onClick={() => setMenuOpen(false)}
               >
-                Simple Calculate
+                এককের রূপান্তর
               </NavLink>
             </li>
             <li>
@@ -98,9 +108,19 @@ const Navbar = () => {
                 className="text-gray-700 text-lg"
                 onClick={() => setMenuOpen(false)}
               >
-                Laws & Integrations
+                পদার্থ ক্যালকুলেটর
               </NavLink>
             </li>
+            <li>
+            <NavLink
+              to="/laws-selection"
+              className={({ isActive }) =>
+                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
+              }
+            >
+              সূত্র নির্ধারন
+            </NavLink>
+          </li>
           </ul>
         </div>
       )}

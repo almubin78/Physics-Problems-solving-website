@@ -44,11 +44,11 @@ const FormulaFinderForMotion = () => {
   };
 
   return (
-    <div className="p-6 min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">গতি সূত্র নির্ণয় করুন</h1>
+    <div className="p-6 min-h-fit bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">গতি অধ্যায়ের সূত্র নির্ণয়</h1>
 
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">প্রয়োজনীয় মান প্রদান করুন:</h2>
+        <h2 className="text-xl font-semibold mb-4">প্রয়োজনীয় মান প্রদান কর:</h2>
         <div className="grid grid-cols-2 gap-4">
           {['u', 'v', 't', 'a', 's'].map((variable) => (
             <div key={variable}>

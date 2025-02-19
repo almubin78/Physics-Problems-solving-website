@@ -7,43 +7,55 @@ import MotionCalculator from "../Laws-integrations/chapterBased/Motion/MotionCal
 import ForceCalculator from "../Laws-integrations/chapterBased/Force/ForceCalculator";
 import WorkPowerEnergy from "../Laws-integrations/chapterBased/WorkPowerEnergy/WorkPowerEnergy";
 import SoundAndWave from "../Laws-integrations/chapterBased/SoundAndWave/SoundAndWave";
+import FormulaFinderForMotion from "../Laws-integrations/chapterBasedWhenLawUnKnown/Motion/FormulaFinderForMotion";
+import LawSelectionHomePage from "../Laws-integrations/LawSelectionHomePage";
 
 export const router = createBrowserRouter([
-    {
-        path:'/',
-        element:<HomePage/>,
+  {
+    path: "/",
+    element: <HomePage />,
+    children: [
+      {
+        path: "/simple-calculate",
+        element: <SimpleCalculate />,
+      },
+      {
+        path: "/laws-integrations",
+        element: <SolvingHomePage />,
+        children: [
+          {
+            path: "/laws-integrations/motion",
+            element: <MotionCalculator />,
+          },
+
+          {
+            path: "/laws-integrations/force",
+            element: <ForceCalculator />,
+          },
+          {
+            path: "/laws-integrations/work-power-energy",
+            element: <WorkPowerEnergy />,
+          },
+          {
+            path: "/laws-integrations/sound-and-wave",
+            element: <SoundAndWave />,
+          },
+        ],
+      },
+      {
+        path: "/laws-selection",
+        element: <LawSelectionHomePage/>,
         children:[
             {
-                path:'/simple-calculate',
-                element:<SimpleCalculate/>,
-            },
-            {
-                path:'/laws-integrations',
-                element:<SolvingHomePage/>,
-                children:[
-                    {
-                        path:'/laws-integrations/motion',
-                        element:<MotionCalculator/>
-                    },
-                    {
-                        path:'/laws-integrations/force',
-                        element:<ForceCalculator/>
-                    },
-                    {
-                        path:'/laws-integrations/work-power-energy',
-                        element:<WorkPowerEnergy/>
-                    },
-                    {
-                        path:'/laws-integrations/sound-and-wave',
-                        element:<SoundAndWave/>
-                    },
-                ]
-            },
+                path: "/laws-selection/motion",
+                element: <FormulaFinderForMotion/>, 
+            }
         ]
-    },
-    {
-        path:'*',
-        element:<ErrorPage/>
-    }
-])
-
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
+  },
+]);
