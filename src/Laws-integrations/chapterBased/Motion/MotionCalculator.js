@@ -59,9 +59,6 @@ const MotionCalculator = () => {
       setResult("Please fill all required fields");
       return;
     }
-
-
-
    
     let calculatedResult;
     switch (formula) {

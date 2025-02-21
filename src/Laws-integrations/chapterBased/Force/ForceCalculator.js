@@ -35,35 +35,6 @@ const ForceCalculator = () => {
     });
   };
 
-  // const getPlaceholder = (inputName) => {
-  //   switch (inputName) {
-  //     case "m":
-  //       return "ভরের মান (kg)";
-  //     case "m1":
-  //       return "১ম বস্তুর ভরের মান (kg)";
-  //     case "m2":
-  //       return "২য় বস্তুর ভরের মান (kg)";
-  //     case "a":
-  //       return "ত্বরণের মান (m/s²)";
-  //     case "v1":
-  //       return "১ম বস্তুর শেষবেগের মান (m/s)";
-  //     case "v2":
-  //       return "২য় বস্তুরশেষবেগের মান (m/s)";
-  //     case "v":
-  //       return " শেষবেগের মান (m/s)";
-  //     case "u":
-  //       return " আদিবেগের মান (m/s)";
-  //     case "u1":
-  //       return "১ম বস্তুর আদিবেগের মান (m/s)";
-  //     case "u2":
-  //       return "২য় বস্তুর আদিবেগের মান (m/s)";
-  //     case "t":
-  //       return "সময়ের মান (s)";
-  //     default:
-  //       return `Enter ${inputName}`;
-  //   }
-  // };
-
 
 
   const calculateResult = () => {
