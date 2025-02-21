@@ -92,12 +92,12 @@ const ForceCalculator = () => {
 
   return (
     <div className="p-6 min-h-fit bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">
+      <h1 className="text-sm font-bold mb-6 text-center text-green-600 dark:text-green-400">
         বল অধ্যায়ের গাণিতিক সমস্যার সমাধান
       </h1>
 
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-md font-semibold mb-4">
           তুমি কিসের মান নির্নয় করতে চাও?
         </h2>
         <div className="flex flex-wrap gap-3">
@@ -105,7 +105,7 @@ const ForceCalculator = () => {
             <button
               key={variable}
               onClick={() => handleVariableSelection(variable)}
-              className={`px-4 py-2 rounded-lg transition duration-200 ${
+              className={`px-4 py-2 text-sm rounded-lg transition duration-200 ${
                 variableToSolve === variable
                   ? "bg-blue-500 text-white"
                   : "bg-gray-300 dark:bg-gray-700"

@@ -10,6 +10,7 @@ import SoundAndWave from "../Laws-integrations/chapterBased/SoundAndWave/SoundAn
 import FormulaFinderForMotion from "../Laws-integrations/chapterBasedWhenLawUnKnown/Motion/FormulaFinderForMotion";
 import LawSelectionHomePage from "../Laws-integrations/LawSelectionHomePage";
 import HomePageInfo from "../CommonPages/HomePageInfo";
+import MatterAndPressure from "../Laws-integrations/chapterBased/StateOfMatterAndPressure/MatterAndPressure";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
           {
             path: "/laws-integrations/sound-and-wave",
             element: <SoundAndWave />,
+          },
+          {
+            path: "/laws-integrations/matterAndPressure",
+            element: <MatterAndPressure/>
           },
         ],
       },

@@ -5,23 +5,24 @@ const SolvingHomePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center p-6 bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+      {/* <h1 className="text-3xl font-bold text-gray-800 mb-6">
         Laws & Integrations
-      </h1>
-      <p className="text-xl font-bold text-gray-800 mb-6">
-        তুমি যদি সূত্র গুলো বুঝে থাক তবে এই সেকশন তোমার জন্য ।
+      </h1> */}
+      <p className="text-xl font-bold text-gray-800 mb-6 divider">
+        অধ্যায় নির্ধারন কর 
       </p>
 
       {/* Navigation Tabs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
-          { path: "/laws-integrations/motion", label: "Motion" },
-          { path: "/laws-integrations/force", label: "Force" },
+          { path: "/laws-integrations/motion", label: "গতি" },
+          { path: "/laws-integrations/force", label: "বল" },
           {
             path: "/laws-integrations/work-power-energy",
-            label: "Work & Energy",
+            label: "কাজ,ক্ষমতা শক্তি",
           },
-          { path: "/laws-integrations/sound-and-wave", label: "Sound & Wave" },
+          { path: "/laws-integrations/matterAndPressure", label: "পদার্থের অবস্থা ও চাপ" },
+          { path: "/laws-integrations/sound-and-wave", label: "শব্দ ও তরঙ্গ" },
         ].map((item) => (
           <NavLink
             key={item.path}
