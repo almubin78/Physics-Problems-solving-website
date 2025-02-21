@@ -6,7 +6,7 @@ const ErrorPage = () => {
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 text-gray-900 p-6">
       <motion.h1
         initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={{ y: 10, opacity: 1 }}
         transition={{ duration: 0.5 }}
         className="text-6xl font-bold text-red-500"
       >
@@ -24,8 +24,8 @@ const ErrorPage = () => {
       {/* Back to Home Button */}
       <motion.div
         initial={{ scale: 0.8 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.5, duration: 0.3 }}
+        animate={{ scale: 0.5 }}
+        transition={{ delay: 0.5, duration: 1 }}
       >
         <Link
           to="/"
@@ -39,7 +39,7 @@ const ErrorPage = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.5 }}
+        transition={{ delay: 0.7, duration: 0.7 }}
         className="mt-8 p-6 bg-white rounded-lg shadow-lg w-full max-w-md text-center"
       >
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">

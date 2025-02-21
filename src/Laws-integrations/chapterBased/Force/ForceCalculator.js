@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {lawsDetailsForForce} from "./LawsDetailsForForce";
+import { formatNumber, getPlaceholderAll } from "../../CommonFunctionForAll/formatNumber";
 
 const ForceCalculator = () => {
   const [variableToSolve, setVariableToSolve] = useState("");
@@ -12,48 +14,7 @@ const ForceCalculator = () => {
     "মিলিত_বস্তুর_বেগ",
     "মহাকর্ষ_বল",
   ];
-  const laws = {
-    বল: [
-      {
-        formula: "F = ma",
-        inputs: ["m", "a"],
-        resultInfo: "Final Result for F (force) is:",
-        unit: "N",
-      },
-      {
-        formula: "F = m(v-u)/t",
-        inputs: ["m", "v", "u", "t"],
-        resultInfo: "Final Result for F (force) is:",
-        unit: "N",
-      },
-    ],
-    বন্দুকের_পশ্চাৎবেগ: [
-      {
-        formula: "v2 = -( m1 * v1 )/m2",
-        inputs: ["m1", "v1", "m2"],
-        resultInfo: "বন্দুকের পশ্চাৎবেগ: ",
-        unit: "m/s",
-        resultFn: (v) => (-v.m1 * v.v1) / v.m2,
-      },
-    ],
-    মিলিত_বস্তুর_বেগ: [
-      {
-        formula: "v = (m1 * u1 - m2 * u2)/(m1+m2)",
-        inputs: ["m1", "m2", "u1", "u2"],
-        resultInfo: "u1 কে ঋণাত্মক ধরে,  মিলিত বস্তুদ্বয়ের বেগ: ",
-        unit: "m/s",
-      },
-    ],
-    মহাকর্ষ_বল: [
-      {
-        formula: "F = (GMm)/r^2",
-        inputs: ["M", "m", "r"],
-        resultInfo: "বস্তু দ্বয়ের মধ্যে ক্রিয়াশীল মহাকর্ষ বলঃ  ",
-        unit: "N",
-      },
-    ],
-  };
-
+ 
   const handleVariableSelection = (variable) => {
     setVariableToSolve(variable);
     setSelectedLaw("");
@@ -74,47 +35,39 @@ const ForceCalculator = () => {
     });
   };
 
-  const getPlaceholder = (inputName) => {
-    switch (inputName) {
-      case "m":
-        return "ভরের মান (kg)";
-      case "m1":
-        return "১ম বস্তুর ভরের মান (kg)";
-      case "m2":
-        return "২য় বস্তুর ভরের মান (kg)";
-      case "a":
-        return "ত্বরণের মান (m/s²)";
-      case "v1":
-        return "১ম বস্তুর শেষবেগের মান (m/s)";
-      case "v2":
-        return "২য় বস্তুরশেষবেগের মান (m/s)";
-      case "v":
-        return " শেষবেগের মান (m/s)";
-      case "u":
-        return " আদিবেগের মান (m/s)";
-      case "u1":
-        return "১ম বস্তুর আদিবেগের মান (m/s)";
-      case "u2":
-        return "২য় বস্তুর আদিবেগের মান (m/s)";
-      case "t":
-        return "সময়ের মান (s)";
-      default:
-        return `Enter ${inputName}`;
-    }
-  };
+  // const getPlaceholder = (inputName) => {
+  //   switch (inputName) {
+  //     case "m":
+  //       return "ভরের মান (kg)";
+  //     case "m1":
+  //       return "১ম বস্তুর ভরের মান (kg)";
+  //     case "m2":
+  //       return "২য় বস্তুর ভরের মান (kg)";
+  //     case "a":
+  //       return "ত্বরণের মান (m/s²)";
+  //     case "v1":
+  //       return "১ম বস্তুর শেষবেগের মান (m/s)";
+  //     case "v2":
+  //       return "২য় বস্তুরশেষবেগের মান (m/s)";
+  //     case "v":
+  //       return " শেষবেগের মান (m/s)";
+  //     case "u":
+  //       return " আদিবেগের মান (m/s)";
+  //     case "u1":
+  //       return "১ম বস্তুর আদিবেগের মান (m/s)";
+  //     case "u2":
+  //       return "২য় বস্তুর আদিবেগের মান (m/s)";
+  //     case "t":
+  //       return "সময়ের মান (s)";
+  //     default:
+  //       return `Enter ${inputName}`;
+  //   }
+  // };
 
-  const formatNumber = (num) => {
-    if (Math.abs(num) >= 1e6 || (Math.abs(num) <= 1e-3 && num !== 0)) {
-      return num.toExponential(2); // বৈজ্ঞানিক নোটেশন
-    } else if (Number.isInteger(num)) {
-      return num; // পূর্ণসংখ্যা থাকলে 그대로 রাখবে
-    } else {
-      return num.toFixed(3); // দশমিক সংখ্যা থাকলে দুই দশমিক পর্যন্ত রাখবে
-    }
-  };
+
 
   const calculateResult = () => {
-    const selectedLawData = laws[variableToSolve].find(
+    const selectedLawData = lawsDetailsForForce[variableToSolve].find(
       (law) => law.formula === selectedLaw
     );
 
@@ -130,6 +83,7 @@ const ForceCalculator = () => {
       setResult("Please fill all required fields");
       return;
     }
+
 
     let calculatedResult;
 
@@ -198,7 +152,7 @@ const ForceCalculator = () => {
             নির্ধারিত সূত্রে ক্লিক করঃ
           </h2>
           <div className="flex flex-wrap gap-3 mt-3">
-            {laws[variableToSolve]?.map((law) => (
+            {lawsDetailsForForce[variableToSolve]?.map((law) => (
               <button
                 key={law.formula}
                 onClick={() => handleLawSelection(law.formula)}
@@ -219,7 +173,7 @@ const ForceCalculator = () => {
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-xl font-semibold">Enter Values:</h2>
           <div className="mt-4">
-            {laws[variableToSolve]
+            {lawsDetailsForForce[variableToSolve]
               .find((law) => law.formula === selectedLaw)
               .inputs?.map((input) => (
                 <div key={input} className="mb-3">
@@ -229,7 +183,7 @@ const ForceCalculator = () => {
                   <input
                     type="number"
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder={getPlaceholder(input)}
+                    placeholder={getPlaceholderAll(input)}
                     onChange={(e) => handleInputChange(input, e.target.value)}
                   />
                 </div>
@@ -252,7 +206,7 @@ const ForceCalculator = () => {
           <h2 className="text-xl font-semibold">Result:</h2>
           <p className="text-lg text-pink-500">
             {
-              laws[variableToSolve]?.find((law) => law.formula === selectedLaw)
+              lawsDetailsForForce[variableToSolve]?.find((law) => law.formula === selectedLaw)
                 ?.resultInfo
             }
             <span className="font-extrabold text-green-600 dark:text-green-400">
@@ -260,7 +214,7 @@ const ForceCalculator = () => {
               {result}{" "}
             </span>
             {
-              laws[variableToSolve].find((law) => law.formula === selectedLaw)
+              lawsDetailsForForce[variableToSolve].find((law) => law.formula === selectedLaw)
                 ?.unit
             }
           </p>

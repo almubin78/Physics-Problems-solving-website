@@ -32,6 +32,10 @@ export const router = createBrowserRouter([
             path: "/laws-integrations/motion",
             element: <MotionCalculator />,
           },
+          // {
+          //   path: "/laws-integrations/motion",
+          //   element: <MotionCalculator2 />,
+          // },
 
           {
             path: "/laws-integrations/force",

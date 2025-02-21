@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { lawsDetailsForMotion} from './motionLawsDetails'
+import { formatNumber, getPlaceholderAll } from "../../CommonFunctionForAll/formatNumber";
 
 const MotionCalculator = () => {
   // State variables
@@ -9,108 +11,7 @@ const MotionCalculator = () => {
 
   // Available variables and their corresponding laws
   const variables = ["u", "v", "t", "a", "s"];
-  const laws = {
-    s: [
-      {
-        formula: "s = ut + 0.5 * a * t^2",
-        inputs: ["u", "t", "a"],
-        resultInfo: "Final Result for S is:",
-        unit: "m",
-      },
-      // {
-      //   formula: "s = 0.5 * a * t^2 (if u = 0)",
-      //   inputs: ["a", "t"],
-      //   resultInfo: "Final Result for S is:",
-      //   unit: "m",
-      // },
-      {
-        formula: "s = (v^2 - u^2) / (2a)",
-        inputs: ["u", "v", "a"],
-        resultInfo: "Final Result for S is:",
-        unit: "m",
-      },
-      {
-        formula: `s = (v + u)t / 2`,
-        inputs: ["u", "t", "v"],
-        resultInfo: "Final Result for S is:",
-        unit: "m",
-      },
-      {
-        formula: "s = vt (সমবেগে গতিশীল হলে)",
-        inputs: ["v", "t"],
-        resultInfo: "Final Result for S is:",
-        unit: "m",
-      },
-    ],
-    v: [
-      {
-        formula: "v = u + at",
-        inputs: ["u", "t", "a"],
-        resultInfo: "Final Result for V is:",
-        unit: "m/s",
-      },
-      {
-        formula: "v = s / t (if no acceleration)",
-        inputs: ["s", "t"],
-        resultInfo: "Final Result for V is:",
-        unit: "m/s",
-      },
-    ],
-    a: [
-      {
-        formula: "a = (v - u) / t",
-        inputs: ["u", "t", "v"],
-        resultInfo: "Final Result for a is:",
-        unit: "m/s^2",
-      },
-      {
-        formula: "a = (v^2 - u^2) / (2s)",
-        inputs: ["u", "s", "v"],
-        resultInfo: "Final Result for a is:",
-        unit: "m/s^2",
-      },
-    ],
-    t: [
-      {
-        formula: "t = (v - u) / a",
-        inputs: ["u", "v", "a"],
-        resultInfo: "Final Result for t is:",
-        unit: "second",
-      },
-      {
-        formula: "t = s / v (if no acceleration)",
-        inputs: ["s", "v"],
-        resultInfo: "Final Result for t is:",
-        unit: "second",
-      },
-      {
-        formula: "t = sqrt((2s) / a) (if u = 0)",
-        inputs: ["s", "a"],
-        resultInfo: "Final Result for t is:",
-        unit: "second",
-      },
-    ],
-    u: [
-      {
-        formula: "u = v - at",
-        inputs: ["v", "t", "a"],
-        resultInfo: "Final Result for u is:",
-        unit: "m/s",
-      },
-      {
-        formula: "u = (s - 0.5 * a * t^2) / t",
-        inputs: ["s", "t", "a"],
-        resultInfo: "Final Result for u is:",
-        unit: "m/s",
-      },
-      {
-        formula: "u = sqrt(v^2 - 2as)",
-        inputs: ["v", "a", "s"],
-        resultInfo: "Final Result for u is:",
-        unit: "m/s",
-      },
-    ],
-  };
+  
 
   // Handle variable selection
   const handleVariableSelection = (variable) => {
@@ -136,27 +37,12 @@ const MotionCalculator = () => {
     });
   };
  
-  //get placeholder
-  const getPlaceholder = (inputName) => {
-    switch (inputName) {
-      case "m":
-        return "ভরের মান (kg)";
-      case "a":
-        return "ত্বরণের মান (m/s²)";
-      case "v":
-        return "শেষবেগের মান (m/s)";
-      case "u":
-        return "আদিবেগের মান (m/s)";
-      case "t":
-        return "সময়ের মান (s)";
-      default:
-        return `Enter ${inputName}`;
-    }
-  };
+
+
 
   // Calculate the result based on the selected law
   const calculateResult = () => {
-    const selectedLawData = laws[variableToSolve].find(
+    const selectedLawData = lawsDetailsForMotion[variableToSolve].find(
       (law) => law.formula === selectedLaw
     );
 
@@ -174,6 +60,9 @@ const MotionCalculator = () => {
       return;
     }
 
+
+
+   
     let calculatedResult;
     switch (formula) {
       //  cases for 's'
@@ -202,10 +91,10 @@ const MotionCalculator = () => {
         calculatedResult = (
           inputValues.u +
           inputValues.a * inputValues.t
-        ).toFixed(2);
+        );
         break;
       case "v = s / t (if no acceleration)":
-        calculatedResult = (inputValues.s / inputValues.t).toFixed(2);
+        calculatedResult = (inputValues.s / inputValues.t);
         break;
 
       //  cases for 'a'
@@ -213,13 +102,13 @@ const MotionCalculator = () => {
         calculatedResult = (
           (inputValues.v - inputValues.u) /
           inputValues.t
-        ).toFixed(2);
+        );
         break;
       case "a = (v^2 - u^2) / (2s)":
         calculatedResult = (
           (inputValues.v ** 2 - inputValues.u ** 2) /
           (2 * inputValues.s)
-        ).toFixed(2);
+        );
         break;
 
       //  cases for 't'
@@ -227,15 +116,15 @@ const MotionCalculator = () => {
         calculatedResult = (
           (inputValues.v - inputValues.u) /
           inputValues.a
-        ).toFixed(2);
+        );
         break;
       case "t = s / v (if no acceleration)":
-        calculatedResult = (inputValues.s / inputValues.v).toFixed(2);
+        calculatedResult = (inputValues.s / inputValues.v);
         break;
       case "t = sqrt((2s) / a) (if u = 0)":
         calculatedResult = Math.sqrt(
           (2 * inputValues.s) / inputValues.a
-        ).toFixed(2);
+        );
         break;
 
       //  cases for 'u'
@@ -243,24 +132,26 @@ const MotionCalculator = () => {
         calculatedResult = (
           inputValues.v -
           inputValues.a * inputValues.t
-        ).toFixed(2);
+        );
         break;
       case "u = (s - 0.5 * a * t^2) / t":
         calculatedResult = (
           (inputValues.s - 0.5 * inputValues.a * inputValues.t ** 2) /
           inputValues.t
-        ).toFixed(2);
+        );
         break;
       case "u = sqrt(v^2 - 2as)":
         calculatedResult = Math.sqrt(
-          (inputValues.v ** 2 - 2 * inputValues.a * inputValues.s).toFixed(2)
+          (inputValues.v ** 2 - 2 * inputValues.a * inputValues.s)
         );
         break;
 
       default:
         calculatedResult = "Invalid formula";
     }
-
+    if (typeof calculatedResult === "number") {
+      calculatedResult = formatNumber(calculatedResult);
+    }
     setResult(calculatedResult);
   };
 
@@ -299,7 +190,7 @@ const MotionCalculator = () => {
             Select Law:
           </h2>
           <div className="flex flex-wrap gap-3 mt-3">
-            {laws[variableToSolve]?.map((law) => (
+            {lawsDetailsForMotion[variableToSolve]?.map((law) => (
               <button
                 key={law.formula}
                 onClick={() => handleLawSelection(law.formula)}
@@ -321,7 +212,7 @@ const MotionCalculator = () => {
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-xl font-semibold">Enter Values:</h2>
           <div className="mt-2">
-            {laws[variableToSolve]
+            {lawsDetailsForMotion[variableToSolve]
               .find((law) => law.formula === selectedLaw)
               .inputs?.map((input) => (
                 <div key={input} className="mb-2">
@@ -331,7 +222,7 @@ const MotionCalculator = () => {
                   <input
                     type="number"
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder={getPlaceholder(input)}
+                    placeholder={getPlaceholderAll(input)}
                     onChange={(e) => handleInputChange(input, e.target.value)}
                   />
                 </div>
@@ -355,14 +246,14 @@ const MotionCalculator = () => {
           <h2 className="text-xl font-semibold">Result:</h2>
           <p className="text-lg text-pink-500">
             {
-              laws[variableToSolve].find((law) => law.formula === selectedLaw)
+              lawsDetailsForMotion[variableToSolve].find((law) => law.formula === selectedLaw)
                 .resultInfo
             }{" "}
             <span className="font-extrabold text-green-600 dark:text-green-400">
               {result}
             </span>{" "}
             {
-              laws[variableToSolve].find((law) => law.formula === selectedLaw)
+              lawsDetailsForMotion[variableToSolve].find((law) => law.formula === selectedLaw)
                 .unit
             }
           </p>
