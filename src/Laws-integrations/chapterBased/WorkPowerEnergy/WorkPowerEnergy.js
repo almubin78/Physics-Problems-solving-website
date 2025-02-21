@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {lawsForWorkPowerEnergy} from './lawsForWorkPowerEnergy'
-import { formatNumber } from "../../CommonFunctionForAll/formatNumber";
+import { formatNumber, getPlaceholderAll } from "../../CommonFunctionForAll/formatNumber";
 
 const WorkPowerEnergy = () => {
   const [variableToSolve, setVariableToSolve] = useState("");
@@ -43,6 +43,9 @@ const WorkPowerEnergy = () => {
       setResult("Please fill all required fields");
       return;
     }
+
+
+    
     let calculatedResult;
     switch (formula) {
       case "কাজ = F x s":
@@ -110,7 +113,7 @@ const WorkPowerEnergy = () => {
                 <input
                   type="number"
                   className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-                  placeholder={`Enter ${input}`}
+                  placeholder={getPlaceholderAll(input)}
                   onChange={(e) => handleInputChange(input, e.target.value)}
                 />
               </div>

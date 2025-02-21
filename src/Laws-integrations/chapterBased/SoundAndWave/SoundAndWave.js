@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { formatNumber } from "../../CommonFunctionForAll/formatNumber";
+import { formatNumber, getPlaceholderAll } from "../../CommonFunctionForAll/formatNumber";
 import {soundAndWaveLaws} from './soundAndWaveLaws'
 
 
@@ -32,16 +32,7 @@ const SoundAndWave = () => {
     });
   };
 
-  const getPlaceholder = (inputName) => {
-    switch (inputName) {
-      case "f":
-        return "কম্পাঙ্কের মান (Hz)";
-      case "λ":
-        return "তরঙ্গ দৈর্ঘ্যের মান (m)";
-      default:
-        return `Enter ${inputName}`;
-    }
-  };
+
 
   const calculateResult = () => {
     const selectedLawData = soundAndWaveLaws[variableToSolve].find(
@@ -154,7 +145,7 @@ const SoundAndWave = () => {
                   <input
                     type="number"
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-                    placeholder={getPlaceholder(input)}
+                    placeholder={getPlaceholderAll(input)}
                     onChange={(e) => handleInputChange(input, e.target.value)}
                   />
                 </div>
