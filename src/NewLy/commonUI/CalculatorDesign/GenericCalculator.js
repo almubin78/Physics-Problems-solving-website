@@ -1,6 +1,6 @@
 import React from "react";
-import { useCalculator } from "./useCalculator";
 import { getAllPlaceholderNew } from "../../commonLogics/placeholder/getAllPlaceholderNew";
+import { useCalculator } from "../../hooks/useCalculator";
 
 
 const GenericCalculator = ({ title, variables, lawsDetails }) => {

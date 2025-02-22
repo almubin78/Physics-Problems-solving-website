@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../CommonPages/ErrorPage";
-import GenericCalculator from "../NewLy/commonUI/CalculatorDesign/GenericCalculator";
+import MotionCalculator from "../NewLy/commonUI/CalculateChapters/MotionCalculator";
 
 export const router2 = createBrowserRouter([
     {
       path: "/",
-      element: <GenericCalculator/>,
+      element: <MotionCalculator/>,
       children: [],
     },
     {
