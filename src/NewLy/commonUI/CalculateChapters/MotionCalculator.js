@@ -7,7 +7,7 @@ const MotionCalculator = () => {
   
     return (
       <GenericCalculator
-        title="গতি অধ্যায়ের গাণিতিক সমস্যার সমাধান"
+        title="গতি অধ্যায়ের গাণিতিক ক্যালকুলেটর"
         variables={variables}
         lawsDetails={newMotionData}
       />

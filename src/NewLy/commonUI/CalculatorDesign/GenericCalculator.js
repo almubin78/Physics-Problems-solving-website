@@ -7,7 +7,7 @@ const GenericCalculator = ({ title, variables, lawsDetails }) => {
   const {
     variableToSolve,
     selectedLaw,
-    inputValues,
+    // inputValues,
     result,
     handleVariableSelection,
     handleLawSelection,
@@ -17,13 +17,13 @@ const GenericCalculator = ({ title, variables, lawsDetails }) => {
 
   return (
     <div className="p-6 min-h-fit bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <h1 className="text-3xl font-bold mb-6 text-center text-green-600 dark:text-green-400">
+      <h1 className="text-xl font-bold mb-6 text-center text-green-600 dark:text-green-400">
         {title}
       </h1>
 
       {/* Step 1: Select variable to solve */}
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">
+        <h2 className="text-sm font-semibold mb-4">
           তুমি কিসের মান নির্ণয় করতে চাও , সেটির সূত্র সিলেক্ট কর:
         </h2>
         <div className="flex flex-wrap gap-3">
