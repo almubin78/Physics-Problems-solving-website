@@ -56,7 +56,7 @@ const SoundAndWave = () => {
         calculatedResult = inputValues.f * inputValues.λ;
         break;
       case "v = λ/T":
-        calculatedResult = inputValues.λ * inputValues.T;
+        calculatedResult = inputValues.λ / inputValues.T;
         break;
       case "f = v/λ":
         calculatedResult = inputValues.v / inputValues.λ;
