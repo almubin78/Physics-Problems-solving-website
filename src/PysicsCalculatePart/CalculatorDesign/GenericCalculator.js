@@ -1,9 +1,9 @@
 import React from "react";
-import { getAllPlaceholderNew } from "../../commonLogics/placeholder/getAllPlaceholderNew";
+// import { getAllPlaceholderNew } from "../../commonLogics/placeholder/getAllPlaceholderNew";
 import { useCalculator } from "../../hooks/useCalculator";
 
 
-const GenericCalculator = ({ title, variables, lawsDetails }) => {
+const GenericCalculator = ({ title, variables, lawsDetails,placeholder }) => {
   const {
     variableToSolve,
     selectedLaw,
@@ -82,7 +82,7 @@ const GenericCalculator = ({ title, variables, lawsDetails }) => {
                   <input
                     type="number"
                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                    placeholder={getAllPlaceholderNew(input)}
+                    placeholder={placeholder(input)}
                     onChange={(e) => handleInputChange(input, e.target.value)}
                   />
                 </div>

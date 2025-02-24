@@ -8,6 +8,9 @@ import MotionCalculator from "../PysicsCalculatePart/CalculateChapters/MotionCal
 import ForceCalculator from "../PysicsCalculatePart/CalculateChapters/ForceCalculator";
 import WorkPowerEnergy from "../PysicsCalculatePart/CalculateChapters/WorkPowerEnergy";
 import SoundAndWaveCalculator from "../PysicsCalculatePart/CalculateChapters/SoundAndWaveCalculator";
+import LawSelectionHomePage from "../PhysicsLawSelection/LawSelectionHomePage";
+import FormulaFinderForMotion from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForMotion";
+import MatterAndPressure from "../PysicsCalculatePart/CalculateChapters/MatterAndPressure";
 
 
 export const router = createBrowserRouter([
@@ -31,10 +34,6 @@ export const router = createBrowserRouter([
             path: "/laws-integrations/motion",
             element: <MotionCalculator />,
           },
-          // {
-          //   path: "/laws-integrations/motion",
-          //   element: <MotionCalculator2 />,
-          // },
 
           {
             path: "/laws-integrations/force",
@@ -48,22 +47,22 @@ export const router = createBrowserRouter([
             path: "/laws-integrations/sound-and-wave",
             element: <SoundAndWaveCalculator />,
           },
-          // {
-          //   path: "/laws-integrations/matterAndPressure",
-          //   element: <MatterAndPressure/>
-          // },
+          {
+            path: "/laws-integrations/matterAndPressure",
+            element: <MatterAndPressure/>
+          },
         ],
       },
-      // {
-      //   path: "/laws-selection",
-      //   element: <LawSelectionHomePage/>,
-      //   children:[
-      //       {
-      //           path: "/laws-selection/motion",
-      //           element: <FormulaFinderForMotion/>, 
-      //       }
-      //   ]
-      // },
+      {
+        path: "/laws-selection",
+        element: <LawSelectionHomePage/>,
+        children:[
+            {
+                path: "/laws-selection/motion",
+                element: <FormulaFinderForMotion/>, 
+            }
+        ]
+      },
     ],
   },
   {

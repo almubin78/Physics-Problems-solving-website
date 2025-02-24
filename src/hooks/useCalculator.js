@@ -1,5 +1,6 @@
 import { useState } from "react";
-import {formatResultNumber} from '../commonLogics/formatResult/resultShowingFormating'
+import { formatResultNumber } from "../commonLogics/formatResult/resultShowingFormating";
+
 export const useCalculator = (initialVariables, lawsDetails) => {
   const [variableToSolve, setVariableToSolve] = useState("");
   const [selectedLaw, setSelectedLaw] = useState("");

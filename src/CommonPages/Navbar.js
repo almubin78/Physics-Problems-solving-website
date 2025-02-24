@@ -44,7 +44,7 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/simple-calculate"
+              to="/unit-calculator"
               className={({ isActive }) =>
                 isActive
                   ? "text-blue-600 font-semibold border-b-2"
@@ -71,7 +71,7 @@ const Navbar = () => {
                 isActive ? "text-blue-600 font-semibold" : "text-gray-700"
               }
             >
-              সূত্র নির্ধারন
+              সূত্র নিরুপন
             </NavLink>
           </li>
         </ul>

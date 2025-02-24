@@ -1,5 +1,6 @@
 import React from "react";
 import { lawsForWorkPowerEnergy } from "../../Data/workPowerEnergy";
+import { getPlaceholderForWorkPowerEnergy } from "../../commonLogics/placeholder/getPlaceholderForEveryChapter";
 import GenericCalculator from "../CalculatorDesign/GenericCalculator";
 
 const WorkPowerEnergy = () => {
@@ -9,6 +10,7 @@ const WorkPowerEnergy = () => {
       title="কাজ,ক্ষমতা ও শক্তি অধ্যায়ের গাণিতিক ক্যালকুলেটর"
       variables={variables}
       lawsDetails={lawsForWorkPowerEnergy}
+      placeholder={getPlaceholderForWorkPowerEnergy}
     />
   );
 };
