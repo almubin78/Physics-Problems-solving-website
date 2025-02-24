@@ -1,6 +1,6 @@
 import { NavLink, Outlet, } from "react-router-dom";
 
-const SolvingHomePage = () => {
+const PhysicsSolvingHomePage = () => {
   
 
   return (
@@ -50,4 +50,4 @@ const SolvingHomePage = () => {
   );
 };
 
-export default SolvingHomePage;
+export default PhysicsSolvingHomePage;

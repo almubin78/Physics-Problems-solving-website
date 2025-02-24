@@ -5,6 +5,8 @@ export const lawsForWorkPowerEnergy = {
         inputs: ["F", "s"],
         resultInfo: "কাজের পরিমাণ:",
         unit: "জুল",
+        calculate: (inputs)=> (inputs.F * inputs.s)
+        
       },
     ],
     বিভবশক্তি: [
@@ -13,6 +15,7 @@ export const lawsForWorkPowerEnergy = {
         inputs: ["m", "h"],
         resultInfo: "বিভবশক্তি:",
         unit: "জুল",
+        calculate: (inputs)=> (inputs.m * inputs.h * 9.81)
       },
     ],
     গতিশক্তি: [
@@ -21,6 +24,7 @@ export const lawsForWorkPowerEnergy = {
         inputs: ["m", "v"],
         resultInfo: "গতিশক্তি: ",
         unit: "জুল",
+        calculate: (inputs)=> (.5* inputs.m * inputs.v * inputs.v)
       },
     ],
   };

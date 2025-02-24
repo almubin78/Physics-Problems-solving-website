@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { formatResultNumber } from "../commonLogics/formatResult/resultShowingFormating";
-
+import {formatResultNumber} from '../commonLogics/formatResult/resultShowingFormating'
 export const useCalculator = (initialVariables, lawsDetails) => {
   const [variableToSolve, setVariableToSolve] = useState("");
   const [selectedLaw, setSelectedLaw] = useState("");
@@ -37,7 +36,7 @@ export const useCalculator = (initialVariables, lawsDetails) => {
       return;
     }
 
-    const { formula, inputs } = selectedLawData;
+    const { inputs, calculate } = selectedLawData;
     const values = inputs.map((input) => inputValues[input]);
 
     if (values.includes(undefined)) {
@@ -45,22 +44,8 @@ export const useCalculator = (initialVariables, lawsDetails) => {
       return;
     }
 
-    let calculatedResult;
-    switch (formula) {
-      // Add cases for all formulas here
-      // Example:
-      case "v = fλ":
-        calculatedResult = inputValues.f * inputValues.λ;
-        break;
-      case "s = ut + 0.5 * a * t^2":
-        calculatedResult =
-          inputValues.u * inputValues.t +
-          0.5 * inputValues.a * inputValues.t ** 2;
-        break;
-      // Add more cases as needed
-      default:
-        calculatedResult = "Invalid formula";
-    }
+    // Use the dynamic calculation function
+    let calculatedResult = calculate(inputValues);
 
     if (typeof calculatedResult === "number") {
       calculatedResult = formatResultNumber(calculatedResult);

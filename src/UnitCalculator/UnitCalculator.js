@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const SimpleCalculate = () => {
+const UnitCalculator = () => {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -319,4 +319,4 @@ const SimpleCalculate = () => {
   );
 };
 
-export default SimpleCalculate;
+export default UnitCalculator;

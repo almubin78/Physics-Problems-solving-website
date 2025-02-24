@@ -1,16 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../CommonPages/HomePage";
-import SimpleCalculate from "../SimpleCalculate/SimpleCalculate";
-import SolvingHomePage from "../Laws-integrations/SolvingHomePage";
 import ErrorPage from "../CommonPages/ErrorPage";
-import MotionCalculator from "../Laws-integrations/chapterBased/Motion/MotionCalculator";
-import ForceCalculator from "../Laws-integrations/chapterBased/Force/ForceCalculator";
-import WorkPowerEnergy from "../Laws-integrations/chapterBased/WorkPowerEnergy/WorkPowerEnergy";
-import SoundAndWave from "../Laws-integrations/chapterBased/SoundAndWave/SoundAndWave";
-import FormulaFinderForMotion from "../Laws-integrations/chapterBasedWhenLawUnKnown/Motion/FormulaFinderForMotion";
-import LawSelectionHomePage from "../Laws-integrations/LawSelectionHomePage";
 import HomePageInfo from "../CommonPages/HomePageInfo";
-import MatterAndPressure from "../Laws-integrations/chapterBased/StateOfMatterAndPressure/MatterAndPressure";
+import UnitCalculator from "../UnitCalculator/UnitCalculator";
+import PhysicsSolvingHomePage from "../PysicsCalculatePart/PhysicsSolvingHomePage";
+import MotionCalculator from "../PysicsCalculatePart/CalculateChapters/MotionCalculator";
+import ForceCalculator from "../PysicsCalculatePart/CalculateChapters/ForceCalculator";
+import WorkPowerEnergy from "../PysicsCalculatePart/CalculateChapters/WorkPowerEnergy";
+import SoundAndWaveCalculator from "../PysicsCalculatePart/CalculateChapters/SoundAndWaveCalculator";
+
 
 export const router = createBrowserRouter([
   {
@@ -22,12 +20,12 @@ export const router = createBrowserRouter([
         element: <HomePageInfo/>
       },
       {
-        path: "/simple-calculate",
-        element: <SimpleCalculate />,
+        path: "/unit-calculator",
+        element: <UnitCalculator />,
       },
       {
         path: "/laws-integrations",
-        element: <SolvingHomePage />,
+        element: <PhysicsSolvingHomePage />,
         children: [
           {
             path: "/laws-integrations/motion",
@@ -48,24 +46,24 @@ export const router = createBrowserRouter([
           },
           {
             path: "/laws-integrations/sound-and-wave",
-            element: <SoundAndWave />,
+            element: <SoundAndWaveCalculator />,
           },
-          {
-            path: "/laws-integrations/matterAndPressure",
-            element: <MatterAndPressure/>
-          },
+          // {
+          //   path: "/laws-integrations/matterAndPressure",
+          //   element: <MatterAndPressure/>
+          // },
         ],
       },
-      {
-        path: "/laws-selection",
-        element: <LawSelectionHomePage/>,
-        children:[
-            {
-                path: "/laws-selection/motion",
-                element: <FormulaFinderForMotion/>, 
-            }
-        ]
-      },
+      // {
+      //   path: "/laws-selection",
+      //   element: <LawSelectionHomePage/>,
+      //   children:[
+      //       {
+      //           path: "/laws-selection/motion",
+      //           element: <FormulaFinderForMotion/>, 
+      //       }
+      //   ]
+      // },
     ],
   },
   {
