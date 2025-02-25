@@ -8,6 +8,13 @@ export const lawsForStateAndPressureOfMatter = {
         unit: "প্যাসকেল বা N/m ^2",
         calculate:(inputs)=>(inputs.F / inputs.A)
       },
+      {
+        formula: "P = hρg",
+        inputs: ["h", "ρ"],
+        resultInfo: "চাপের পরিমাণ:",
+        unit: "প্যাসকেল বা N/m ^2",
+        calculate:(inputs)=>(inputs.h * inputs.ρ * 9.8)
+      },
     ],
     ঘনত্ব: [
       {
@@ -18,21 +25,14 @@ export const lawsForStateAndPressureOfMatter = {
         calculate:(inputs)=>(inputs.m / inputs.V)
       },
     ],
-  //   গভীরতা: [
-  //     {
-  //       formula: " h' = ",
-  //       inputs: ["m", "v"],
-  //       resultInfo: "গতিশক্তি: ",
-  //       unit: "জুল",
-  //     },
-  //   ],
+ 
     প্লবতা: [
       {
         formula: "F'' = V x ρ x g",
         inputs: ["V", "ρ"],
         resultInfo: "প্লবতার মান: ",
         unit: "N",
-        calculate:(inputs)=>(inputs.V * inputs.ρ * 9.81)
+        calculate:(inputs)=>(inputs.V * inputs.ρ * 9.8)
       },
     ],
     বস্তুর_ওজন: [
@@ -41,7 +41,16 @@ export const lawsForStateAndPressureOfMatter = {
         inputs: [ "m"],
         resultInfo: "বস্তুর ওজন: ",
         unit: "N",
-        calculate:(inputs)=>(inputs.m * 9.81)
+        calculate:(inputs)=>(inputs.m * 9.8)
+      },
+    ],
+    তরলে_বস্তুর_ওজন: [
+      {
+        formula: "W = mg - Vρg",
+        inputs: [ "m","V",'ρ'],
+        resultInfo: "বস্তুর ওজন: ",
+        unit: "N",
+        calculate:(inputs)=>9.8*(inputs.m  - (inputs.V * inputs.ρ ))
       },
     ],
     পিষ্টনে_প্রযুক্ত_বল: [

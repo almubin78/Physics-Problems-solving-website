@@ -4,7 +4,7 @@ import { lawsForStateAndPressureOfMatter } from '../../Data/lawsForStateAndPress
 import { getPlaceholderForStateAndPressure } from '../../commonLogics/placeholder/getPlaceHolderForStateAndPressure';
 
 const MatterAndPressure = () => {
-    const variables = ['চাপ','ঘনত্ব','প্লবতা','বস্তুর_ওজন','পিষ্টনে_প্রযুক্ত_বল']
+    const variables = ['চাপ','ঘনত্ব','প্লবতা','বস্তুর_ওজন','তরলে_বস্তুর_ওজন','পিষ্টনে_প্রযুক্ত_বল']
   return (
     <GenericCalculator
       title="পদার্থের অবস্থা ও চাপ অধ্যায়ের গাণিতিক ক্যালকুলেটর"

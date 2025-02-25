@@ -46,7 +46,7 @@ const GenericCalculator = ({ title, variables, lawsDetails, placeholder }) => {
           animate={{ x: "30%", opacity: 1 }}
           exit={{ x: "100%", opacity: 0 }}
           transition={{ type: "spring", stiffness: 100, damping: 15 }}
-          className="fixed top-10 right-1/2 translate-x-2/3 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6 w-80 z-50"
+          className="fixed top-10 right-1/2 translate-x-2/3 bg-white dark:bg-gray-700 shadow-lg rounded-xl p-6 w-80 z-50"
         >
           <button
             className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded"
@@ -57,7 +57,7 @@ const GenericCalculator = ({ title, variables, lawsDetails, placeholder }) => {
           <h2 className="text-xl font-semibold">Result:</h2>
           <p className="text-lg text-pink-500">
             {lawsDetails[variableToSolve]?.find((law) => law.formula === selectedLaw)?.resultInfo} {" "}
-            <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span> {" "}
+           <br /> <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span> {" "}
             {lawsDetails[variableToSolve]?.find((law) => law.formula === selectedLaw)?.unit}
           </p>
         </motion.div>
