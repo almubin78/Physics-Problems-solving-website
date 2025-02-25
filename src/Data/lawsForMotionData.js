@@ -1,5 +1,5 @@
-export const newMotionData = {
-  s: [
+export const lawsForMotionData = {
+  অতিক্রান্ত_দূরত্ব: [
     {
       formula: "s = ut + 0.5 * a * t^2",
       inputs: ["u", "t", "a"],
@@ -29,7 +29,7 @@ export const newMotionData = {
       calculate: (inputs) => inputs.v * inputs.t, // Calculation
     },
   ],
-  v: [
+  শেষবেগ: [
     {
       formula: "v = u + at",
       inputs: ["u", "t", "a"],
@@ -45,7 +45,7 @@ export const newMotionData = {
       calculate: (inputs) => inputs.s / inputs.t, // Calculation
     },
   ],
-  a: [
+  ত্বরণ: [
     {
       formula: "a = (v - u) / t",
       inputs: ["u", "t", "v"],
@@ -61,7 +61,7 @@ export const newMotionData = {
       calculate: (inputs) => (inputs.v ** 2 - inputs.u ** 2) / (2 * inputs.s), // Calculation
     },
   ],
-  t: [
+  সময়: [
     {
       formula: "t = (v - u) / a",
       inputs: ["u", "v", "a"],
@@ -84,7 +84,7 @@ export const newMotionData = {
       calculate: (inputs) => Math.sqrt((2 * inputs.s) / inputs.a), // Calculation
     },
   ],
-  u: [
+  আদিবেগ: [
     {
       formula: "u = v - at",
       inputs: ["v", "t", "a"],

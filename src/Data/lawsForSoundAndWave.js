@@ -1,4 +1,4 @@
-export const soundAndWaveLaws = {
+export const lawsForSoundAndWave = {
     তরঙ্গের_বেগ: [
       {
         formula: "v = fλ",

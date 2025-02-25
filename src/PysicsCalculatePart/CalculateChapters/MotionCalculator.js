@@ -1,15 +1,15 @@
 import React from 'react';
-import { newMotionData } from '../../Data/motionData';
+import { lawsForMotionData } from '../../Data/lawsForMotionData';
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
 import {getPlaceholderForMotion} from '../../commonLogics/placeholder/getPlaceholderForEveryChapter'
 const MotionCalculator = () => {
-    const variables = ["u", "v", "t", "a", "s"];
+    const variables = ["আদিবেগ", "শেষবেগ", "সময়", "ত্বরণ", "অতিক্রান্ত_দূরত্ব"];
   
     return (
       <GenericCalculator
         title="গতি অধ্যায়ের গাণিতিক ক্যালকুলেটর"
         variables={variables}
-        lawsDetails={newMotionData}
+        lawsDetails={lawsForMotionData}
         placeholder={getPlaceholderForMotion}
       />
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { lawsForWorkPowerEnergy } from "../../Data/workPowerEnergy";
+import { lawsForWorkPowerEnergy } from "../../Data/lawsForWorkPowerEnergy";
 import { getPlaceholderForWorkPowerEnergy } from "../../commonLogics/placeholder/getPlaceholderForEveryChapter";
 import GenericCalculator from "../CalculatorDesign/GenericCalculator";
 

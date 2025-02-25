@@ -1,5 +1,5 @@
 import React from 'react';
-import { lawsDetailsForForce } from '../../Data/forcesData';
+import { lawsForForceData } from '../../Data/lawsForForceData';
 import { getPlaceholderForForce } from '../../commonLogics/placeholder/getPlaceholderForEveryChapter';
 
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
@@ -10,7 +10,7 @@ const ForceCalculator = () => {
         <GenericCalculator
             title='বল অধ্যায়ের ক্যালকুলেটর '
             variables={variables}
-            lawsDetails={lawsDetailsForForce}
+            lawsDetails={lawsForForceData}
             placeholder={getPlaceholderForForce}
         />
     );

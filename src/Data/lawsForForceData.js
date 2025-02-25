@@ -1,4 +1,4 @@
-export const lawsDetailsForForce = {
+export const lawsForForceData = {
     বল: [
       {
         formula: "F = ma",
