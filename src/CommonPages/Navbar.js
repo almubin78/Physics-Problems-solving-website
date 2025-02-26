@@ -42,16 +42,15 @@ const Navbar = () => {
               Home
             </NavLink>
           </li>
+            
           <li>
             <NavLink
-              to="/unit-calculator"
+              to="/laws-selection"
               className={({ isActive }) =>
-                isActive
-                  ? "text-blue-600 font-semibold border-b-2"
-                  : "text-gray-700"
+                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
               }
             >
-              এককের রূপান্তর
+              সূত্র খোঁজ
             </NavLink>
           </li>
           <li>
@@ -66,12 +65,14 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/laws-selection"
+              to="/unit-calculator"
               className={({ isActive }) =>
-                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
+                isActive
+                  ? "text-blue-600 font-semibold border-b-2"
+                  : "text-gray-700"
               }
             >
-              সূত্র নিরুপন
+              এককের রূপান্তর
             </NavLink>
           </li>
         </ul>
@@ -104,11 +105,11 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/simple-calculate"
+                to="/laws-selection"
                 className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
                 onClick={() => setMenuOpen(false)}
               >
-                এককের রূপান্তর
+                সূত্র নির্ধারন
               </NavLink>
             </li>
             <li>
@@ -120,13 +121,14 @@ const Navbar = () => {
                 পদার্থ ক্যালকুলেটর
               </NavLink>
             </li>
+
             <li>
               <NavLink
-                to="/laws-selection"
+                to="/simple-calculate"
                 className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
                 onClick={() => setMenuOpen(false)}
               >
-                সূত্র নির্ধারন
+                এককের রূপান্তর
               </NavLink>
             </li>
           </ul>
