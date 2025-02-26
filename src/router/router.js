@@ -11,6 +11,7 @@ import SoundAndWaveCalculator from "../PysicsCalculatePart/CalculateChapters/Sou
 import LawSelectionHomePage from "../PhysicsLawSelection/LawSelectionHomePage";
 import FormulaFinderForMotion from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForMotion";
 import MatterAndPressure from "../PysicsCalculatePart/CalculateChapters/MatterAndPressure";
+import FormulaFinderForForce from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForForce";
 
 
 export const router = createBrowserRouter([
@@ -60,7 +61,11 @@ export const router = createBrowserRouter([
             {
                 path: "/laws-selection/motion",
                 element: <FormulaFinderForMotion/>, 
-            }
+            },
+            {
+                path: "/laws-selection/force",
+                element: <FormulaFinderForForce/>, 
+            },
         ]
       },
     ],

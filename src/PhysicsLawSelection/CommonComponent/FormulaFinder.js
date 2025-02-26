@@ -61,7 +61,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
       {applicableFormulas.length > 0 && (
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-lg font-semibold text-green-700 dark:text-green-300">
-            প্রযোজ্য সূত্র নির্বাচন করুন:
+            সম্ভাব্য সূত্র:
           </h2>
           <div className="flex flex-wrap gap-3 mt-3">
             {applicableFormulas.map((formula) => (

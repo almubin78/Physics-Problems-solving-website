@@ -34,7 +34,7 @@ const ErrorPage = () => {
           to="/"
           className="mt-6 px-5 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition"
         >
-          Back to Home
+          প্রথম পাতায় ফিরে যাও
         </Link>
 
         {/* Previous Page Button */}
@@ -42,7 +42,7 @@ const ErrorPage = () => {
           onClick={() => navigate(-1)} // Go back to the previous page
           className="mt-6 px-5 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition"
         >
-          Previous Page
+          আগের পাতায় ফিরে যাও
         </button>
       </motion.div>
 
