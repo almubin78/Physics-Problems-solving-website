@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,126 +25,106 @@ const Navbar = () => {
         // isScrolled ? "bg-white shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6">
+      <div className="max-w-7xl mx-auto flex justify-between items-center py-4 px-6 bg-white dark:bg-gray-900 shadow-md rounded-b-lg">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold text-blue-600 font-serif ">
+        <Link
+          to="/"
+          className="text-3xl font-extrabold text-blue-600 dark:text-blue-400 font-serif tracking-wide transition duration-300 hover:scale-105"
+        >
           Phy&Tech
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6 text-lg">
-          <li>
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-            
-          <li>
-            <NavLink
-              to="/laws-selection"
-              className={({ isActive }) =>
-                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
-              }
-            >
-              সূত্র খোঁজ
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/laws-integrations"
-              className={({ isActive }) =>
-                isActive ? "text-blue-600 font-semibold" : "text-gray-700"
-              }
-            >
-              পদার্থ ক্যালকুলেটর
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/unit-calculator"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue-600 font-semibold border-b-2"
-                  : "text-gray-700"
-              }
-            >
-              এককের রূপান্তর
-            </NavLink>
-          </li>
+        <ul className="hidden md:flex space-x-6 text-lg font-medium">
+          {[
+            { path: "/", label: "Home" },
+            { path: "/laws-selection", label: "🔍 সূত্র খোঁজ" },
+            { path: "/laws-integrations", label: "⚡ পদার্থ ক্যালকুলেটর" },
+            { path: "/unit-calculator", label: "🔢 এককের রূপান্তর" },
+          ].map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `px-3 py-2 rounded-lg transition duration-300 ${
+                    isActive
+                      ? "text-blue-600 dark:text-blue-400 font-semibold border-b-2 border-blue-500"
+                      : "text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
         {/* Mobile Menu Button */}
         <button
-          className={`md:hidden font-serif font-bold ${
-            menuOpen
-              ? "text-pink-800 border"
-              : "text-red-600 border px-1 rounded"
-          }`}
+          className="md:hidden flex items-center space-x-2 text-lg font-semibold px-3 py-2 bg-blue-500 text-white rounded-lg shadow-md transition duration-300 hover:bg-blue-600 active:scale-95"
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          {menuOpen ? "Hide" : "Menu"}
+          {menuOpen ? "✖ Close" : "☰ Menu"}
         </button>
       </div>
 
       {/* Mobile Menu */}
+
       {menuOpen && (
-        <div className="md:hidden bg-yellow-100 shadow-lg absolute top-0 left-0 w-full py-4">
-          <ul className="flex flex-col items-center space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="md:hidden fixed top-0 left-0 w-full h-screen bg-gradient-to-b from-yellow-300 to-yellow-100 shadow-lg flex flex-col items-center py-6 z-50"
+        >
+          <ul className="space-y-6 text-center w-full">
             <li>
               <NavLink
                 to="/"
-                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
+                className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                প্রধান পেজ
+                🏠 প্রধান পেজ
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/laws-selection"
-                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
+                className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                সূত্র নির্ধারন
+                📜 সূত্র নির্ধারণ
               </NavLink>
             </li>
             <li>
               <NavLink
                 to="/laws-integrations"
-                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
+                className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                পদার্থ ক্যালকুলেটর
+                ⚡ পদার্থ ক্যালকুলেটর
               </NavLink>
             </li>
-
             <li>
               <NavLink
                 to="/simple-calculate"
-                className="text-gray-700 text-lg hover:bg-green-300 rounded px-2 bg-green-300"
+                className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                এককের রূপান্তর
+                🔢 এককের রূপান্তর
               </NavLink>
             </li>
           </ul>
 
+          {/* Close Button */}
           <button
-            className={` mt-2 font-serif font-bold ${
-              menuOpen
-                ? "text-pink-800 border bg-slate-300 px-2 py-1 rounded"
-                : "text-red-600 border px-2 py-1 rounded"
-            }`}
-            onClick={() => setMenuOpen(!menuOpen)}
+            className="mt-6 text-white bg-red-500 hover:bg-red-600 px-5 py-2 rounded-full text-lg font-semibold shadow-lg transition duration-300"
+            onClick={() => setMenuOpen(false)}
           >
-            close
+            ✖ Close
           </button>
-        </div>
+        </motion.div>
       )}
     </nav>
   );
