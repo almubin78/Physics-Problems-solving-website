@@ -21,6 +21,7 @@ export const lawsForMotionData = {
       unit: "m",
       calculate: (inputs) => ((inputs.v + inputs.u) * inputs.t) / 2, // Calculation
     },
+    
     {
       formula: "s = vt (সমবেগে গতিশীল হলে)",
       inputs: ["v", "t"],

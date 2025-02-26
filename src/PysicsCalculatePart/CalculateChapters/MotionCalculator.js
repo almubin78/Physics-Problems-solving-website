@@ -1,5 +1,5 @@
 import React from 'react';
-import { lawsForMotionData } from '../../Data/lawsForMotionData';
+import { lawsForMotionData } from '../../DataForLawIntegrate/lawsForMotionData';
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
 import {getPlaceholderForMotion} from '../../commonLogics/placeholder/getPlaceholderForEveryChapter'
 const MotionCalculator = () => {

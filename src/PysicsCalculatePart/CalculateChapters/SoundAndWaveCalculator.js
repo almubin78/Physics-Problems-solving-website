@@ -1,5 +1,5 @@
 import React from 'react';
-import { lawsForSoundAndWave } from '../../Data/lawsForSoundAndWave';
+import { lawsForSoundAndWave } from '../../DataForLawIntegrate/lawsForSoundAndWave';
 import { getPlaceholderForSoundAndWave } from '../../commonLogics/placeholder/getPlaceholderForEveryChapter';
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
 

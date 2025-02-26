@@ -1,5 +1,5 @@
 import React from 'react';
-import { lawsForForceData } from '../../Data/lawsForForceData';
+import { lawsForForceData } from '../../DataForLawIntegrate/lawsForForceData';
 import { getPlaceholderForForce } from '../../commonLogics/placeholder/getPlaceholderForEveryChapter';
 
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';

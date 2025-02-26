@@ -1,6 +1,6 @@
 import React from 'react';
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
-import { lawsForStateAndPressureOfMatter } from '../../Data/lawsForStateAndPressureOfMatter';
+import { lawsForStateAndPressureOfMatter } from '../../DataForLawIntegrate/lawsForStateAndPressureOfMatter';
 import { getPlaceholderForStateAndPressure } from '../../commonLogics/placeholder/getPlaceHolderForStateAndPressure';
 
 const MatterAndPressure = () => {
