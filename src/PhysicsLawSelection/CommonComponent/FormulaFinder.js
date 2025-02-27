@@ -52,6 +52,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
                 type="number"
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
                 onChange={(e) => handleInputChange(variable, e.target.value)}
+                // placeholder={inputs}
               />
             </div>
           ))}
