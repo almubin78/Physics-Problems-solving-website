@@ -46,7 +46,7 @@ export const lawsForForceData = {
     ],
     আদি_গতিশক্তির_সমষ্টি: [
       {
-        formula: "1/2*m1*u1^2 = 1/2*m2*u2^2",
+        formula: "1/2*m1*u1^2 + 1/2*m2*u2^2",
         inputs: ["m1", "m2", "u1",'u2'],
         resultInfo: " আদি গতিশক্তির সমষ্টিঃ  ",
         unit: "জুল",
