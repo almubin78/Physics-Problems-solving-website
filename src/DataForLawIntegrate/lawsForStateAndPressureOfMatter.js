@@ -24,6 +24,13 @@ export const lawsForStateAndPressureOfMatter = {
         unit: "Kg/m^3",
         calculate:(inputs)=>(inputs.m / inputs.V)
       },
+      {
+        formula: "ρ = F'' / Vg",
+        inputs: ["F", "V"],
+        resultInfo: "বস্তুর ঘনত্বের পরিমাণ: ",
+        unit: "Kg/m^3",
+        calculate:(inputs)=>(inputs.F / (inputs.V * 9.8))
+      },
     ],
  
     প্লবতা: [
