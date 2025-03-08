@@ -11,6 +11,10 @@ const PhysicsSolvingHomePage = () => {
       <p className="text-xl font-bold text-gray-800 mb-6 divider">
         অধ্যায় নির্ধারন কর 
       </p>
+      <p className="text-md font-bold text-gray-800 mb-6">
+       (শুধু মাত্র প্রয়োগমূলক প্রশ্নের জন্য )
+      </p>
+
 
       {/* Navigation Tabs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">

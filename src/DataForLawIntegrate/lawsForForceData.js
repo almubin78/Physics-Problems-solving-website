@@ -53,6 +53,15 @@ export const lawsForForceData = {
         calculate:(inputValues)=>((inputValues.m1 * inputValues.u1 * inputValues.u1)+(inputValues.m2 * inputValues.u2 * inputValues.u2))/2
       },
     ],
+    সংঘর্ষের_পর_একটি_বস্তুর_বেগ: [
+      {
+        formula: "(u1*(m1-m2)+2*m2*u2)/(m1 + m2)",
+        inputs: ["m1", "m2", "u1",'u2'],
+        resultInfo: " বস্তুর শেষ বেগঃ  ",
+        unit: "m/s",
+        calculate:(inputValues)=>(inputValues.u1*(inputValues.m1-inputValues.m2)+2*inputValues.m2*inputValues.u2)/(inputValues.m1 + inputValues.m2)
+      },
+    ],
     
   };
 

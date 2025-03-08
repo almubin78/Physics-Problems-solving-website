@@ -5,7 +5,7 @@ import { getPlaceholderForForce } from '../../commonLogics/placeholder/getPlaceh
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
 
 const ForceCalculator = () => {
-    const variables = ['বল','বন্দুকের_পশ্চাৎবেগ','মিলিত_বস্তুর_বেগ','মহাকর্ষ_বল','আদি_গতিশক্তির_সমষ্টি']
+    const variables = ['বল','বন্দুকের_পশ্চাৎবেগ','মিলিত_বস্তুর_বেগ','মহাকর্ষ_বল','আদি_গতিশক্তির_সমষ্টি','সংঘর্ষের_পর_একটি_বস্তুর_বেগ']
     return (
         <GenericCalculator
             title='বল অধ্যায়ের ক্যালকুলেটর '
