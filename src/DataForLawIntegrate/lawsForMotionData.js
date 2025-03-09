@@ -112,7 +112,7 @@ export const lawsForMotionData = {
         const expression = inputs.v ** 2 - 2 * inputs.a * inputs.s;
         return expression >= 0
           ? Math.sqrt(expression)
-          : `${Math.sqrt(Math.abs(expression))}i`; // Returns imaginary part
+          : `${Math.sqrt(Math.abs(expression))}`; // Returns imaginary part
       },
      
       

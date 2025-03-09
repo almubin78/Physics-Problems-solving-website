@@ -108,7 +108,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/simple-calculate"
+                to="/unit-calculator"
                 className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
