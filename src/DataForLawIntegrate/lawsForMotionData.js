@@ -5,7 +5,8 @@ export const lawsForMotionData = {
       inputs: ["u", "t", "a"],
       resultInfo: "Final Result for S is:",
       unit: "m",
-      calculate: (inputs) => inputs.u * inputs.t + 0.5 * inputs.a * inputs.t ** 2, // Calculation
+      calculate: (inputs) =>
+        inputs.u * inputs.t + 0.5 * inputs.a * inputs.t ** 2, // Calculation
     },
     {
       formula: "s = (v^2 - u^2) / (2a)",
@@ -21,7 +22,7 @@ export const lawsForMotionData = {
       unit: "m",
       calculate: (inputs) => ((inputs.v + inputs.u) * inputs.t) / 2, // Calculation
     },
-    
+
     {
       formula: "s = vt (সমবেগে গতিশীল হলে)",
       inputs: ["v", "t"],
@@ -98,14 +99,23 @@ export const lawsForMotionData = {
       inputs: ["s", "t", "a"],
       resultInfo: "Final Result for u is:",
       unit: "m/s",
-      calculate: (inputs) => (inputs.s - 0.5 * inputs.a * inputs.t ** 2) / inputs.t, // Calculation
+      calculate: (inputs) =>
+        (inputs.s - 0.5 * inputs.a * inputs.t ** 2) / inputs.t, // Calculation
     },
     {
       formula: "u = sqrt(v^2 - 2as)",
       inputs: ["v", "a", "s"],
       resultInfo: "Final Result for u is:",
       unit: "m/s",
-      calculate: (inputs) => Math.sqrt(inputs.v ** 2 - 2 * inputs.a * inputs.s), // Calculation
+       // calculate: (inputs) => (Math.sqrt((inputs.v ** 2) - (2 * inputs.a * inputs.s))), //// it give NaN for negative value
+      calculate: (inputs) => {
+        const expression = inputs.v ** 2 - 2 * inputs.a * inputs.s;
+        return expression >= 0
+          ? Math.sqrt(expression)
+          : `${Math.sqrt(Math.abs(expression))}i`; // Returns imaginary part
+      },
+     
+      
     },
   ],
 };
