@@ -30,13 +30,24 @@ const UnitCalculator = () => {
   const handleButtonClick = (value) => {
     setInput((prev) => prev + value);
   };
+  const handleKeyPress = (event) => {
+    const { key } = event;
+
+    if (/^[0-9+\-*/.=]$/.test(key)) {
+      handleButtonClick(key);
+    } else if (key === "Enter") {
+      calculateResult();
+    } else if (key === "Backspace") {
+      setInput((prev) => prev.slice(0, -1));
+    }
+  };
 
   const clearInput = () => {
     setInput("");
     setResult("");
   };
-//eval and calculateResult()
-//1.
+  //eval and calculateResult()
+  //1.
   // const calculateResult = () => {
   //   try {
   //     setResult(eval(input).toString());
@@ -53,20 +64,19 @@ const UnitCalculator = () => {
     }
   };
   //3.
-//   const isValidExpression = (expression) => /^[0-9+\-*/().\s]+$/.test(expression);
+  //   const isValidExpression = (expression) => /^[0-9+\-*/().\s]+$/.test(expression);
 
-// const calculateResult = () => {
-//   if (!isValidExpression(input)) {
-//     setResult("Invalid Input");
-//     return;
-//   }
-//   try {
-//     setResult(eval(input).toString());
-//   } catch {
-//     setResult("Error");
-//   }
-// };
-
+  // const calculateResult = () => {
+  //   if (!isValidExpression(input)) {
+  //     setResult("Invalid Input");
+  //     return;
+  //   }
+  //   try {
+  //     setResult(eval(input).toString());
+  //   } catch {
+  //     setResult("Error");
+  //   }
+  // };
 
   const convertTime = (value, from, to) => {
     const timeUnits = { hour: 3600, minute: 60, second: 1 };
@@ -129,6 +139,8 @@ const UnitCalculator = () => {
             className="w-full p-2 border rounded mb-2 text-center dark:bg-gray-700 dark:text-white"
             value={input}
             readOnly
+            onKeyDown={handleKeyPress} // Enable keyboard input
+            autoFocus // Focus input on open
           />
           <div className="grid grid-cols-4 gap-2">
             {[7, 8, 9, "/"].map((item) => (
@@ -192,7 +204,7 @@ const UnitCalculator = () => {
         {[
           {
             title: "সময় Converter",
-            extraInfo:' ঘন্টা, মিনিট, সেকেন্ড',
+            extraInfo: " ঘন্টা, মিনিট, সেকেন্ড",
             value: timeValue,
             setValue: setTimeValue,
             fromUnit: timeFromUnit,
@@ -206,7 +218,7 @@ const UnitCalculator = () => {
           },
           {
             title: "দূরত্ব Converter",
-            extraInfo:' মিটার,কিলোমিটার,সেন্টিমিটার,মিলিমিটার',
+            extraInfo: " মিটার,কিলোমিটার,সেন্টিমিটার,মিলিমিটার",
             value: distanceValue,
             setValue: setDistanceValue,
             fromUnit: distanceFromUnit,
@@ -220,7 +232,7 @@ const UnitCalculator = () => {
           },
           {
             title: " বেগ Converter",
-            extraInfo:' মিটার/সেকেন্ড, কিলোমিটার/ঘন্টা',
+            extraInfo: " মিটার/সেকেন্ড, কিলোমিটার/ঘন্টা",
             value: velocityValue,
             setValue: setVelocityValue,
             fromUnit: velocityFromUnit,
@@ -234,7 +246,7 @@ const UnitCalculator = () => {
           },
           {
             title: "শক্তি Converter",
-            extraInfo:' জুল, কিলোওয়াট-ঘন্টা, ক্যালরি। ',
+            extraInfo: " জুল, কিলোওয়াট-ঘন্টা, ক্যালরি। ",
             value: energyValue,
             setValue: setEnergyValue,
             fromUnit: energyFromUnit,
@@ -254,7 +266,12 @@ const UnitCalculator = () => {
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
               {converter.title}
             </h3>
-            <p><span className="text-sm text-bold text-yellow-200">পারস্পরিক রুপান্তরঃ </span>{converter.extraInfo}</p>
+            <p>
+              <span className="text-sm text-bold text-yellow-200">
+                পারস্পরিক রুপান্তরঃ{" "}
+              </span>
+              {converter.extraInfo}
+            </p>
 
             <input
               type="number"
