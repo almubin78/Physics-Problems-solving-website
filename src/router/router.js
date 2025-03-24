@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../CommonPages/HomePage";
 import ErrorPage from "../CommonPages/ErrorPage";
 import HomePageInfo from "../CommonPages/HomePageInfo";
-import UnitCalculator from "../UnitCalculator/UnitCalculator";
+// import UnitCalculator from "../UnitCalculator/UnitCalculator";
 import PhysicsSolvingHomePage from "../PysicsCalculatePart/PhysicsSolvingHomePage";
 import MotionCalculator from "../PysicsCalculatePart/CalculateChapters/MotionCalculator";
 import ForceCalculator from "../PysicsCalculatePart/CalculateChapters/ForceCalculator";
@@ -13,6 +13,7 @@ import FormulaFinderForMotion from "../PhysicsLawSelection/FormulaFinderChapter/
 import MatterAndPressure from "../PysicsCalculatePart/CalculateChapters/MatterAndPressure";
 import FormulaFinderForForce from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForForce";
 import FormulaFinderForSoundAndWave from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForSoundAndWave";
+import UnitHome from "../UnitCalculator/UnitHome";
 
 
 export const router = createBrowserRouter([
@@ -26,7 +27,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/unit-calculator",
-        element: <UnitCalculator />,
+        // element: <UnitCalculator />,
+        element: <UnitHome />,
       },
       {
         path: "/laws-integrations",
