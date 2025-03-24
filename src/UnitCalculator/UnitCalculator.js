@@ -46,16 +46,8 @@ const UnitCalculator = () => {
     setInput("");
     setResult("");
   };
-  //eval and calculateResult()
-  //1.
-  // const calculateResult = () => {
-  //   try {
-  //     setResult(eval(input).toString());
-  //   } catch {
-  //     setResult("Error");
-  //   }
-  // };
-  //2.
+
+
   const calculateResult = () => {
     try {
       setResult(new Function(`return ${input}`)().toString());
@@ -63,20 +55,7 @@ const UnitCalculator = () => {
       setResult("Error");
     }
   };
-  //3.
-  //   const isValidExpression = (expression) => /^[0-9+\-*/().\s]+$/.test(expression);
-
-  // const calculateResult = () => {
-  //   if (!isValidExpression(input)) {
-  //     setResult("Invalid Input");
-  //     return;
-  //   }
-  //   try {
-  //     setResult(eval(input).toString());
-  //   } catch {
-  //     setResult("Error");
-  //   }
-  // };
+  
 
   const convertTime = (value, from, to) => {
     const timeUnits = { hour: 3600, minute: 60, second: 1 };
