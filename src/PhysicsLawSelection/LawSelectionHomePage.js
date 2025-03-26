@@ -8,20 +8,20 @@ const LawSelectionHomePage = () => {
         সূত্র নির্ধারন 
       </h1>
       <p className="text-xl font-bold text-gray-800 mb-6">
-        তুমি যদি সূত্র গুলো না বুঝ তবে অধ্যায় সিলেক্ট কর এবং প্রশ্নে উল্লেখিত মান বসাও। 
-        তাহলেই সম্ভাব্য সূত্র পেয়ে যাবে। 
+        তুমি যদি সূত্র গুলো না বুঝ তবে অধ্যায় সিলেক্ট কর এবং প্রশ্নে উল্লেখিত মান বসাও। <br />
+        তাহলেই নিচের দিকে সম্ভাব্য সূত্র পেয়ে যাবে। 
       </p>
 
       {/* Navigation Tabs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
-          { path: "/laws-selection/motion", label: "Motion" },
-          { path: "/laws-selection/force", label: "Force" },
+          { path: "/laws-selection/motion", label: "গতি" },
+          { path: "/laws-selection/force", label: "বল" },
           {
             path: "/laws-selection/work-power-energy",
-            label: "Work & Energy",
+            label: "কাজ,ক্ষমতা ও শক্তি",
           },
-          { path: "/laws-selection/sound-and-wave", label: "Sound & Wave" },
+          { path: "/laws-selection/sound-and-wave", label: "শব্দ ও তরঙ্গ" },
         ].map((item) => (
           <NavLink
             key={item.path}

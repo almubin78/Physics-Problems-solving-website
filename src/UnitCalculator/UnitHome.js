@@ -57,6 +57,14 @@ const UnitHome = () => {
             initialFromUnit="hour"
             initialToUnit="minute"
           />
+          <UnitConverter
+            title=" বেগ Converter"
+            extraInfo=" মিটার/সেকেন্ড, কিলোমিটার/ঘন্টা"
+            units={velocityUnits}
+            converterFunction={convertVelocity}
+            initialFromUnit="km/h"
+            initialToUnit="m/s"
+          />
   
           <UnitConverter
             title="দূরত্ব Converter"
@@ -67,14 +75,7 @@ const UnitHome = () => {
             initialToUnit="m"
           />
   
-          <UnitConverter
-            title=" বেগ Converter"
-            extraInfo=" মিটার/সেকেন্ড, কিলোমিটার/ঘন্টা"
-            units={velocityUnits}
-            converterFunction={convertVelocity}
-            initialFromUnit="km/h"
-            initialToUnit="m/s"
-          />
+          
   
           <UnitConverter
             title="শক্তি Converter"

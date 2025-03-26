@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../CommonPages/HomePage";
 import ErrorPage from "../CommonPages/ErrorPage";
 import HomePageInfo from "../CommonPages/HomePageInfo";
-// import UnitCalculator from "../UnitCalculator/UnitCalculator";
 import PhysicsSolvingHomePage from "../PysicsCalculatePart/PhysicsSolvingHomePage";
 import MotionCalculator from "../PysicsCalculatePart/CalculateChapters/MotionCalculator";
 import ForceCalculator from "../PysicsCalculatePart/CalculateChapters/ForceCalculator";
@@ -27,7 +26,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "/unit-calculator",
-        // element: <UnitCalculator />,
         element: <UnitHome />,
       },
       {
