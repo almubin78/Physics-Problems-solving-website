@@ -11,7 +11,7 @@ const ProcessingPageMessage = () => {
           transition={{ duration: 0.5 }}
           className="text-6xl font-bold text-red-500"
         >
-          চলমান!! 
+          শুধু মাত্র প্রাইভেট ছাত্র-ছাত্রীর জন্য  
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -19,14 +19,15 @@ const ProcessingPageMessage = () => {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="text-lg mt-6 text-center"
         >
-          ইনশা-আল্লাহ!! অল্প কিছুদিনের মধ্যেই ডেভেলপমেন্ট শেষ হবে। 
+          ভর্তি হতে যোগাযোগঃ 017-019-0-6543 
         </motion.p>
   
         {/* Back to Home Button */}
         <motion.div
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 0.5 }}
-          transition={{ delay: 0.5, duration: 1 }}
+          initial={{ scale: 0.5 }}
+          animate={{ scale: 0.8 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          // whileTap={{rotate:35}}
         >
           <Link
             to="/"

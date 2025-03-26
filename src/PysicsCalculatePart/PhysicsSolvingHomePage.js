@@ -12,7 +12,8 @@ const PhysicsSolvingHomePage = () => {
         অধ্যায় নির্ধারন কর 
       </p>
       <p className="text-md font-bold text-gray-800 mb-6">
-       (শুধু মাত্র প্রয়োগমূলক প্রশ্নের জন্য ) <Link className="underline text-red-200" to='/higher'>উচ্চতর দক্ষতা মূলক সমাধান</Link>
+       (শুধু মাত্র প্রয়োগমূলক প্রশ্নের জন্য ) 
+       <Link className="underline text-red-200" to='/message'>উচ্চতর দক্ষতা মূলক সমাধান</Link>
       </p>
 
 

@@ -21,7 +21,10 @@ const LawSelectionHomePage = () => {
             path: "/laws-selection/work-power-energy",
             label: "কাজ,ক্ষমতা ও শক্তি",
           },
-          { path: "/laws-selection/sound-and-wave", label: "শব্দ ও তরঙ্গ" },
+          { 
+            path: "/laws-selection/sound-and-wave", 
+            label: "শব্দ ও তরঙ্গ" 
+          },
         ].map((item) => (
           <NavLink
             key={item.path}

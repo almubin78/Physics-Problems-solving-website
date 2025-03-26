@@ -13,6 +13,7 @@ import MatterAndPressure from "../PysicsCalculatePart/CalculateChapters/MatterAn
 import FormulaFinderForForce from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForForce";
 import FormulaFinderForSoundAndWave from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForSoundAndWave";
 import UnitHome from "../UnitCalculator/UnitHome";
+import ProcessingPageMessage from "../CommonPages/ProcessingPageMessage";
 
 
 export const router = createBrowserRouter([
@@ -78,5 +79,9 @@ export const router = createBrowserRouter([
   {
     path: "*",
     element: <ErrorPage />,
+  },
+  {
+    path: "/message",
+    element: <ProcessingPageMessage />,
   },
 ]);
