@@ -11,3 +11,13 @@
     "daisyui": "^3.2.1",
     "tailwindcss": "^3.3.3"
 ```
+
+# Server side information are here
+- [server github link]()
+- [server Live Link]()
+```css
+span:{
+ color:red;
+}
+
+```
