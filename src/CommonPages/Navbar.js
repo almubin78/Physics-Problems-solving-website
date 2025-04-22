@@ -40,6 +40,7 @@ const Navbar = () => {
             { path: "/", label: "Home" },
             { path: "/laws-selection", label: "🔍 সূত্র খোঁজ" },
             { path: "/laws-integrations", label: "⚡ পদার্থ ক্যালকুলেটর" },
+            { path: "/playAnimation", label: "⚡ Animation" },
             { path: "/unit-calculator", label: "🔢 এককের রূপান্তর" },
           ].map((item) => (
             <li key={item.path}>

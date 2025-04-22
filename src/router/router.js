@@ -14,6 +14,9 @@ import FormulaFinderForForce from "../PhysicsLawSelection/FormulaFinderChapter/F
 import FormulaFinderForSoundAndWave from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForSoundAndWave";
 import UnitHome from "../UnitCalculator/UnitHome";
 import ProcessingPageMessage from "../CommonPages/ProcessingPageMessage";
+import MotionSimulator from "../PlayAnimation/MotionSimulator";
+import AnimationHome from "../PlayAnimation/AnimationHome";
+import InelasticCollisionSimulator from "../PlayAnimation/InelasticCollisionSimulator";
 
 
 export const router = createBrowserRouter([
@@ -75,6 +78,21 @@ export const router = createBrowserRouter([
         ]
       },
     ],
+  },
+  {
+    path: "/playAnimation",
+    element: <AnimationHome />,
+    children:[
+      {
+          path: "/playAnimation/time",
+          element: <MotionSimulator/>, 
+      },
+      {
+          path: "/playAnimation/mv",
+          element: <InelasticCollisionSimulator/>, 
+      },
+      
+  ]
   },
   {
     path: "*",
