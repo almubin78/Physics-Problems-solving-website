@@ -6,15 +6,15 @@ export default function InelasticCollisionSimulator() {
   const [m2, setM2] = useState(3);
   const [u2, setU2] = useState(-1); // Left direction (negative)
 
-  const [x1, setX1] = useState(10); // start from left
-  const [x2, setX2] = useState(80); // start from right
+  const [x1, setX1] = useState(10); // Object 1 position (%)
+  const [x2, setX2] = useState(80); // Object 2 position (%)
 
   const [running, setRunning] = useState(false);
   const [merged, setMerged] = useState(false);
-  const [v, setV] = useState(0); // final velocity after collision
+  const [v, setV] = useState(0); // Final velocity after collision
 
   const intervalRef = useRef(null);
-  console.log(intervalRef.current, "intervalRef.current");
+
   const handleStart = () => {
     setX1(10);
     setX2(80);
@@ -23,6 +23,7 @@ export default function InelasticCollisionSimulator() {
 
     if (intervalRef.current) clearInterval(intervalRef.current);
 
+    // Start movement until collision
     intervalRef.current = setInterval(() => {
       setX1((prev) => prev + u1 * 0.5);
       setX2((prev) => prev + u2 * 0.5); // u2 is negative
@@ -34,15 +35,16 @@ export default function InelasticCollisionSimulator() {
     setRunning(false);
   };
 
+  // Detect collision and calculate final velocity using conservation of momentum
   useEffect(() => {
     if (!merged && x2 - x1 <= 6) {
-      // collision occurs
       const finalV = (m1 * u1 + m2 * u2) / (m1 + m2);
       setV(finalV);
       setMerged(true);
 
       clearInterval(intervalRef.current);
 
+      // After collision, move merged object together
       intervalRef.current = setInterval(() => {
         setX1((prev) => prev + finalV * 0.5);
         setX2((prev) => prev + finalV * 0.5);
@@ -50,6 +52,7 @@ export default function InelasticCollisionSimulator() {
     }
   }, [x1, x2, m1, m2, u1, u2, merged]);
 
+  // Stop animation when merged object goes out of screen
   useEffect(() => {
     if (merged && x1 > 100) {
       clearInterval(intervalRef.current);
@@ -82,7 +85,7 @@ export default function InelasticCollisionSimulator() {
           />
         </div>
         <div>
-          <h2 className="font-bold">বস্তু ২ (ডান থেকে বামে)</h2>
+          <h2 className="font-bold">বস্তু ২ (ডান থেকে বামে- ঋণাত্মক দিকে)</h2>
           <input
             type="number"
             value={m2}
@@ -92,8 +95,8 @@ export default function InelasticCollisionSimulator() {
           />
           <input
             type="number"
-            value={u2}
-            onChange={(e) => setU2(-e.target.value)}
+            value={-u2}
+            onChange={(e) => setU2(-Math.abs(+e.target.value))}
             placeholder="Velocity (negative)"
             className="border p-1 rounded w-full mt-2"
           />
@@ -101,7 +104,6 @@ export default function InelasticCollisionSimulator() {
       </div>
 
       <div className="flex gap-2">
-        {/* <button onClick={handleStart} className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700">Start</button> */}
         <button
           onClick={handleStart}
           disabled={running}
@@ -144,12 +146,19 @@ export default function InelasticCollisionSimulator() {
       {/* Output */}
       <div className="text-sm text-gray-700">
         <p>
-          <strong>সংঘর্ষের পর সম্মিলিত বেগ:</strong>{" "}
-          {merged ? `${v.toFixed(2)} m/s` : "সংঘর্ষ হয়নি এখনো"}
+          <strong>সংঘর্ষের পর সম্মিলিত বেগ:</strong>
+          <p>
+            {merged ? (
+              <span className=" py-1 rounded-sm px-4 text-xl font-serif shadow-xl border border-b-orange-400 font-bold text-green-600">
+                {" "}
+                {v.toFixed(2)} m/s
+              </span>
+            ) : (
+              "সংঘর্ষ হয়নি এখনো"
+            )}
+          </p>
         </p>
-        <p>
-          <strong>বর্তমান দূরত্ব:</strong> {Math.max(0, (x2 - x1).toFixed(2))}%
-        </p>
+        {/* <p><strong>বর্তমান দূরত্ব:</strong> {Math.max(0, (x2 - x1).toFixed(2))}%</p> */}
       </div>
     </div>
   );
