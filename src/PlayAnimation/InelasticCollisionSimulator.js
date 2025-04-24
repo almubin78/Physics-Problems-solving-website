@@ -54,36 +54,40 @@ export default function InelasticCollisionSimulator() {
       <div className="grid grid-cols-2 gap-3 text-sm">
         <div>
           <h2 className="font-bold">বস্তু ১ (বাম থেকে ডানে)</h2>
+          <label className="block text-gray-600">ভর (kg):</label>
           <input
             type="number"
             value={m1}
             onChange={(e) => setM1(+e.target.value)}
-            placeholder="Mass (kg)"
             className="border p-1 rounded w-full"
           />
+          <label className="block text-gray-600 mt-2">
+            প্রারম্ভিক বেগ (m/s):
+          </label>
           <input
             type="number"
             value={u1}
             onChange={(e) => setU1(+e.target.value)}
-            placeholder="Velocity (m/s)"
-            className="border p-1 rounded w-full mt-2"
+            className="border p-1 rounded w-full"
           />
         </div>
         <div>
           <h2 className="font-bold">বস্তু ২ (ডান থেকে বামে)</h2>
+          <label className="block text-gray-600">ভর (kg):</label>
           <input
             type="number"
             value={m2}
             onChange={(e) => setM2(+e.target.value)}
-            placeholder="Mass (kg)"
             className="border p-1 rounded w-full"
           />
+          <label className="block text-gray-600 mt-2">
+            প্রারম্ভিক বেগ (m/s):
+          </label>
           <input
             type="number"
             value={-u2}
             onChange={(e) => setU2(-Math.abs(+e.target.value))}
-            placeholder="Velocity (negative)"
-            className="border p-1 rounded w-full mt-2"
+            className="border p-1 rounded w-full"
           />
         </div>
       </div>
@@ -107,20 +111,29 @@ export default function InelasticCollisionSimulator() {
         {!merged && (
           <>
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-blue-500 rounded-full animate-bounce"
+              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-blue-500 rounded-full text-[10px] text-white flex items-center justify-center"
               style={{ left: `${x1}%`, transition: "left 0.1s linear" }}
-            />
+              title={`v = ${u1} m/s`}
+            >
+              {`v=${u1}`}
+            </div>
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full animate-bounce"
+              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center"
               style={{ left: `${x2}%`, transition: "left 0.1s linear" }}
-            />
+              title={`v = ${u2} m/s`}
+            >
+              {`v=${u2}`}
+            </div>
           </>
         )}
         {merged && (
           <div
-            className="absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 rounded-full animate-pulse"
+            className="absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 rounded-full text-[11px] text-white flex items-center justify-center"
             style={{ left: `${x1}%`, transition: "left 0.1s linear" }}
-          />
+            title={`v = ${v.toFixed(2)} m/s`}
+          >
+            {`${v.toFixed(1)} m/s`}
+          </div>
         )}
       </div>
 
