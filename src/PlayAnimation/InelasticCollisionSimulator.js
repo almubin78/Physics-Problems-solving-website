@@ -2,31 +2,28 @@ import React, { useState, useRef, useEffect } from "react";
 
 export default function InelasticCollisionSimulator() {
   const [m1, setM1] = useState(2);
-  const [u1, setU1] = useState(3); // Right direction
+  const [u1, setU1] = useState(3);
   const [m2, setM2] = useState(3);
-  const [u2, setU2] = useState(-1); // Left direction (negative)
-
-  const [x1, setX1] = useState(10); // Object 1 position (%)
-  const [x2, setX2] = useState(80); // Object 2 position (%)
-
+  const [u2, setU2] = useState(-1);
+  const [x1, setX1] = useState(10);
+  const [x2, setX2] = useState(80);
   const [running, setRunning] = useState(false);
   const [merged, setMerged] = useState(false);
-  const [v, setV] = useState(0); // Final velocity after collision
-
+  const [v, setV] = useState(0);
   const intervalRef = useRef(null);
+
+  const initialKE = 0.5 * m1 * u1 ** 2 + 0.5 * m2 * u2 ** 2;
+  const finalKE = merged ? 0.5 * (m1 + m2) * v ** 2 : 0;
 
   const handleStart = () => {
     setX1(10);
     setX2(80);
     setMerged(false);
     setRunning(true);
-
     if (intervalRef.current) clearInterval(intervalRef.current);
-
-    // Start movement until collision
     intervalRef.current = setInterval(() => {
       setX1((prev) => prev + u1 * 0.5);
-      setX2((prev) => prev + u2 * 0.5); // u2 is negative
+      setX2((prev) => prev + u2 * 0.5);
     }, 100);
   };
 
@@ -35,16 +32,12 @@ export default function InelasticCollisionSimulator() {
     setRunning(false);
   };
 
-  // Detect collision and calculate final velocity using conservation of momentum
   useEffect(() => {
     if (!merged && x2 - x1 <= 6) {
       const finalV = (m1 * u1 + m2 * u2) / (m1 + m2);
       setV(finalV);
       setMerged(true);
-
       clearInterval(intervalRef.current);
-
-      // After collision, move merged object together
       intervalRef.current = setInterval(() => {
         setX1((prev) => prev + finalV * 0.5);
         setX2((prev) => prev + finalV * 0.5);
@@ -52,17 +45,9 @@ export default function InelasticCollisionSimulator() {
     }
   }, [x1, x2, m1, m2, u1, u2, merged]);
 
-  // Stop animation when merged object goes out of screen
-  useEffect(() => {
-    if (merged && x1 > 100) {
-      clearInterval(intervalRef.current);
-      setRunning(false);
-    }
-  }, [x1, merged]);
-
   return (
     <div className="p-4 max-w-2xl mx-auto space-y-4">
-      <h1 className="text-xl font-bold text-center">
+      <h1 className="text-xl font-bold text-center animate-pulse">
         🔁 বিপরীত দিক থেকে সংঘর্ষ (Inelastic)
       </h1>
 
@@ -85,7 +70,7 @@ export default function InelasticCollisionSimulator() {
           />
         </div>
         <div>
-          <h2 className="font-bold">বস্তু ২ (ডান থেকে বামে- ঋণাত্মক দিকে)</h2>
+          <h2 className="font-bold">বস্তু ২ (ডান থেকে বামে)</h2>
           <input
             type="number"
             value={m2}
@@ -106,10 +91,7 @@ export default function InelasticCollisionSimulator() {
       <div className="flex gap-2">
         <button
           onClick={handleStart}
-          disabled={running}
-          className={`py-2 px-4 rounded text-white ${
-            running ? "bg-gray-400" : "bg-green-600 hover:bg-green-700"
-          }`}
+          className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
         >
           Start
         </button>
@@ -121,44 +103,53 @@ export default function InelasticCollisionSimulator() {
         </button>
       </div>
 
-      {/* Animation area */}
       <div className="relative h-24 bg-gray-200 border rounded overflow-hidden">
         {!merged && (
           <>
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-blue-500 rounded-full"
+              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-blue-500 rounded-full animate-bounce"
               style={{ left: `${x1}%`, transition: "left 0.1s linear" }}
             />
             <div
-              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full"
+              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full animate-bounce"
               style={{ left: `${x2}%`, transition: "left 0.1s linear" }}
             />
           </>
         )}
         {merged && (
           <div
-            className="absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 rounded-full"
+            className="absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 rounded-full animate-pulse"
             style={{ left: `${x1}%`, transition: "left 0.1s linear" }}
           />
         )}
       </div>
 
-      {/* Output */}
-      <div className="text-sm text-gray-700">
-        <p>
-          <strong>সংঘর্ষের পর সম্মিলিত বেগ:</strong>
+      <div className="text-sm text-gray-800 bg-gray-100 p-4 rounded shadow-inner animate-fade-in space-y-2 border">
+        <h2 className="font-bold text-center text-blue-600">
+          📊 সংঘর্ষ বিশ্লেষণ
+        </h2>
+        <div className="grid grid-cols-2 gap-2">
           <p>
-            {merged ? (
-              <span className=" py-1 rounded-sm px-4 text-xl font-serif shadow-xl border border-b-orange-400 font-bold text-green-600">
-                {" "}
-                {v.toFixed(2)} m/s
-              </span>
-            ) : (
-              "সংঘর্ষ হয়নি এখনো"
-            )}
+            <span className="font-semibold">🔹 সম্মিলিত বেগ:</span>{" "}
+            {merged ? `${v.toFixed(2)} m/s` : "সংঘর্ষ হয়নি এখনো"}
           </p>
-        </p>
-        {/* <p><strong>বর্তমান দূরত্ব:</strong> {Math.max(0, (x2 - x1).toFixed(2))}%</p> */}
+          <p>
+            <span className="font-semibold">🔹 বর্তমান দূরত্ব:</span>{" "}
+            {Math.max(0, (x2 - x1).toFixed(2))}%
+          </p>
+          <p>
+            <span className="font-semibold">🔹 শুরুতে মোট গতিশক্তি:</span>{" "}
+            {initialKE.toFixed(2)} J
+          </p>
+          <p>
+            <span className="font-semibold">🔹 সংঘর্ষের পর মোট গতিশক্তি:</span>{" "}
+            {merged ? `${finalKE.toFixed(2)} J` : "N/A"}
+          </p>
+          <p className="col-span-2">
+            <span className="font-semibold">🔹 শক্তি ক্ষয়:</span>{" "}
+            {merged ? `${(initialKE - finalKE).toFixed(2)} J` : "N/A"}
+          </p>
+        </div>
       </div>
     </div>
   );
