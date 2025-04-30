@@ -16,6 +16,7 @@ const AnimationHome = () => {
         {[
           { path: "/playAnimation/mv", label: "ভরবেগের সংরক্ষণ" },
           { path: "/playAnimation/time", label: "সংঘর্ষ কাল" },
+          { path: "/playAnimation/Falling-object", label: "পতশীল বস্তু" },
           
         ].map((item) => (
           <NavLink
