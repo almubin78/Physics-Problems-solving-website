@@ -13,6 +13,7 @@ export default function MotionSimulator() {
   const [positions, setPositions] = useState([0, 0]);
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
+  const [collisionDetected, setCollisionDetected] = useState(false);
 
   const requestRef = useRef(null);
   const startTimeRef = useRef(null);
@@ -25,39 +26,46 @@ export default function MotionSimulator() {
 
   const handleStart = () => {
     setRunning(true);
-    setPositions([0, 0]);
+    setCollisionDetected(false);
     setTime(0);
     startTimeRef.current = null;
+
+    const initialGap = direction === "same" ? 50 : 0; // gap between obj1 and obj2
 
     const animate = (timestamp) => {
       if (!startTimeRef.current) startTimeRef.current = timestamp;
       const t = (timestamp - startTimeRef.current) / 1000;
       setTime(t);
 
-      let newPositions = [];
+      const obj1 = objectParams[0];
+      const obj2 = objectParams[1];
 
-      if (numObjects === 1) {
-        const { v0, a } = objectParams[0];
-        newPositions = [v0 * t + 0.5 * a * t * t];
-      } else {
-        const pos1 = objectParams[0].v0 * t + 0.5 * objectParams[0].a * t * t;
-        const pos2 = objectParams[1].v0 * t + 0.5 * objectParams[1].a * t * t;
-        newPositions = direction === "same" ? [pos1, pos2] : [pos1, pos2];
+      const pos1 = obj1.v0 * t + 0.5 * obj1.a * t * t;
+      let pos2 = 0;
+
+      if (numObjects === 2) {
+        const rawPos2 = obj2.v0 * t + 0.5 * obj2.a * t * t;
+        pos2 = direction === "same" ? rawPos2 - initialGap : rawPos2;
       }
 
+      const newPositions = numObjects === 2 ? [pos1, pos2] : [pos1];
       setPositions(newPositions);
 
-      const shouldStop =
-        numObjects === 1
-          ? newPositions[0] >= distance
-          : direction === "same"
-          ? Math.max(...newPositions) >= distance
-          : newPositions[0] + newPositions[1] >= distance;
+      let shouldStop = false;
 
-      if (shouldStop) {
+      if (numObjects === 1) {
+        shouldStop = pos1 >= distance;
+      } else if (direction === "opposite") {
+        shouldStop = pos1 + pos2 >= distance;
+      } else if (direction === "same") {
+        shouldStop = Math.abs(pos1 - pos2) < 1;
+      }
+
+      if (!collisionDetected && shouldStop) {
+        setCollisionDetected(true);
         setRunning(false);
         cancelAnimationFrame(requestRef.current);
-      } else {
+      } else if (!shouldStop) {
         requestRef.current = requestAnimationFrame(animate);
       }
     };
@@ -71,13 +79,12 @@ export default function MotionSimulator() {
     cancelAnimationFrame(requestRef.current);
   };
 
-  // Calculate remaining distance
   const remainingDistance =
     numObjects === 2
       ? direction === "same"
-        ? Math.abs(positions[0] - positions[1]).toFixed(2)
-        : Math.max(0, distance - (positions[0] + positions[1])).toFixed(2)
-      : (distance - positions[0]).toFixed(2);
+        ? Math.abs(positions[0] - positions[1])?.toFixed(2)
+        : Math.max(0, distance - (positions[0] + positions[1]))?.toFixed(2)
+      : (distance - positions[0])?.toFixed(2);
 
   return (
     <div className="p-4 max-w-xl mx-auto space-y-4">
@@ -154,21 +161,19 @@ export default function MotionSimulator() {
       </div>
 
       <div
-        // className="relative h-24 bg-gray-100 border rounded overflow-hidden mt-6"
         className="relative h-24 border rounded overflow-hidden"
         style={{
           background: `
-      repeating-linear-gradient(
-        90deg,
-        #e5e7eb,
-        #e5e7eb 10%,
-        #f3f4f6 10%,
-        #f3f4f6 20%
-      )
-    `,
+            repeating-linear-gradient(
+              90deg,
+              #e5e7eb,
+              #e5e7eb 10%,
+              #f3f4f6 10%,
+              #f3f4f6 20%
+            )
+          `,
         }}
       >
-        {/* Object 1: always from left */}
         {numObjects >= 1 && (
           <div
             className="absolute top-1/2 transform -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full"
@@ -178,7 +183,6 @@ export default function MotionSimulator() {
           />
         )}
 
-        {/* Object 2: left or right side based on direction */}
         {numObjects === 2 && (
           <div
             className="absolute top-1/2 transform -translate-y-1/2 w-6 h-6 bg-green-500 rounded-full"
@@ -194,13 +198,15 @@ export default function MotionSimulator() {
 
       <div className="text-sm text-gray-600 mt-2">
         <p>
-          <strong>সময়:</strong> {time.toFixed(2)} সেকেন্ড
+          <strong>সময়:</strong> {time?.toFixed(2)} সেকেন্ড
         </p>
         {[...Array(numObjects)].map((_, index) => (
           <p key={index}>
             <strong>অবজেক্ট {index + 1}:</strong> অবস্থান:{" "}
-            {positions[index].toFixed(2)} মিটার, গতি:{" "}
-            {(objectParams[index].v0 + objectParams[index].a * time).toFixed(2)}{" "}
+            {positions[index]?.toFixed(2)} মিটার, গতি:{" "}
+            {(objectParams[index].v0 + objectParams[index].a * time)?.toFixed(
+              2
+            )}{" "}
             m/s
           </p>
         ))}

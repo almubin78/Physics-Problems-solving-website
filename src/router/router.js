@@ -17,6 +17,7 @@ import ProcessingPageMessage from "../CommonPages/ProcessingPageMessage";
 import MotionSimulator from "../PlayAnimation/MotionSimulator";
 import AnimationHome from "../PlayAnimation/AnimationHome";
 import InelasticCollisionSimulator from "../PlayAnimation/InelasticCollisionSimulator";
+import GravitySimulator from "../PlayAnimation/GravitySimulator";
 
 
 export const router = createBrowserRouter([
@@ -90,6 +91,10 @@ export const router = createBrowserRouter([
       {
           path: "/playAnimation/mv",
           element: <InelasticCollisionSimulator/>, 
+      },
+      {
+          path: "/playAnimation/Falling-object",
+          element: <GravitySimulator/>, 
       },
       
   ]
