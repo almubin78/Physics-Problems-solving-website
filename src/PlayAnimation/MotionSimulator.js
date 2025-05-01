@@ -7,7 +7,7 @@ export default function MotionSimulator() {
 
   const [objectParams, setObjectParams] = useState([
     { v0: 5, a: 2 },
-    { v0: 8, a: 3 }
+    { v0: 8, a: 3 },
   ]);
 
   const [positions, setPositions] = useState([0, 0]);
@@ -123,9 +123,7 @@ export default function MotionSimulator() {
             <input
               type="number"
               value={objectParams[index].v0}
-              onChange={(e) =>
-                handleParamChange(index, "v0", e.target.value)
-              }
+              onChange={(e) => handleParamChange(index, "v0", e.target.value)}
               className="border p-2 rounded w-full"
             />
 
@@ -133,9 +131,7 @@ export default function MotionSimulator() {
             <input
               type="number"
               value={objectParams[index].a}
-              onChange={(e) =>
-                handleParamChange(index, "a", e.target.value)
-              }
+              onChange={(e) => handleParamChange(index, "a", e.target.value)}
               className="border p-2 rounded w-full"
             />
           </div>
@@ -157,13 +153,27 @@ export default function MotionSimulator() {
         </div>
       </div>
 
-      <div className="relative h-24 bg-gray-100 border rounded overflow-hidden mt-6">
+      <div
+        // className="relative h-24 bg-gray-100 border rounded overflow-hidden mt-6"
+        className="relative h-24 border rounded overflow-hidden"
+        style={{
+          background: `
+      repeating-linear-gradient(
+        90deg,
+        #e5e7eb,
+        #e5e7eb 10%,
+        #f3f4f6 10%,
+        #f3f4f6 20%
+      )
+    `,
+        }}
+      >
         {/* Object 1: always from left */}
         {numObjects >= 1 && (
           <div
             className="absolute top-1/2 transform -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full"
             style={{
-              left: `${Math.min((positions[0] / distance) * 100, 100)}%`
+              left: `${Math.min((positions[0] / distance) * 100, 100)}%`,
             }}
           />
         )}
@@ -176,21 +186,27 @@ export default function MotionSimulator() {
               left:
                 direction === "same"
                   ? `${Math.min((positions[1] / distance) * 100, 100)}%`
-                  : `${Math.max(100 - (positions[1] / distance) * 100, 0)}%`
+                  : `${Math.max(100 - (positions[1] / distance) * 100, 0)}%`,
             }}
           />
         )}
       </div>
 
       <div className="text-sm text-gray-600 mt-2">
-        <p><strong>সময়:</strong> {time.toFixed(2)} সেকেন্ড</p>
+        <p>
+          <strong>সময়:</strong> {time.toFixed(2)} সেকেন্ড
+        </p>
         {[...Array(numObjects)].map((_, index) => (
           <p key={index}>
-            <strong>অবজেক্ট {index + 1}:</strong> অবস্থান: {positions[index].toFixed(2)} মিটার,
-            গতি: {(objectParams[index].v0 + objectParams[index].a * time).toFixed(2)} m/s
+            <strong>অবজেক্ট {index + 1}:</strong> অবস্থান:{" "}
+            {positions[index].toFixed(2)} মিটার, গতি:{" "}
+            {(objectParams[index].v0 + objectParams[index].a * time).toFixed(2)}{" "}
+            m/s
           </p>
         ))}
-        <p><strong>অবশিষ্ট দূরত্ব:</strong> {remainingDistance} মিটার</p>
+        <p>
+          <strong>অবশিষ্ট দূরত্ব:</strong> {remainingDistance} মিটার
+        </p>
       </div>
     </div>
   );

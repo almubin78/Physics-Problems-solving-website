@@ -107,7 +107,49 @@ export default function InelasticCollisionSimulator() {
         </button>
       </div>
 
-      <div className="relative h-24 bg-gray-200 border rounded overflow-hidden">
+      {/* <div className="relative h-24 bg-gray-200 border rounded overflow-hidden">
+        {!merged && (
+          <>
+            <div
+              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-blue-500 rounded-full text-[10px] text-white flex items-center justify-center"
+              style={{ left: `${x1}%`, transition: "left 0.1s linear" }}
+              title={`v = ${u1} m/s`}
+            >
+              {`v=${u1}`}
+            </div>
+            <div
+              className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center"
+              style={{ left: `${x2}%`, transition: "left 0.1s linear" }}
+              title={`v = ${u2} m/s`}
+            >
+              {`v=${u2}`}
+            </div>
+          </>
+        )}
+        {merged && (
+          <div
+            className="absolute top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 rounded-full text-[11px] text-white flex items-center justify-center"
+            style={{ left: `${x1}%`, transition: "left 0.1s linear" }}
+            title={`v = ${v.toFixed(2)} m/s`}
+          >
+            {`${v.toFixed(1)} m/s`}
+          </div>
+        )}
+      </div> */}
+      <div
+        className="relative h-24 border rounded overflow-hidden"
+        style={{
+          background: `
+      repeating-linear-gradient(
+        90deg,
+        #e5e7eb,
+        #e5e7eb 10%,
+        #f3f4f6 10%,
+        #f3f4f6 20%
+      )
+    `,
+        }}
+      >
         {!merged && (
           <>
             <div
