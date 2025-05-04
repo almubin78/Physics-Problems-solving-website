@@ -1,65 +1,74 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export default function GravitySimulator() {
-  const [mode, setMode] = useState("falling"); // 'falling' or 'thrown'
-  const [initialVelocity, setInitialVelocity] = useState(0); // For thrown object
-  const [height, setHeight] = useState(50); // in meters
+  const [mode, setMode] = useState("falling");
+  const [initialVelocity, setInitialVelocity] = useState(0);
+  const [height, setHeight] = useState(50);
   const [solveFor, setSolveFor] = useState("velocity");
   const [running, setRunning] = useState(false);
-  const [position, setPosition] = useState(0); // in %
+  const [position, setPosition] = useState(mode === "falling" ? 0 : 100);
   const [time, setTime] = useState(0);
   const requestRef = useRef(null);
   const startTimeRef = useRef(null);
 
-  const g = 9.8; // gravity m/s^2
+  const g = 9.8;
+  const mass = 1;
+
+  useEffect(() => {
+    // reset position when mode changes
+    setPosition(mode === "falling" ? 0 : 100);
+  }, [mode]);
 
   const handleStart = () => {
     setRunning(true);
     setTime(0);
-    setPosition(0);
     startTimeRef.current = null;
-  
+
     const totalTime =
       mode === "falling"
         ? Math.sqrt((2 * height) / g)
         : (initialVelocity + Math.sqrt(initialVelocity ** 2 + 2 * g * height)) / g;
-  
+
     const animate = (timestamp) => {
       if (!startTimeRef.current) startTimeRef.current = timestamp;
       const t = (timestamp - startTimeRef.current) / 1000;
-  
-      // Calculate current height reached
+      setTime(t);
+
       let y;
       if (mode === "falling") {
         y = 0.5 * g * t * t;
+        const progress = Math.min((y / height) * 100, 100);
+        setPosition(progress);
+        if (progress >= 100) {
+          setRunning(false);
+          cancelAnimationFrame(requestRef.current);
+        } else {
+          requestRef.current = requestAnimationFrame(animate);
+        }
       } else {
-        y = initialVelocity * t + 0.5 * g * t * t;
-      }
-  
-      const progress = Math.min((y / height) * 100, 100);
-      setTime(Math.min(t, totalTime));
-      setPosition(progress);
-  
-      if (t >= totalTime || progress >= 100) {
-        setRunning(false);
-        cancelAnimationFrame(requestRef.current);
-      } else {
-        requestRef.current = requestAnimationFrame(animate);
+        // thrown upward from ground, move up then fall
+        y = initialVelocity * t - 0.5 * g * t * t;
+        const relativeHeight = Math.max(0, Math.min(height, y));
+        const progress = 100 - (relativeHeight / height) * 100;
+        setPosition(progress);
+        if (y < 0 && t > 0.2) {
+          setRunning(false);
+          cancelAnimationFrame(requestRef.current);
+        } else {
+          requestRef.current = requestAnimationFrame(animate);
+        }
       }
     };
-  
+
     cancelAnimationFrame(requestRef.current);
     requestRef.current = requestAnimationFrame(animate);
   };
-  
+
   const handleStop = () => {
     setRunning(false);
     cancelAnimationFrame(requestRef.current);
   };
 
-  const mass = 1; // Assume 1 kg for energy calculations
-
-  // Calculations
   const v =
     mode === "falling"
       ? Math.sqrt(2 * g * height)
@@ -132,14 +141,12 @@ export default function GravitySimulator() {
         </div>
       </div>
 
-      <div
-        className="relative h-40 border rounded overflow-hidden bg-gradient-to-b from-blue-200 to-white"
-      >
+      <div className="relative h-64 border rounded overflow-hidden bg-gradient-to-b from-blue-200 to-white">
         <div
-          className="absolute w-8 h-8 bg-green-600 rounded-full top-0 transform -translate-x-1/2 left-1/2"
+          className="absolute w-8 h-8 bg-green-600 rounded-full transform -translate-x-1/2 left-1/2"
           style={{
             top: `${position}%`,
-            // transition: running ? "top 0.1s linear" : "none",
+            // transition: running ? "top 0.05s linear" : "none",
           }}
         ></div>
       </div>
@@ -181,4 +188,3 @@ export default function GravitySimulator() {
     </div>
   );
 }
-
