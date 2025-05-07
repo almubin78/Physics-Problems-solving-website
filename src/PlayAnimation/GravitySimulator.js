@@ -7,13 +7,15 @@ export default function GravitySimulator() {
   const [solveFor, setSolveFor] = useState("velocity");
   const [running, setRunning] = useState(false);
   const [position, setPosition] = useState(mode === "falling" ? 0 : 100);
+  const [givenValue, setGivenValue] = useState(0);
   const [time, setTime] = useState(0);
+  const [timeValue, setTimeValue] = useState(0);
   const requestRef = useRef(null);
   const startTimeRef = useRef(null);
 
   const g = 9.8;
   const mass = 1;
-
+  console.log(givenValue, "===given value");
   useEffect(() => {
     // reset position when mode changes
     setPosition(mode === "falling" ? 0 : 100);
@@ -27,7 +29,8 @@ export default function GravitySimulator() {
     const totalTime =
       mode === "falling"
         ? Math.sqrt((2 * height) / g)
-        : (initialVelocity + Math.sqrt(initialVelocity ** 2 + 2 * g * height)) / g;
+        : (initialVelocity + Math.sqrt(initialVelocity ** 2 + 2 * g * height)) /
+          g;
 
     const animate = (timestamp) => {
       if (!startTimeRef.current) startTimeRef.current = timestamp;
@@ -79,7 +82,9 @@ export default function GravitySimulator() {
 
   return (
     <div className="max-w-xl mx-auto p-4 space-y-4">
-      <h1 className="text-xl font-bold text-center">Vertical Motion Simulator</h1>
+      <h1 className="text-xl font-bold text-center">
+        Vertical Motion Simulator
+      </h1>
 
       <div className="grid gap-3">
         <label>অবস্থা নির্বাচন করুন:</label>
@@ -101,16 +106,40 @@ export default function GravitySimulator() {
               onChange={(e) => setInitialVelocity(+e.target.value)}
               className="border p-2 rounded"
             />
+            <label>সময় বা উচ্চতার মান বসাও :</label>
+            <select
+              type="number"
+              value={givenValue}
+              onChange={(e) => setGivenValue(e.target.value)}
+            >
+              <option >সময়/উচ্চতা</option>
+              <option value="time">সময়</option>
+              <option value="height">উচ্চতা</option>
+            </select>
+            {givenValue === "time" && (
+              <>
+                <label>সময় (সেকেন্ড):</label>
+                <input
+                  type="number"
+                  value={timeValue}
+                  onChange={(e) => setTimeValue(+e.target.value)}
+                  className="border p-2 rounded"
+                />
+              </>
+            )}
+            {givenValue === "height" && (
+              <>
+                <label>উচ্চতা (মিটার):</label>
+                <input
+                  type="number"
+                  value={height}
+                  onChange={(e) => setHeight(+e.target.value)}
+                  className="border p-2 rounded"
+                />
+              </>
+            )}
           </>
         )}
-
-        <label>উচ্চতা (মিটার):</label>
-        <input
-          type="number"
-          value={height}
-          onChange={(e) => setHeight(+e.target.value)}
-          className="border p-2 rounded"
-        />
 
         <label>যা নির্ণয় করতে চান:</label>
         <select
