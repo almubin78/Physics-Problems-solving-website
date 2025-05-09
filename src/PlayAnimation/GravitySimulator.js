@@ -7,7 +7,7 @@ export default function GravitySimulator() {
   const [solveFor, setSolveFor] = useState("velocity");
   const [running, setRunning] = useState(false);
   const [position, setPosition] = useState(mode === "falling" ? 0 : 100);
-  const [givenValue, setGivenValue] = useState(0);
+  const [givenValue, setGivenValue] = useState("");
   const [time, setTime] = useState(0);
   const [timeValue, setTimeValue] = useState(0);
   const requestRef = useRef(null);
@@ -15,9 +15,8 @@ export default function GravitySimulator() {
 
   const g = 9.8;
   const mass = 1;
-  console.log(givenValue, "===given value");
+
   useEffect(() => {
-    // reset position when mode changes
     setPosition(mode === "falling" ? 0 : 100);
   }, [mode]);
 
@@ -29,8 +28,7 @@ export default function GravitySimulator() {
     const totalTime =
       mode === "falling"
         ? Math.sqrt((2 * height) / g)
-        : (initialVelocity + Math.sqrt(initialVelocity ** 2 + 2 * g * height)) /
-          g;
+        : (initialVelocity + Math.sqrt(initialVelocity ** 2 + 2 * g * height)) / g;
 
     const animate = (timestamp) => {
       if (!startTimeRef.current) startTimeRef.current = timestamp;
@@ -49,7 +47,6 @@ export default function GravitySimulator() {
           requestRef.current = requestAnimationFrame(animate);
         }
       } else {
-        // thrown upward from ground, move up then fall
         y = initialVelocity * t - 0.5 * g * t * t;
         const relativeHeight = Math.max(0, Math.min(height, y));
         const progress = 100 - (relativeHeight / height) * 100;
@@ -82,9 +79,7 @@ export default function GravitySimulator() {
 
   return (
     <div className="max-w-xl mx-auto p-4 space-y-4">
-      <h1 className="text-xl font-bold text-center">
-        Vertical Motion Simulator
-      </h1>
+      <h1 className="text-xl font-bold text-center">Vertical Motion Simulator</h1>
 
       <div className="grid gap-3">
         <label>অবস্থা নির্বাচন করুন:</label>
@@ -98,47 +93,53 @@ export default function GravitySimulator() {
         </select>
 
         {mode === "thrown" && (
-          <>
-            <label>আদিবেগ (m/s):</label>
+          <div className="grid gap-3">
+            <label className="font-semibold">আদিবেগ (m/s):</label>
             <input
               type="number"
               value={initialVelocity}
               onChange={(e) => setInitialVelocity(+e.target.value)}
               className="border p-2 rounded"
+              placeholder="আদিবেগ লিখুন"
             />
-            <label>সময় বা উচ্চতার মান বসাও :</label>
+
+            <label className="font-semibold">সময় বা উচ্চতার মান দিন:</label>
             <select
-              type="number"
               value={givenValue}
               onChange={(e) => setGivenValue(e.target.value)}
+              className="border p-2 rounded"
             >
-              <option >সময়/উচ্চতা</option>
+              <option value="">-- নির্বাচন করুন --</option>
               <option value="time">সময়</option>
               <option value="height">উচ্চতা</option>
             </select>
+
             {givenValue === "time" && (
               <>
-                <label>সময় (সেকেন্ড):</label>
+                <label className="font-semibold">সময় (সেকেন্ড):</label>
                 <input
                   type="number"
                   value={timeValue}
                   onChange={(e) => setTimeValue(+e.target.value)}
                   className="border p-2 rounded"
+                  placeholder="সময় লিখুন"
                 />
               </>
             )}
+
             {givenValue === "height" && (
               <>
-                <label>উচ্চতা (মিটার):</label>
+                <label className="font-semibold">উচ্চতা (মিটার):</label>
                 <input
                   type="number"
                   value={height}
                   onChange={(e) => setHeight(+e.target.value)}
                   className="border p-2 rounded"
+                  placeholder="উচ্চতা লিখুন"
                 />
               </>
             )}
-          </>
+          </div>
         )}
 
         <label>যা নির্ণয় করতে চান:</label>
@@ -175,7 +176,6 @@ export default function GravitySimulator() {
           className="absolute w-8 h-8 bg-green-600 rounded-full transform -translate-x-1/2 left-1/2"
           style={{
             top: `${position}%`,
-            // transition: running ? "top 0.05s linear" : "none",
           }}
         ></div>
       </div>
@@ -194,8 +194,7 @@ export default function GravitySimulator() {
             <strong>সময়:</strong>{" "}
             {mode === "falling"
               ? Math.sqrt((2 * height) / g).toFixed(2)
-              : ((v - initialVelocity) / g).toFixed(2)}{" "}
-            সেকেন্ড
+              : ((v - initialVelocity) / g).toFixed(2)} সেকেন্ড
           </p>
         )}
         {solveFor === "height" && (
