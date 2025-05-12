@@ -1,4 +1,36 @@
 ## animate Function এর বর্ণনা। 
+``
+    
+    const animate = (timestamp) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const t = (timestamp - startTimeRef.current) / 1000;
+      setTime(t);
+
+      let y;
+      if (mode === "falling") {
+        y = 0.5 * g * t * t;
+        const progress = Math.min((y / height) * 100, 100);
+        setPosition(progress);
+        if (progress >= 100) {
+          setRunning(false);
+          cancelAnimationFrame(requestRef.current);
+        } else {
+          requestRef.current = requestAnimationFrame(animate);
+        }
+      } else {
+        y = initialVelocity * t - 0.5 * g * t * t;
+        const relativeHeight = Math.max(0, Math.min(height, y));
+        const progress = 100 - (relativeHeight / height) * 100;
+        setPosition(progress);
+        if (y < 0 && t > 0.2) {
+          setRunning(false);
+          cancelAnimationFrame(requestRef.current);
+        } else {
+          requestRef.current = requestAnimationFrame(animate);
+        }
+      }
+    };
+``
 ```
 // এই ফাংশনটি অ্যানিমেশন চালানোর জন্য প্রতি ফ্রেমে একবার করে চলে
 const animate = (timestamp) => {

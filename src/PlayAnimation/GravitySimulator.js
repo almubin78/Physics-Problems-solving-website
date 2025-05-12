@@ -12,6 +12,7 @@ export default function GravitySimulator() {
   const [timeValue, setTimeValue] = useState(0);
   const requestRef = useRef(null);
   const startTimeRef = useRef(null);
+  
 
   const g = 9.8;
   const mass = 1;
@@ -24,6 +25,7 @@ export default function GravitySimulator() {
     setRunning(true);
     setTime(0);
     startTimeRef.current = null;
+    console.log('startTimeRef==',startTimeRef);
 
     const totalTime =
       mode === "falling"
@@ -31,6 +33,7 @@ export default function GravitySimulator() {
         : (initialVelocity + Math.sqrt(initialVelocity ** 2 + 2 * g * height)) / g;
 
     const animate = (timestamp) => {
+       console.log('startTimeRef.current== and timestamp',startTimeRef.current,timestamp);
       if (!startTimeRef.current) startTimeRef.current = timestamp;
       const t = (timestamp - startTimeRef.current) / 1000;
       setTime(t);
@@ -47,6 +50,7 @@ export default function GravitySimulator() {
           requestRef.current = requestAnimationFrame(animate);
         }
       } else {
+        // trowing 
         y = initialVelocity * t - 0.5 * g * t * t;
         const relativeHeight = Math.max(0, Math.min(height, y));
         const progress = 100 - (relativeHeight / height) * 100;
