@@ -19,7 +19,6 @@ import AnimationHome from "../PlayAnimation/AnimationHome";
 import InelasticCollisionSimulator from "../PlayAnimation/InelasticCollisionSimulator";
 import GravitySimulator from "../PlayAnimation/GravitySimulator";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +26,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePageInfo/>
+        element: <HomePageInfo />,
       },
       {
         path: "/unit-calculator",
@@ -56,49 +55,49 @@ export const router = createBrowserRouter([
           },
           {
             path: "/laws-integrations/matterAndPressure",
-            element: <MatterAndPressure/>
+            element: <MatterAndPressure />,
           },
         ],
       },
       {
         path: "/laws-selection",
-        element: <LawSelectionHomePage/>,
-        children:[
-            {
-                path: "/laws-selection/motion",
-                element: <FormulaFinderForMotion/>, 
-            },
-            {
-                path: "/laws-selection/force",
-                element: <FormulaFinderForForce/>, 
-            },
-            {
-                path: "/laws-selection/sound-and-wave",
-                element: <FormulaFinderForSoundAndWave/>, 
-            },
-        ]
+        element: <LawSelectionHomePage />,
+        children: [
+          {
+            path: "/laws-selection/motion",
+            element: <FormulaFinderForMotion />,
+          },
+          {
+            path: "/laws-selection/force",
+            element: <FormulaFinderForForce />,
+          },
+          {
+            path: "/laws-selection/sound-and-wave",
+            element: <FormulaFinderForSoundAndWave />,
+          },
+        ],
+      },
+      {
+        path: "/playAnimation",
+        element: <AnimationHome />,
+        children: [
+          {
+            path: "/playAnimation/time",
+            element: <MotionSimulator />,
+          },
+          {
+            path: "/playAnimation/mv",
+            element: <InelasticCollisionSimulator />,
+          },
+          {
+            path: "/playAnimation/Falling-object",
+            element: <GravitySimulator />,
+          },
+        ],
       },
     ],
   },
-  {
-    path: "/playAnimation",
-    element: <AnimationHome />,
-    children:[
-      {
-          path: "/playAnimation/time",
-          element: <MotionSimulator/>, 
-      },
-      {
-          path: "/playAnimation/mv",
-          element: <InelasticCollisionSimulator/>, 
-      },
-      {
-          path: "/playAnimation/Falling-object",
-          element: <GravitySimulator/>, 
-      },
-      
-  ]
-  },
+
   {
     path: "*",
     element: <ErrorPage />,
