@@ -6,9 +6,15 @@ export const soundAndWaveFinderData = [
     compute: (vals) => vals.তরংগের_কম্পাংক * vals.তরংগদৈর্ঘ্য,
   },
   {
+    formula: "v = Vo x √(T/To) ",
+    required: ['বায়ুর_তাপমাত্রা'],
+    compute: (vals) => 330 *( Math.sqrt( vals.বায়ুর_তাপমাত্রা))/16.523,
+  },
+  {
     formula: "v = λ/T",
     required: ["তরংগদৈর্ঘ্য", "তরংগের_পর্যায়কাল"],
-    exclude: ["a"],
+    exclude: ["বায়ুর_তাপমাত্রা,তরংগের_বেগ"],
+    // exclude: ["a"],
     compute: (vals) => vals.তরংগদৈর্ঘ্য / vals.তরংগের_পর্যায়কাল,
   },
   {
@@ -20,7 +26,7 @@ export const soundAndWaveFinderData = [
   {
     formula: "f = 1/T",
     required: ["তরংগের_পর্যায়কাল"],
-    exclude: [""],
+    exclude: ["v"],
     compute: (vals) => 1 / vals.তরংগের_পর্যায়কাল,
   },
   {
@@ -28,11 +34,5 @@ export const soundAndWaveFinderData = [
     required: ["তরংগের_কম্পাংক"],
     exclude: [""],
     compute: (vals) => 1 / vals.তরংগের_কম্পাংক,
-  },
-  {
-    formula: "λ = (Vn/f) x √(T/273)",
-    required: ["Vn", "f", "T"],
-    exclude: [""],
-    compute: (vals) => (vals.Vn / vals.f) * Math.sqrt(vals.T / 273),
   },
 ];
