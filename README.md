@@ -1,3 +1,23 @@
+#Project Hirearke
+
+<div>
+        
+        <div className="border ">
+          <h2>Home Page route:'/'</h2>
+          <div className="children mx-5">
+            <h3>Children</h3>
+            <div>
+              <ul>
+                <li>HomePageInfo: → route:'/'</li>
+                <li>UnitHome → route: "/unit-calculator"</li>
+                <li>PhysicsSolvingHomePage → route: "/laws-integrations"</li>
+                <li>LawSelectionHomePage → "/laws-selection"</li>
+                <li>AnimationHome → "/playAnimation"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 # Technologies and version
 ```
 "axios": "^1.4.0",
@@ -13,13 +33,14 @@
 ```
 
 # Server side information are here
+
 - [server github link]()
 - [server Live Link]()
-```css
-span:{
- color:red;
-}
 
+```css
+span: {
+  color: red;
+}
 ```
 
 <span>
