@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { formatResultNumber } from "../../commonLogics/formatResult/resultShowingFormating";
 
 const FormulaFinder = ({ title, variables, formulas }) => {
   const [selectedVariables, setSelectedVariables] = useState([]);
@@ -78,7 +79,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
             <h2 className="text-xl font-semibold mb-4">
               প্রয়োজনীয় মান প্রদান কর:
             </h2>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {selectedVariables.map((variable) => (
                 <div key={variable}>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -94,6 +95,35 @@ const FormulaFinder = ({ title, variables, formulas }) => {
                   />
                 </div>
               ))}
+            </div> */}
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {selectedVariables.map((variable) => {
+                const varData = formulas[0].variables[variable]; // Assuming all formulas have the same variable definitions
+                return (
+                  <div key={variable}>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {varData?.label || variable}:
+                    </label>
+                    <div className="relative mt-1">
+                      <input
+                        type="number"
+                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+                        onChange={(e) =>
+                          handleInputChange(variable, e.target.value)
+                        }
+                        value={inputs[variable] || ""}
+                        placeholder={varData?.placeholder || ""}
+                      />
+                      {varData?.unit && (
+                        <span className="absolute right-3 top-2 text-sm text-gray-500 dark:text-gray-400">
+                          {varData.unit}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </>
         )}
@@ -150,7 +180,8 @@ const FormulaFinder = ({ title, variables, formulas }) => {
           <p className="text-lg text-pink-500">
             Calculation Result: <br />
             <span className="font-extrabold text-green-600 dark:text-green-400">
-              {result}
+              {/* {result} */}
+              {formatResultNumber(Number(result))}
             </span>
           </p>
         </motion.div>

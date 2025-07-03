@@ -20,8 +20,8 @@ export const soundAndWaveFinderData = [
   {
     formula: "v = Vo x √(T/To)",
     required: ['বায়ুর_তাপমাত্রা'],
-    exclude: [],
-    compute: (vals) => 330 * (Math.sqrt(vals.বায়ুর_তাপমাত্রa))/16.523,
+    exclude: [''],
+    compute: (vals) => 330 * (Math.sqrt(vals.বায়ুর_তাপমাত্রা))/16.523,
     variables: {
       বায়ুর_তাপমাত্রা: {
         label: "বায়ুর তাপমাত্রা (T)",
@@ -119,7 +119,7 @@ export const soundAndWaveFinderData = [
     formula: "T = 1/f",
     required: ["তরংগের_কম্পাংক"],
     exclude: [""],
-    compute: (vals) => 1 / vals.তরংগের_কম্পাংক,
+    compute: (vals) => 1 / (vals.তরংগের_কম্পাংক),
     variables: {
       তরংগের_কম্পাংক: {
         label: "তরংগের কম্পাংক (f)",
