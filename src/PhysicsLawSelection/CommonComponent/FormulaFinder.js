@@ -2,11 +2,24 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const FormulaFinder = ({ title, variables, formulas }) => {
+  const [selectedVariables, setSelectedVariables] = useState([]);
   const [inputs, setInputs] = useState({});
   const [applicableFormulas, setApplicableFormulas] = useState([]);
   const [selectedFormula, setSelectedFormula] = useState(null);
   const [result, setResult] = useState(null);
   const [showResult, setShowResult] = useState(false);
+
+  const toggleVariableSelection = (variable) => {
+    if (selectedVariables.includes(variable)) {
+      setSelectedVariables(selectedVariables.filter((v) => v !== variable));
+      // Remove the input value when deselected
+      const newInputs = { ...inputs };
+      delete newInputs[variable];
+      setInputs(newInputs);
+    } else {
+      setSelectedVariables([...selectedVariables, variable]);
+    }
+  };
 
   const handleInputChange = (variable, value) => {
     const updatedInputs = { ...inputs, [variable]: parseFloat(value) };
@@ -17,7 +30,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
         (req) => updatedInputs[req] !== undefined && !isNaN(updatedInputs[req])
       );
       const hasExcluded = formula.exclude
-        ? formula.exclude.every((ex) => updatedInputs[ex] === undefined || isNaN(updatedInputs[ex]))
+        ? formula.exclude.every(
+            (ex) => updatedInputs[ex] === undefined || isNaN(updatedInputs[ex])
+          )
         : true;
 
       return hasRequired && hasExcluded;
@@ -31,7 +46,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
   const calculateResult = () => {
     if (!selectedFormula) return;
     setResult(selectedFormula.compute(inputs).toFixed(2));
-    setShowResult(true); // Show modal
+    setShowResult(true);
   };
 
   return (
@@ -41,24 +56,50 @@ const FormulaFinder = ({ title, variables, formulas }) => {
       </h1>
 
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">প্রয়োজনীয় মান প্রদান কর:</h2>
-        <div className="grid grid-cols-2 gap-4">
+        <h2 className="text-xl font-semibold mb-4">Select Variables:</h2>
+        <div className="flex flex-wrap gap-2 mb-4">
           {variables.map((variable) => (
-            <div key={variable}>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {variable}:
-              </label>
-              <input
-                type="number"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-                onChange={(e) => handleInputChange(variable, e.target.value)}
-                // placeholder={inputs}
-              />
-            </div>
+            <button
+              key={variable}
+              className={`px-3 py-1 rounded-md transition ${
+                selectedVariables.includes(variable)
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-200 dark:bg-gray-700"
+              }`}
+              onClick={() => toggleVariableSelection(variable)}
+            >
+              {variable}
+            </button>
           ))}
         </div>
+
+        {selectedVariables.length > 0 && (
+          <>
+            <h2 className="text-xl font-semibold mb-4">
+              প্রয়োজনীয় মান প্রদান কর:
+            </h2>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {selectedVariables.map((variable) => (
+                <div key={variable}>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {variable}:
+                  </label>
+                  <input
+                    type="number"
+                    className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+                    onChange={(e) =>
+                      handleInputChange(variable, e.target.value)
+                    }
+                    value={inputs[variable] || ""}
+                  />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
 
+      {/* Rest of your component remains the same */}
       {applicableFormulas.length > 0 && (
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-lg font-semibold text-green-700 dark:text-green-300">
@@ -69,7 +110,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
               <button
                 key={formula.formula}
                 className={`px-4 py-2 rounded-lg transition duration-200 ${
-                  selectedFormula?.formula === formula.formula ? "bg-green-500 text-white" : "bg-gray-300 dark:bg-gray-700"
+                  selectedFormula?.formula === formula.formula
+                    ? "bg-green-500 text-white"
+                    : "bg-gray-300 dark:bg-gray-700"
                 }`}
                 onClick={() => setSelectedFormula(formula)}
               >
@@ -89,7 +132,6 @@ const FormulaFinder = ({ title, variables, formulas }) => {
         </button>
       )}
 
-      {/* Result Modal with Animation */}
       {showResult && result !== null && (
         <motion.div
           initial={{ x: "100%", opacity: 0 }}
@@ -107,7 +149,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
           <h2 className="text-xl font-semibold">Result:</h2>
           <p className="text-lg text-pink-500">
             Calculation Result: <br />
-            <span className="font-extrabold text-green-600 dark:text-green-400">{result}</span>
+            <span className="font-extrabold text-green-600 dark:text-green-400">
+              {result}
+            </span>
           </p>
         </motion.div>
       )}
