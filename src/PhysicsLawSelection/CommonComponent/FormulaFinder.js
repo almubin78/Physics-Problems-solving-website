@@ -11,7 +11,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
   const [showResult, setShowResult] = useState(false);
 
   const toggleVariableSelection = (variable) => {
+    console.log(variable,'variable on toggle');
     if (selectedVariables.includes(variable)) {
+       console.log(variable,'variable on if condition by includes');
       setSelectedVariables(selectedVariables.filter((v) => v !== variable));
       // Remove the input value when deselected
       const newInputs = { ...inputs };
@@ -27,6 +29,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
     setInputs(updatedInputs);
 
     const matchedFormulas = formulas.filter((formula) => {
+      console.log(formulas,'formulas');
       const hasRequired = formula.required.every(
         (req) => updatedInputs[req] !== undefined && !isNaN(updatedInputs[req])
       );
@@ -100,6 +103,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {selectedVariables.map((variable) => {
                 const varData = formulas[0].variables[variable]; // Assuming all formulas have the same variable definitions
+                console.log(formulas[0].variables,'var data');
                 return (
                   <div key={variable}>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
