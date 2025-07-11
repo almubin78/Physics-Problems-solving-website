@@ -60,7 +60,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
       </h1>
 
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">Select Variables:</h2>
+        <h2 className="text-xl font-semibold mb-4">কিসের মান প্রবেশ করাতে চাও? 🙄</h2>
+        <p> সেটির উপর ক্লিক কর 😇</p>
+        <hr />
         <div className="flex flex-wrap gap-2 mb-4">
           {variables.map((variable) => (
             <button
@@ -137,8 +139,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
       {applicableFormulas.length > 0 && (
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-lg font-semibold text-green-700 dark:text-green-300">
-            সম্ভাব্য সূত্র:
+            নিচে সম্ভাব্য সূত্র উল্লেখ করা হলোঃ 
           </h2>
+          <p className="text-md text-green-400">তোমার কাংখিত সূত্র পেয়ে গেলে উত্তর জানার জন্য সেটির উপর ক্লিক কর। </p>
           <div className="flex flex-wrap gap-3 mt-3">
             {applicableFormulas.map((formula) => (
               <button
@@ -162,7 +165,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
           className="w-full px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200"
           onClick={calculateResult}
         >
-          Calculate
+          ফলাফলের জন্য ক্লিক কর 
         </button>
       )}
 
