@@ -11,9 +11,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
   const [showResult, setShowResult] = useState(false);
 
   const toggleVariableSelection = (variable) => {
-    console.log(variable,'variable on toggle');
+    console.log(variable, "variable on toggle");
     if (selectedVariables.includes(variable)) {
-       console.log(variable,'variable on if condition by includes');
+      console.log(variable, "variable on if condition by includes");
       setSelectedVariables(selectedVariables.filter((v) => v !== variable));
       // Remove the input value when deselected
       const newInputs = { ...inputs };
@@ -29,7 +29,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
     setInputs(updatedInputs);
 
     const matchedFormulas = formulas.filter((formula) => {
-      console.log(formulas,'formulas');
+      console.log(formulas, "formulas");
       const hasRequired = formula.required.every(
         (req) => updatedInputs[req] !== undefined && !isNaN(updatedInputs[req])
       );
@@ -47,10 +47,25 @@ const FormulaFinder = ({ title, variables, formulas }) => {
     setResult(null);
   };
 
+  // const calculateResult = () => {
+  //   if (!selectedFormula) return;
+  //   setResult(selectedFormula.compute(inputs).toFixed(2));
+  //   setShowResult(true);
+  // };
   const calculateResult = () => {
     if (!selectedFormula) return;
-    setResult(selectedFormula.compute(inputs).toFixed(2));
-    setShowResult(true);
+
+    try {
+      const computedResult = selectedFormula.compute(inputs);
+      if (isNaN(computedResult)) {
+        throw new Error("Invalid calculation result");
+      }
+      setResult(computedResult.toFixed(2));
+      setShowResult(true);
+    } catch (error) {
+      console.error("Calculation error:", error);
+      // You might want to show an error message to the user here
+    }
   };
 
   return (
@@ -60,7 +75,9 @@ const FormulaFinder = ({ title, variables, formulas }) => {
       </h1>
 
       <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-        <h2 className="text-xl font-semibold mb-4">কিসের মান প্রবেশ করাতে চাও? 🙄</h2>
+        <h2 className="text-xl font-semibold mb-4">
+          কিসের মান প্রবেশ করাতে চাও? 🙄
+        </h2>
         <p> সেটির উপর ক্লিক কর 😇</p>
         <hr />
         <div className="flex flex-wrap gap-2 mb-4">
@@ -101,11 +118,47 @@ const FormulaFinder = ({ title, variables, formulas }) => {
                 </div>
               ))}
             </div> */}
+            {/* {console.log(selectedVariables,'selectedVariables')} */}
+            {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {selectedVariables.map((variable) => {
+                const varData = formulas[0].variables[variable]; // Assuming all formulas have the same variable definitions
+                console.log(formulas[0].variables,'formulas[0].variables')
+                console.table('%c',formulas[0].variables,'formulas[0].variables[variable]')
+                console.log(varData,'varData')
+                return (
+                  <div key={variable}>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                      {varData?.label || variable}:
+                    </label>
+                    <div className="relative mt-1">
+                      <input
+                        type="number"
+                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
+                        onChange={(e) =>
+                          handleInputChange(variable, e.target.value)
+                        }
+                        value={inputs[variable] || ""}
+                        placeholder={varData?.placeholder || ""}
+                      />
+                      {varData?.unit && (
+                        <span className="absolute right-3 top-2 text-sm text-gray-500 dark:text-gray-400">
+                          {varData.unit}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div> */}
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {selectedVariables.map((variable) => {
-                const varData = formulas[0].variables[variable]; // Assuming all formulas have the same variable definitions
-                console.log(formulas[0].variables,'var data');
+                // Find the first formula that has metadata for this variable
+                const formulaWithVar = formulas.find(
+                  (f) => f.variables && f.variables[variable]
+                );
+                const varData = formulaWithVar?.variables[variable];
+
                 return (
                   <div key={variable}>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -139,9 +192,11 @@ const FormulaFinder = ({ title, variables, formulas }) => {
       {applicableFormulas.length > 0 && (
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
           <h2 className="text-lg font-semibold text-green-700 dark:text-green-300">
-            নিচে সম্ভাব্য সূত্র উল্লেখ করা হলোঃ 
+            নিচে সম্ভাব্য সূত্র উল্লেখ করা হলোঃ
           </h2>
-          <p className="text-md text-green-400">তোমার কাংখিত সূত্র পেয়ে গেলে উত্তর জানার জন্য সেটির উপর ক্লিক কর। </p>
+          <p className="text-md text-green-400">
+            তোমার কাংখিত সূত্র পেয়ে গেলে উত্তর জানার জন্য সেটির উপর ক্লিক কর।{" "}
+          </p>
           <div className="flex flex-wrap gap-3 mt-3">
             {applicableFormulas.map((formula) => (
               <button
@@ -165,7 +220,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
           className="w-full px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200"
           onClick={calculateResult}
         >
-          ফলাফলের জন্য ক্লিক কর 
+          ফলাফলের জন্য ক্লিক কর
         </button>
       )}
 

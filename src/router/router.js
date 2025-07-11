@@ -18,6 +18,7 @@ import MotionSimulator from "../PlayAnimation/MotionSimulator";
 import AnimationHome from "../PlayAnimation/AnimationHome";
 import InelasticCollisionSimulator from "../PlayAnimation/InelasticCollisionSimulator";
 import GravitySimulator from "../PlayAnimation/GravitySimulator";
+import FormulaFinderForWorkPower from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForWorkPower";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
           {
             path: "/laws-selection/force",
             element: <FormulaFinderForForce />,
+          },
+          {
+            path: "/laws-selection/work-power-energy",
+            element: <FormulaFinderForWorkPower/>
           },
           {
             path: "/laws-selection/sound-and-wave",
