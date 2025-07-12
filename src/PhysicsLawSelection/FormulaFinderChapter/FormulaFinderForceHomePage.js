@@ -3,7 +3,7 @@ import FormulaFinder from '../CommonComponent/FormulaFinder';
 import { forceFinderData } from '../../DataForFindingFormula/forceFinderData';
 import { getPlaceholderForForce } from '../../commonLogics/placeholder/getPlaceholderForEveryChapter';
 
-const FormulaFinderForForce = () => {
+const FormulaFinderForceHomePage = () => {
     const variables = ['m','a','F','v','u','t']
     return (
         <FormulaFinder
@@ -15,4 +15,4 @@ const FormulaFinderForForce = () => {
     );
 };
 
-export default FormulaFinderForForce;
+export default FormulaFinderForceHomePage;

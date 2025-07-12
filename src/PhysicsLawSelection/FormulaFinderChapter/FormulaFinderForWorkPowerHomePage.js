@@ -2,7 +2,7 @@ import React from 'react';
 import FormulaFinder from '../CommonComponent/FormulaFinder';
 import { workPowerFinderData } from '../../DataForFindingFormula/workPowerFinderFormulas';
 
-const FormulaFinderForWorkPower = () => {
+const FormulaFinderForWorkPowerHomePage = () => {
   // All possible variables from all formulas
   const variables = [
     'F',    // বল (Force)
@@ -27,4 +27,4 @@ const FormulaFinderForWorkPower = () => {
   );
 };
 
-export default FormulaFinderForWorkPower;
+export default FormulaFinderForWorkPowerHomePage;

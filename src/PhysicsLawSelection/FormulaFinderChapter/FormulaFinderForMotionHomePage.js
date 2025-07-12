@@ -2,7 +2,7 @@ import React from 'react';
 import FormulaFinder from '../CommonComponent/FormulaFinder';
 import { motionsFinderData } from '../../DataForFindingFormula/motionFindFormulas';
 
-const FormulaFinderForMotion = () => {
+const FormulaFinderForMotionHomePage = () => {
   const variables = ['u','s','v','a','t']
 
   return (
@@ -15,4 +15,4 @@ const FormulaFinderForMotion = () => {
   );
 };
 
-export default FormulaFinderForMotion;
+export default FormulaFinderForMotionHomePage;
