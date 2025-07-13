@@ -5,8 +5,8 @@ export const motionsFinderData = [
     exclude: ["a", "s"],
     compute: (vals) => (vals.v - vals.u) / vals.t,
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
-      v: { label: "চূড়ান্ত বেগ (v)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      v: { label: "শেষ বেগ (v)", placeholder: "m/s", unit: "m/s" },
       t: { label: "সময় (t)", placeholder: "সেকেন্ড", unit: "s" },
     },
   },
@@ -16,8 +16,8 @@ export const motionsFinderData = [
     exclude: ["a", "t"],
     compute: (vals) => (vals.v ** 2 - vals.u ** 2) / (2 * vals.s),
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
-      v: { label: "চূড়ান্ত বেগ (v)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      v: { label: "শেষ বেগ (v)", placeholder: "m/s", unit: "m/s" },
       s: { label: "অবস্থান পরিবর্তন (s)", placeholder: "মিটার", unit: "m" },
     },
   },
@@ -28,8 +28,8 @@ export const motionsFinderData = [
     compute: (vals) =>
       vals.u * vals.t + 0.5 * vals.t ** 2 * ((vals.v - vals.u) / vals.t),
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
-      v: { label: "চূড়ান্ত বেগ (v)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      v: { label: "শেষ বেগ (v)", placeholder: "m/s", unit: "m/s" },
       t: { label: "সময় (t)", placeholder: "সেকেন্ড", unit: "s" },
     },
   },
@@ -39,8 +39,8 @@ export const motionsFinderData = [
     exclude: ["a", "s"],
     compute: (vals) => ((vals.u + vals.v) / 2) * vals.t,
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
-      v: { label: "চূড়ান্ত বেগ (v)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      v: { label: "শেষ বেগ (v)", placeholder: "m/s", unit: "m/s" },
       t: { label: "সময় (t)", placeholder: "সেকেন্ড", unit: "s" },
     },
   },
@@ -50,7 +50,7 @@ export const motionsFinderData = [
     exclude: ["s"],
     compute: (vals) => vals.u * vals.t + 0.5 * vals.a * vals.t ** 2,
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
       t: { label: "সময় (t)", placeholder: "সেকেন্ড", unit: "s" },
       a: { label: "ত্বরণ (a)", placeholder: "m/s²", unit: "m/s²" },
     },
@@ -81,8 +81,8 @@ export const motionsFinderData = [
     exclude: [],
     compute: (vals) => (vals.v ** 2 - vals.u ** 2) / (2 * vals.a),
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
-      v: { label: "চূড়ান্ত বেগ (v)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      v: { label: "শেষ বেগ (v)", placeholder: "m/s", unit: "m/s" },
       a: { label: "ত্বরণ (a)", placeholder: "m/s²", unit: "m/s²" },
     },
   },
@@ -92,7 +92,7 @@ export const motionsFinderData = [
     exclude: [],
     compute: (vals) => Math.sqrt(vals.u ** 2 + 2 * vals.a * vals.s),
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
       a: { label: "ত্বরণ (a)", placeholder: "m/s²", unit: "m/s²" },
       s: { label: "অবস্থান পরিবর্তন (s)", placeholder: "মিটার", unit: "m" },
     },
@@ -123,7 +123,7 @@ export const motionsFinderData = [
     exclude: ["s", "v"],
     compute: (vals) => vals.u + vals.a * vals.t,
     variables: {
-      u: { label: "প্রাথমিক বেগ (u)", placeholder: "m/s", unit: "m/s" },
+      u: { label: "আদি বেগ (u)", placeholder: "m/s", unit: "m/s" },
       a: { label: "ত্বরণ (a)", placeholder: "m/s²", unit: "m/s²" },
       t: { label: "সময় (t)", placeholder: "সেকেন্ড", unit: "s" },
     },
@@ -136,6 +136,7 @@ export const motionsFinderData = [
     variables: {
       s: { label: "অবস্থান পরিবর্তন (s)", placeholder: "মিটার", unit: "m" },
       v: { label: "বেগ (v)", placeholder: "m/s", unit: "m/s" },
+      t: { label: "সময় (t)", placeholder: "s", unit: "s" },
     },
   },
 ];

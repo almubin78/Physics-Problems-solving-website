@@ -29,12 +29,12 @@ export const forceFinderData = [
         unit: "kg"
       },
       v: {
-        label: "চূড়ান্ত বেগ (v)",
+        label: "শেষ বেগ (v)",
         placeholder: "m/s এককে প্রবেশ করান",
         unit: "m/s"
       },
       u: {
-        label: "প্রাথমিক বেগ (u)",
+        label: "আদি বেগ (u)",
         placeholder: "m/s এককে প্রবেশ করান",
         unit: "m/s"
       },
@@ -70,12 +70,12 @@ export const forceFinderData = [
     compute: (vals) => (vals.v - vals.u) / vals.t,
     variables: {
       v: {
-        label: "চূড়ান্ত বেগ (v)",
+        label: "শেষ বেগ (v)",
         placeholder: "m/s এককে প্রবেশ করান",
         unit: "m/s"
       },
       u: {
-        label: "প্রাথমিক বেগ (u)",
+        label: "আদি বেগ (u)",
         placeholder: "m/s এককে প্রবেশ করান",
         unit: "m/s"
       },
