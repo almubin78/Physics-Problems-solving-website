@@ -1,6 +1,6 @@
 import { Link, NavLink, Outlet, } from "react-router-dom";
 
-const PhysicsSolvingHomePage = () => {
+const PhysicsCalculatorRootPage = () => {
   
 
   return (
@@ -20,14 +20,14 @@ const PhysicsSolvingHomePage = () => {
       {/* Navigation Tabs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
-          { path: "/laws-integrations/motion", label: "গতি" },
-          { path: "/laws-integrations/force", label: "বল" },
+          { path: "/physics-calculator/motion", label: "গতি" },
+          { path: "/physics-calculator/force", label: "বল" },
           {
-            path: "/laws-integrations/work-power-energy",
+            path: "/physics-calculator/work-power-energy",
             label: "কাজ,ক্ষমতা শক্তি",
           },
-          { path: "/laws-integrations/matterAndPressure", label: "পদার্থের অবস্থা ও চাপ" },
-          { path: "/laws-integrations/sound-and-wave", label: "শব্দ ও তরঙ্গ" },
+          { path: "/physics-calculator/matterAndPressure", label: "পদার্থের অবস্থা ও চাপ" },
+          { path: "/physics-calculator/sound-and-wave", label: "শব্দ ও তরঙ্গ" },
         ].map((item) => (
           <NavLink
             key={item.path}
@@ -55,4 +55,4 @@ const PhysicsSolvingHomePage = () => {
   );
 };
 
-export default PhysicsSolvingHomePage;
+export default PhysicsCalculatorRootPage;

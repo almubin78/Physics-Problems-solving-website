@@ -70,7 +70,7 @@ const ProjectHierarchy = () => {
                       <ChevronRight className="mr-2" />
                     )}
                     <Calculator className="mr-2 h-4 w-4" />
-                    <span>/laws-integrations (PhysicsSolvingHomePage)</span>
+                    <span>/physics-calculator (PhysicsSolvingHomePage)</span>
                   </div>
                   <div className="collapse-content pl-8">
                     <div className="mt-2 space-y-1">
@@ -103,7 +103,7 @@ const ProjectHierarchy = () => {
                       <ChevronRight className="mr-2" />
                     )}
                     <BookOpen className="mr-2 h-4 w-4" />
-                    <span>/laws-selection (LawSelectionHomePage)</span>
+                    <span>/find-laws (LawSelectionHomePage)</span>
                   </div>
                   <div className="collapse-content pl-8">
                     <div className="mt-2 space-y-1">

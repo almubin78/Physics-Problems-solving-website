@@ -2,14 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../CommonPages/HomePage";
 import ErrorPage from "../CommonPages/ErrorPage";
 import HomePageInfo from "../CommonPages/HomePageInfo";
-import PhysicsSolvingHomePage from "../PysicsCalculatePart/PhysicsSolvingHomePage";
-import MotionCalculator from "../PysicsCalculatePart/CalculateChapters/MotionCalculator";
-import ForceCalculator from "../PysicsCalculatePart/CalculateChapters/ForceCalculator";
-import WorkPowerEnergy from "../PysicsCalculatePart/CalculateChapters/WorkPowerEnergy";
-import SoundAndWaveCalculator from "../PysicsCalculatePart/CalculateChapters/SoundAndWaveCalculator";
+
+import WorkPowerEnergyHomePage from "../PysicsCalculatePart/CalculateChapters/WorkPowerEnergyCalculatorHomePage";
+
 import LawSelectionHomePage from "../PhysicsLawSelection/LawSelectionHomePage";
 import FormulaFinderForMotionHomePage from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForMotionHomePage";
-import MatterAndPressure from "../PysicsCalculatePart/CalculateChapters/MatterAndPressure";
+
 import FormulaFinderForceHomePage from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForceHomePage";
 import FormulaFinderForSoundAndWaveHomePage from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForSoundAndWaveHomePage";
 import UnitHome from "../UnitCalculator/UnitHome";
@@ -19,6 +17,11 @@ import AnimationHome from "../PlayAnimation/AnimationHome";
 import InelasticCollisionSimulator from "../PlayAnimation/InelasticCollisionSimulator";
 import GravitySimulator from "../PlayAnimation/GravitySimulator";
 import FormulaFinderForWorkPowerHomePage from "../PhysicsLawSelection/FormulaFinderChapter/FormulaFinderForWorkPowerHomePage";
+import PhysicsCalculatorRootPage from "../PysicsCalculatePart/PhysicsCalculatorRootPage";
+import MotionCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/MotionCalculatorHomePage";
+import ForceCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/ForceCalculatorHomePage";
+import SoundAndWaveCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/SoundAndWaveCalculatorHomePage";
+import MatterAndPressureCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/MatterAndPressureCalculatorHomePage";
 
 export const router = createBrowserRouter([
   {
@@ -34,50 +37,50 @@ export const router = createBrowserRouter([
         element: <UnitHome />,
       },
       {
-        path: "/laws-integrations",
-        element: <PhysicsSolvingHomePage />,
+        path: "/physics-calculator",
+        element: <PhysicsCalculatorRootPage />,
         children: [
           {
-            path: "/laws-integrations/motion",
-            element: <MotionCalculator />,
+            path: "/physics-calculator/motion",
+            element: <MotionCalculatorHomePage />,
           },
 
           {
-            path: "/laws-integrations/force",
-            element: <ForceCalculator />,
+            path: "/physics-calculator/force",
+            element: <ForceCalculatorHomePage />,
           },
           {
-            path: "/laws-integrations/work-power-energy",
-            element: <WorkPowerEnergy />,
+            path: "/physics-calculator/work-power-energy",
+            element: <WorkPowerEnergyHomePage />,
           },
           {
-            path: "/laws-integrations/sound-and-wave",
-            element: <SoundAndWaveCalculator />,
+            path: "/physics-calculator/sound-and-wave",
+            element: <SoundAndWaveCalculatorHomePage />,
           },
           {
-            path: "/laws-integrations/matterAndPressure",
-            element: <MatterAndPressure />,
+            path: "/physics-calculator/matterAndPressure",
+            element: <MatterAndPressureCalculatorHomePage />,
           },
         ],
       },
       {
-        path: "/laws-selection",
+        path: "/find-laws",
         element: <LawSelectionHomePage />,
         children: [
           {
-            path: "/laws-selection/motion",
+            path: "/find-laws/motion",
             element: <FormulaFinderForMotionHomePage />,
           },
           {
-            path: "/laws-selection/force",
+            path: "/find-laws/force",
             element: <FormulaFinderForceHomePage />,
           },
           {
-            path: "/laws-selection/work-power-energy",
-            element: <FormulaFinderForWorkPowerHomePage/>
+            path: "/find-laws/work-power-energy",
+            element: <FormulaFinderForWorkPowerHomePage />,
           },
           {
-            path: "/laws-selection/sound-and-wave",
+            path: "/find-laws/sound-and-wave",
             element: <FormulaFinderForSoundAndWaveHomePage />,
           },
         ],

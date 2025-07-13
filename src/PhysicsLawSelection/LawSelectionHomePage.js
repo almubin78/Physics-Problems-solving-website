@@ -14,14 +14,14 @@ const LawSelectionHomePage = () => {
       {/* Navigation Tabs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         {[
-          { path: "/laws-selection/motion", label: "গতি" },
-          { path: "/laws-selection/force", label: "বল" },
+          { path: "/find-laws/motion", label: "গতি" },
+          { path: "/find-laws/force", label: "বল" },
           {
-            path: "/laws-selection/work-power-energy",
+            path: "/find-laws/work-power-energy",
             label: "কাজ,ক্ষমতা ও শক্তি",
           },
           { 
-            path: "/laws-selection/sound-and-wave", 
+            path: "/find-laws/sound-and-wave", 
             label: "শব্দ ও তরঙ্গ" 
           },
         ].map((item) => (

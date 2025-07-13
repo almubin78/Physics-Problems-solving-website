@@ -38,8 +38,8 @@ const Navbar = () => {
         <ul className="hidden md:flex space-x-6 text-lg font-medium">
           {[
             { path: "/", label: "Home" },
-            { path: "/laws-selection", label: "🔍 সূত্র খোঁজ" },
-            { path: "/laws-integrations", label: "⚡ পদার্থ ক্যালকুলেটর" },
+            { path: "/find-laws", label: "🔍 সূত্র খোঁজ" },
+            { path: "/physics-calculator", label: "⚡ পদার্থ ক্যালকুলেটর" },
             { path: "/playAnimation", label: "⚡ Animation" },
             { path: "/unit-calculator", label: "🔢 এককের রূপান্তর" },
           ].map((item) => (
@@ -91,7 +91,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/laws-selection"
+                to="/find-laws"
                 className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
@@ -100,7 +100,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/laws-integrations"
+                to="/physics-calculator"
                 className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >

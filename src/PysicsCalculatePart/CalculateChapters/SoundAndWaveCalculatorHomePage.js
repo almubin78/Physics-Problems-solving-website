@@ -1,9 +1,9 @@
 import React from 'react';
-import { lawsForSoundAndWave } from '../../DataForLawIntegrate/lawsForSoundAndWave';
+import { lawsForSoundAndWave } from '../../PhysicsCalculatorData/lawsForSoundAndWave';
 import { getPlaceholderForSoundAndWave } from '../../commonLogics/placeholder/getPlaceholderForEveryChapter';
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
 
-const SoundAndWaveCalculator = () => {
+const SoundAndWaveCalculatorHomePage = () => {
     const variables=['তরঙ্গের_বেগ','কম্পাংক','তরংগদৈর্ঘ্য']
     return (
         <GenericCalculator
@@ -17,4 +17,4 @@ const SoundAndWaveCalculator = () => {
     );
 };
 
-export default SoundAndWaveCalculator;
+export default SoundAndWaveCalculatorHomePage;

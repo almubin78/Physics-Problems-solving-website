@@ -29,7 +29,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
     setInputs(updatedInputs);
 
     const matchedFormulas = formulas.filter((formula) => {
-      console.log(formulas, "formulas");
+      // console.log(formulas, "formulas");
       const hasRequired = formula.required.every(
         (req) => updatedInputs[req] !== undefined && !isNaN(updatedInputs[req])
       );
@@ -46,7 +46,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
     setSelectedFormula(null);
     setResult(null);
   };
-
+ console.log(applicableFormulas,'applicable Formulas');
   // const calculateResult = () => {
   //   if (!selectedFormula) return;
   //   setResult(selectedFormula.compute(inputs).toFixed(2));
@@ -101,55 +101,7 @@ const FormulaFinder = ({ title, variables, formulas }) => {
             <h2 className="text-xl font-semibold mb-4">
               প্রয়োজনীয় মান প্রদান কর:
             </h2>
-            {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {selectedVariables.map((variable) => (
-                <div key={variable}>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {variable}:
-                  </label>
-                  <input
-                    type="number"
-                    className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-                    onChange={(e) =>
-                      handleInputChange(variable, e.target.value)
-                    }
-                    value={inputs[variable] || ""}
-                  />
-                </div>
-              ))}
-            </div> */}
-            {/* {console.log(selectedVariables,'selectedVariables')} */}
-            {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {selectedVariables.map((variable) => {
-                const varData = formulas[0].variables[variable]; // Assuming all formulas have the same variable definitions
-                console.log(formulas[0].variables,'formulas[0].variables')
-                console.table('%c',formulas[0].variables,'formulas[0].variables[variable]')
-                console.log(varData,'varData')
-                return (
-                  <div key={variable}>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {varData?.label || variable}:
-                    </label>
-                    <div className="relative mt-1">
-                      <input
-                        type="number"
-                        className="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-                        onChange={(e) =>
-                          handleInputChange(variable, e.target.value)
-                        }
-                        value={inputs[variable] || ""}
-                        placeholder={varData?.placeholder || ""}
-                      />
-                      {varData?.unit && (
-                        <span className="absolute right-3 top-2 text-sm text-gray-500 dark:text-gray-400">
-                          {varData.unit}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div> */}
+
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {selectedVariables.map((variable) => {

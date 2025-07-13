@@ -1,9 +1,9 @@
 import React from 'react';
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
-import { lawsForStateAndPressureOfMatter } from '../../DataForLawIntegrate/lawsForStateAndPressureOfMatter';
+import { lawsForStateAndPressureOfMatter } from '../../PhysicsCalculatorData/lawsForStateAndPressureOfMatter';
 import { getPlaceholderForStateAndPressure } from '../../commonLogics/placeholder/getPlaceHolderForStateAndPressure';
 
-const MatterAndPressure = () => {
+const MatterAndPressureCalculatorHomePage = () => {
     const variables = ['চাপ','ঘনত্ব','প্লবতা','বস্তুর_ওজন','তরলে_বস্তুর_ওজন','পিষ্টনে_প্রযুক্ত_বল']
   return (
     <GenericCalculator
@@ -15,4 +15,4 @@ const MatterAndPressure = () => {
   );
 };
 
-export default MatterAndPressure;
+export default MatterAndPressureCalculatorHomePage;

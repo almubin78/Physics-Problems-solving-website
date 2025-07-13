@@ -10,8 +10,8 @@
               <ul>
                 <li>HomePageInfo: → route:'/'</li>
                 <li>UnitHome → route: "/unit-calculator"</li>
-                <li>PhysicsSolvingHomePage → route: "/laws-integrations"</li>
-                <li>LawSelectionHomePage → "/laws-selection"</li>
+                <li>PhysicsSolvingHomePage → route: "/physics-calculator"</li>
+                <li>LawSelectionHomePage → "/find-laws"</li>
                 <li>AnimationHome → "/playAnimation"</li>
               </ul>
             </div>

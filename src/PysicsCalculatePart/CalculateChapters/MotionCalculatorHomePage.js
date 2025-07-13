@@ -1,8 +1,8 @@
 import React from 'react';
-import { lawsForMotionData } from '../../DataForLawIntegrate/lawsForMotionData';
+import { lawsForMotionData } from '../../PhysicsCalculatorData/lawsForMotionData';
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
 import {getPlaceholderForMotion} from '../../commonLogics/placeholder/getPlaceholderForEveryChapter'
-const MotionCalculator = () => {
+const MotionCalculatorHomePage = () => {
     const variables = ["আদিবেগ", "শেষবেগ", "সময়", "ত্বরণ", "অতিক্রান্ত_দূরত্ব"];
   
     return (
@@ -15,4 +15,4 @@ const MotionCalculator = () => {
     );
   };
 
-export default MotionCalculator;
+export default MotionCalculatorHomePage;

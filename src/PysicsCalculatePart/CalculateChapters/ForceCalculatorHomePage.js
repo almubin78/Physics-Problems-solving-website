@@ -1,10 +1,10 @@
 import React from 'react';
-import { lawsForForceData } from '../../DataForLawIntegrate/lawsForForceData';
+import { lawsForForceData } from '../../PhysicsCalculatorData/lawsForForceData';
 import { getPlaceholderForForce } from '../../commonLogics/placeholder/getPlaceholderForEveryChapter';
 
 import GenericCalculator from '../CalculatorDesign/GenericCalculator';
 
-const ForceCalculator = () => {
+const ForceCalculatorHomePage = () => {
     const variables = ['বল','বন্দুকের_পশ্চাৎবেগ','মিলিত_বস্তুর_বেগ','মহাকর্ষ_বল','আদি_গতিশক্তির_সমষ্টি','সংঘর্ষের_পর_একটি_বস্তুর_বেগ']
     return (
         <GenericCalculator
@@ -16,4 +16,4 @@ const ForceCalculator = () => {
     );
 };
 
-export default ForceCalculator;
+export default ForceCalculatorHomePage;
