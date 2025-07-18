@@ -53,13 +53,14 @@ export const router = createBrowserRouter([
             path: "/physics-calculator/work-power-energy",
             element: <WorkPowerEnergyHomePage />,
           },
-          {
-            path: "/physics-calculator/sound-and-wave",
-            element: <SoundAndWaveCalculatorHomePage />,
-          },
+          
           {
             path: "/physics-calculator/matterAndPressure",
             element: <MatterAndPressureCalculatorHomePage />,
+          },
+          {
+            path: "/physics-calculator/sound-and-wave",
+            element: <SoundAndWaveCalculatorHomePage />,
           },
         ],
       },
