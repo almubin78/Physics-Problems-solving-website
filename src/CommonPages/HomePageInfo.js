@@ -70,11 +70,11 @@ const HomePageInfo = () => {
           </div>
         </div>
       </div>
-      <CodeSnippet
+      {/* <CodeSnippet
         language="javascript"
         code={`fetch('https://api.com').then(res => res.json())
         .then(data => console.log(data));`}
-      />
+      /> */}
     </div>
   );
 };

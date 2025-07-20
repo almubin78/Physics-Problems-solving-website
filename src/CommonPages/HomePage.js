@@ -12,7 +12,7 @@ const HomePage = () => {
       <Navbar />
       <Outlet />
       {/* <Camera color="red" size={48} />; */}
-      <ProjectHierarchy/>
+      {/* <ProjectHierarchy/> */}
       <Footer />
     </div>
   );
