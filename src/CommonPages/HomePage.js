@@ -9,6 +9,7 @@ const HomePage = () => {
     // console.log(router.basename);
   return (
     <div>
+      <marquee behavior="" direction="ltr">Hey, Are You want to lern from zoro</marquee>
       <Navbar />
       <Outlet />
       {/* <Camera color="red" size={48} />; */}
