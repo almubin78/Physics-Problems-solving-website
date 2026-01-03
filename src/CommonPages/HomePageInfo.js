@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CodeSnippet from "../commonLogics/CodeSnippet";
 
 const HomePageInfo = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto text-center">
+        <marquee behavior="" direction="ltr">Hey, Are You want to lern from zero! I am here you to assist you!! Contact- 017-019-0-6543</marquee>
         {/* শিরোনাম 01JMC1CYDQHHZ0N9EEK3MNRFPA*/}
+         
         <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
           Phy&Tech-এ স্বাগতম
         </h1>
@@ -22,10 +23,10 @@ const HomePageInfo = () => {
           <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="text-4xl text-blue-500 mb-4">🧮</div>
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
-              একক রূপান্তর
+              এনিমেশন 
             </h2>
             <p className="text-gray-600">
-              সময়, দূরত্ব, বেগ ও শক্তির একক সহজেই পরিবর্তন করতে পারবে।
+              দুটি বস্তুর মধ্যে সংঘর্ষ, মিলিত বস্তুর বেগ, অনুদৈর্ঘ্য তরংগ,অনুপস্থ তরঙ্গ ইত্যাদি । 
             </p>
           </div>
 

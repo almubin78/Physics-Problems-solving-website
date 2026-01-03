@@ -22,6 +22,7 @@ import MotionCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/M
 import ForceCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/ForceCalculatorHomePage";
 import SoundAndWaveCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/SoundAndWaveCalculatorHomePage";
 import MatterAndPressureCalculatorHomePage from "../PysicsCalculatePart/CalculateChapters/MatterAndPressureCalculatorHomePage";
+import ChattingPage from "../ChattingPage/ChattingPage";
 
 export const router = createBrowserRouter([
   {
@@ -32,9 +33,13 @@ export const router = createBrowserRouter([
         path: "/",
         element: <HomePageInfo />,
       },
+      // {
+      //   path: "/unit-calculator",
+      //   element: <UnitHome />,
+      // },
       {
-        path: "/unit-calculator",
-        element: <UnitHome />,
+        path: "/chatWithSir",
+        element:<ChattingPage/>,
       },
       {
         path: "/physics-calculator",

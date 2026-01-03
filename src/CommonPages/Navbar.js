@@ -36,12 +36,13 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6 text-lg font-medium">
+          
           {[
             { path: "/", label: "Home" },
-            { path: "/find-laws", label: "🔍 সূত্র খোঁজ" },
-            { path: "/physics-calculator", label: "⚡ পদার্থ ক্যালকুলেটর" },
-            { path: "/playAnimation", label: "⚡ Animation" },
-            { path: "/unit-calculator", label: "🔢 এককের রূপান্তর" },
+            { path: "/find-laws", label: "🔍 Find Laws" },
+            { path: "/physics-calculator", label: "🧮 Calculator" },
+            { path: "/playAnimation", label: "🎞️ Animation" },
+            { path: "/chatWithSir", label: "💬 Chat" },
           ].map((item) => (
             <li key={item.path}>
               <NavLink
@@ -95,7 +96,7 @@ const Navbar = () => {
                 className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                📜 সূত্র নির্ধারণ
+                🔍 Find Laws
               </NavLink>
             </li>
             <li>
@@ -104,7 +105,7 @@ const Navbar = () => {
                 className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                ⚡ পদার্থ ক্যালকুলেটর
+                🧮 Calculator
               </NavLink>
             </li>
             <li>
@@ -118,11 +119,11 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/unit-calculator"
+                to="/chatWithSir"
                 className="block w-11/12 text-xl font-semibold text-gray-800 bg-green-400 hover:bg-green-500 px-4 py-3 rounded-lg shadow-md transition duration-300"
                 onClick={() => setMenuOpen(false)}
               >
-                🔢 এককের রূপান্তর
+                💬 Chat
               </NavLink>
             </li>
           </ul>

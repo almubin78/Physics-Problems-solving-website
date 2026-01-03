@@ -149,12 +149,12 @@ const FormulaFinder = ({ title, variables, formulas }) => {
       {/* Rest of your component remains the same */}
       {applicableFormulas.length > 0 && (
         <div className="mb-6 bg-white dark:bg-gray-800 shadow-lg rounded-xl p-6">
-          <h2 className="text-lg font-semibold text-green-700 dark:text-green-300">
+          {/* <h2 className="text-lg font-semibold text-green-700 dark:text-green-300">
             নিচে সম্ভাব্য সূত্র উল্লেখ করা হলোঃ
           </h2>
           <p className="text-md text-green-400">
             তোমার কাংখিত সূত্র পেয়ে গেলে উত্তর জানার জন্য সেটির উপর ক্লিক কর।{" "}
-          </p>
+          </p> */}
           <div className="flex flex-wrap gap-3 mt-3">
             {/* {applicableFormulas.map((formula) => (
               <button
